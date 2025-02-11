@@ -1,0 +1,220 @@
+{
+    "displayName": "Kong Private ${env} Dashboard",
+    "gridLayout": {
+      "columns": "2",
+      "widgets": [
+        {
+          "title": "Memory Usage - Kong Proxy",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"kong-ee\" resource.label.\"container_name\"=\"proxy\" metadata.system_labels.\"state\"=\"ACTIVE\" metric.label.\"memory_type\"=\"non-evictable\" resource.label.\"cluster_name\"=\"private-yul-${env}-001\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "By"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "600s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "CPU Usage - Kong Proxy",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/cpu/core_usage_time\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"kong-ee\" resource.label.\"container_name\"=\"proxy\" metadata.system_labels.\"state\"=\"ACTIVE\" resource.label.\"cluster_name\"=\"private-yul-${env}-001\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE"
+                    },
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "s"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "4xx Error Count",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"logging.googleapis.com/user/private-yul-${env}-001/kong_lb/40x_error_count\" resource.type=\"l7_lb_rule\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE"
+                    },
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "5xx Error Count",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"logging.googleapis.com/user/private-yul-${env}-001/kong_lb/50x_error_count\" resource.type=\"l7_lb_rule\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE"
+                    },
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "Request Rate",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"network.googleapis.com/loadbalancer/max_rate\" resource.type=\"http_load_balancer_backend\" resource.label.\"backend_service_name\"=\"k8s1-53c425a0-kong-ee-kong-ingress-protected-kong-p-44-82a775ea\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_SUM",
+                      "crossSeriesReducer": "REDUCE_SUM"
+                    },
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "300s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "kong_bandwidth by service",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/kong_bandwidth\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_DELTA",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "metric.label.\"service\""
+                      ]
+                    },
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "300s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "kong errors",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/kong_nginx_metric_errors_total\" resource.type=\"k8s_container\" resource.label.\"cluster_name\"=\"private-yul-${env}-001\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE",
+                      "crossSeriesReducer": "REDUCE_COUNT",
+                      "groupByFields": [
+                        "resource.label.\"container_name\""
+                      ]
+                    },
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "300s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      ]
+    }
+  }

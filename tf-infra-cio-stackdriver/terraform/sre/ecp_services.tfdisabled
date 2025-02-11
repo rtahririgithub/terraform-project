@@ -1,0 +1,18 @@
+locals {
+  ecp-communication-env = var.env == "np" ? "dv" : "pr"
+}
+
+resource "google_monitoring_custom_service" "ecp-communication-api-sender" {
+  project      = var.project_id
+  service_id   = "ecp-communication-api-sender"
+  display_name = "ECP Communication API Sender"
+
+  telemetry {
+    resource_name = format("%s/namespaces/%s/services/%s",
+      local.gke_private_yul_001,
+      "notify-communication",
+    format("communication-api-sender-svc-%s", local.ecp-communication-env))
+  }
+}
+
+

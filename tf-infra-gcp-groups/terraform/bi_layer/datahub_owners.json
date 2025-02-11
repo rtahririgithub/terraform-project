@@ -1,0 +1,13 @@
+{
+  "id": "datahub-owners",
+  "displayName": "TELUS Datahub Owners",
+  "owners": [],
+  "managers": [],
+  "members": [
+    "jordan.blum@telus.com",
+    "kurt.cox@telus.com",
+    "mark.white@telus.com",
+    "subin.babu@telus.com",
+    "yang.yang@telus.com"
+  ]
+}

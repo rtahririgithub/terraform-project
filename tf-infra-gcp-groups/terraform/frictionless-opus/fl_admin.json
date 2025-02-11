@@ -1,0 +1,11 @@
+{
+  "id": "fl-admin",
+  "displayName": "TELUS Frictionless-Opus Admin",
+  "owners": [],
+  "managers": [
+    "eduard.petreanu@telus.com"
+  ],
+  "members": [
+    "naresh.khatiwada@telus.com"
+  ]
+}

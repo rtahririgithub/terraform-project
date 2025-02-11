@@ -1,0 +1,10 @@
+{
+  "id": "worker-pool-user",
+  "displayName": "AUTOMATION ONLY GROUP: Grants worker pool user permission on cloud build pools projects.",
+  "owners": [],
+  "managers": [
+    "ken.duffy@telus.com",
+    "ruxandra.cioraca@telus.com"
+  ],
+  "members": []
+}

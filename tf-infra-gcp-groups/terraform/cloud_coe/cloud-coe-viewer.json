@@ -1,0 +1,28 @@
+{
+  "id": "cloud-coe-viewer",
+  "displayName": "TELUS Cloud CoE Viewer",
+  "owners": [],
+  "managers": [
+    "ken.duffy@telus.com"
+  ],
+  "members": [
+    "arsalan.khan2@telus.com",
+    "benjamen.ngo@telus.com",
+    "chris.collition@telus.com",
+    "cole.brauer@telus.com",
+    "edward.wong@telus.com",
+    "erik.walker@telus.com",
+    "eugene.thai@telus.com",
+    "harpreet.paul@telus.com",
+    "jaydeep.singh@telus.com",
+    "justin.commu@telus.com",
+    "mark.cassidy@telus.com",
+    "michael.lapish@telus.com",
+    "parin.pankajkumar_kothari@telus.com",
+    "rick.foster@telus.com",
+    "ruxandra.cioraca@telus.com",
+    "sara.ghaemi@telus.com",
+    "scott.lapish@telus.com",
+    "tiger.yu@telus.com"
+  ]
+}

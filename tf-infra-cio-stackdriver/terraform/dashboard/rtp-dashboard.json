@@ -1,0 +1,386 @@
+{
+    "displayName": "RTP Dashboard",
+    "gridLayout": {
+      "columns": "2",
+      "widgets": [
+        {
+          "title": "Memory Usage - BillingCustomerManagementAPI",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billstd-ebsf-custbillmgmt\" resource.label.\"container_name\"=\"billstd-ebsf-custbillmgmt-svc-dv\" metadata.system_labels.\"state\"=\"ACTIVE\" metric.label.\"memory_type\"=\"non-evictable\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  },
+                  "unitOverride": "By"
+                },
+                "plotType": "STACKED_BAR",
+                "minAlignmentPeriod": "300s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "Cpu - BillingCustomerManagementAPI",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/cpu/core_usage_time\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billstd-ebsf-custbillmgmt\" resource.label.\"container_name\"=\"billstd-ebsf-custbillmgmt-svc-dv\" metadata.system_labels.\"state\"=\"ACTIVE\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE",
+                      "crossSeriesReducer": "REDUCE_SUM"
+                    }
+                  },
+                  "unitOverride": "s"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "Ebsf Customer Bill Management Transactions",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"cloudsql.googleapis.com/database/postgresql/transaction_count\" resource.type=\"cloudsql_database\" resource.label.\"database_id\"=\"billingrtp-${env}\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE"
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "RTP Disk Read/Write",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"cloudsql.googleapis.com/database/disk/write_ops_count\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"${project_id}\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE"
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              },
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"cloudsql.googleapis.com/database/disk/read_ops_count\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"${project_id}\" resource.label.\"database_id\"=\" billingrtp-${env}\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE"
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "EBSF Memory- CustomerBillManaAPI",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billstd-ebsf-custbillmgmt\" resource.label.\"container_name\"=\"billstd-ebsf-custbillmgmt-svc-dv\" metric.label.\"memory_type\"=\"non-evictable\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  },
+                  "unitOverride": "By"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "300s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "EBSF Proxy CPU- CustomerBillMGMTAPI",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/cpu/core_usage_time\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billstd-ebsf-custbillmgmt\" resource.label.\"container_name\"=\"billstd-ebsf-custbillmgmt-svc-dv\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE"
+                    }
+                  },
+                  "unitOverride": "s"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "EBSF Connections",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"cloudsql.googleapis.com/database/postgresql/num_backends\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"${project_id}\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "EBSF Health",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"cloudsql.googleapis.com/database/up\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"${project_id}\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "Memory Usage - PaymentManagementAPI",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billstd-ebsf-paymentmgmt\" resource.label.\"container_name\"=\"billstd-ebsf-paymentmgmt-svc-dv\" metadata.system_labels.\"state\"=\"ACTIVE\" metric.label.\"memory_type\"=\"non-evictable\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  },
+                  "unitOverride": "By"
+                },
+                "plotType": "STACKED_BAR",
+                "minAlignmentPeriod": "300s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "Memory Usage - PaymentManagementAPI",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/cpu/core_usage_time\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billstd-ebsf-paymentmgmt\" resource.label.\"container_name\"=\"billstd-ebsf-paymentmgmt-svc-dv\" metadata.system_labels.\"state\"=\"ACTIVE\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE"
+                    }
+                  },
+                  "unitOverride": "s"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "Memory Usage - PaymentManagementAPI",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billstd-ebsf-paymentmgmt\" resource.label.\"container_name\"=\"billstd-ebsf-paymentmgmt-svc-dv\" metadata.system_labels.\"state\"=\"ACTIVE\" metric.label.\"memory_type\"=\"non-evictable\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  },
+                  "unitOverride": "By"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "EBSF Memory- PaymentManagementAPI",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billstd-ebsf-paymentmgmt\" resource.label.\"container_name\"=\"billstd-ebsf-paymentmgmt-svc-dv\" metric.label.\"memory_type\"=\"non-evictable\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  },
+                  "unitOverride": "By"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "300s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "EBSF Proxy CPU- PaymentMGMTAPI",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/cpu/core_usage_time\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billstd-ebsf-paymentmgmt\" resource.label.\"container_name\"=\"billstd-ebsf-paymentmgmt-svc-dv\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE"
+                    }
+                  },
+                  "unitOverride": "s"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      ]
+    }
+  }

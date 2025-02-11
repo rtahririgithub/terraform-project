@@ -1,0 +1,133 @@
+steps:
+- name: 'gcr.io/cloud-builders/git'
+  id: set-read-key
+  secretEnv: ['READ_KEY']
+  entrypoint: 'bash'
+  args:
+  - -c
+  - |
+    echo "$$READ_KEY" >> /root/.ssh/id_rsa
+    chmod 400 /root/.ssh/id_rsa
+    cat <<EOF >/root/.ssh/config
+    Hostname github.com
+    IdentityFile /root/.ssh/id_rsa
+    EOF
+    ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
+  volumes:
+  - name: 'ssh'
+    path: /root/.ssh
+
+- name: 'northamerica-northeast1-docker.pkg.dev/${_REGISTRY_PROJECT}/builders/${_TERRAFORM_VERSION}'
+  id: tf-google-cache-creation-1
+  env:     
+    - 'TF_LOG=TRACE'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      echo "Create base cache"
+      cd /workspace/terraform         
+      terraform init -backend-config="${_BACKEND_CONFIG_BUCKET}" -backend-config="${_BACKEND_CONFIG_PREFIX}" ${_TF_RELATIVE_PATH};
+      echo "the terraform init cache"; echo "copy cache folders to directory"; echo;
+      #Copy the cache folders to bucket        
+      rm -r .terraform/terraform.tfstate;
+      
+      gsutil -m cp -r .terraform/plugins gs://${_TF_CACHE_BUCKET}/google/
+      gsutil -m cp -r .terraform.lock.hcl gs://${_TF_CACHE_BUCKET}/google/
+      echo; echo; echo "terraform init completed for base state"; echo; echo;
+      echo; echo "create terraform dashboard cache";
+      cd /workspace/terraform/dashboard
+      terraform init -backend-config="${_BACKEND_CONFIG_BUCKET}" -backend-config="${_DASHBOARD_BACKEND_CONFIG_PREFIX}" ${_TF_RELATIVE_PATH};
+      echo; echo "the terraform init cache for dashboards"; echo "copy cache folders to directory"; echo;      
+      #Copy the cache folders to bucket
+      rm -r .terraform/terraform.tfstate;
+      gsutil -m cp -r .terraform/plugins gs://${_TF_CACHE_BUCKET}/google/dashboard/
+      gsutil -m cp -r .terraform.lock.hcl gs://${_TF_CACHE_BUCKET}/google/dashboard/
+      echo; echo; echo "terraform init completed for dashboard cache"; echo; echo;
+      echo; echo "create terraform notification cache";
+      cd /workspace/terraform/notification
+      terraform init -backend-config="${_BACKEND_CONFIG_BUCKET}" -backend-config="${_NOTIFICATION_BACKEND_CONFIG_PREFIX}" ${_TF_RELATIVE_PATH};
+      echo; echo "the terraform init cache for notifications"; echo; echo "copy cache folders to directory"; echo;      
+      #Copy the cache folders to bucket        
+      rm -r .terraform/terraform.tfstate;      
+      gsutil -m cp -r .terraform/plugins gs://${_TF_CACHE_BUCKET}/google/notification/plugins
+      gsutil -m cp -r .terraform.lock.hcl gs://${_TF_CACHE_BUCKET}/google/notification/plugins      
+      echo; echo; echo "terraform init completed for notification cache"; echo; echo;
+      echo; echo "create terraform policy cache";      
+      cd /workspace/terraform/policy
+      terraform init -backend-config="${_BACKEND_CONFIG_BUCKET}" -backend-config="${_POLICY_BACKEND_CONFIG_PREFIX}" ${_TF_RELATIVE_PATH};
+      echo; echo "the terraform init cache for policy";
+      echo; echo "copy cache folders to directory"; echo;      
+      #Copy the cache folders to bucket
+      rm -r .terraform/terraform.tfstate;
+      echo "what is in policy cache directory"; ls -lrth; cd ..      
+      gsutil -m cp -r .terraform/plugins gs://${_TF_CACHE_BUCKET}/google/policy/plugins
+      gsutil -m cp -r .terraform.lock.hcl gs://${_TF_CACHE_BUCKET}/google/policy/plugins
+      echo; echo; echo "terraform init completed for policy cache"; echo; echo;
+           
+  volumes:
+   - name: 'ssh'
+     path: /root/.ssh
+
+- name: 'northamerica-northeast1-docker.pkg.dev/${_REGISTRY_PROJECT}/builders/${_TERRAFORM_VERSION}'
+  id: tf-google-cache-creation-2
+  env:     
+    - 'TF_LOG=TRACE'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      echo; echo "create terraform uptime cache";
+      cd /workspace/terraform/uptime;
+      terraform init -backend-config="${_BACKEND_CONFIG_BUCKET}" -backend-config="${_UPTIME_BACKEND_CONFIG_PREFIX}" ${_TF_RELATIVE_PATH};
+      echo; echo "the terraform init cache for uptime"; echo; echo "copy cache folders to directory"; echo;      
+      # #Copy the cache folders to bucket
+      rm -r .terraform/terraform.tfstate;
+      gsutil -m cp -r .terraform/plugins gs://${_TF_CACHE_BUCKET}/google/uptime/plugins
+      gsutil -m cp -r .terraform.lock.hcl gs://${_TF_CACHE_BUCKET}/google/uptime/plugins
+      cd /workspace/terraform/sre;
+      terraform init -backend-config="${_BACKEND_CONFIG_BUCKET}" -backend-config="${_SRE_BACKEND_CONFIG_PREFIX}" ${_TF_RELATIVE_PATH};
+      echo; echo "the terraform init cache for sre"; echo; echo "copy cache folders to directory"; echo;      
+      # #Copy the cache folders to bucket        
+      rm -r .terraform/terraform.tfstate;
+      gsutil -m cp -r .terraform/plugins gs://${_TF_CACHE_BUCKET}/google/sre/
+      gsutil -m cp -r .terraform.lock.hcl gs://${_TF_CACHE_BUCKET}/google/sre/
+      echo; echo; echo "terraform init completed for sre cache"; echo; echo;
+      cd /workspace/terraform/scc;
+      terraform init -backend-config="${_BACKEND_CONFIG_BUCKET}" -backend-config="${_SCC_BACKEND_CONFIG_PREFIX}" ${_TF_RELATIVE_PATH};
+      echo; echo "the terraform init cache for scc"; echo; echo "copy cache folders to directory"; echo;      
+      # #Copy the cache folders to bucket        
+      rm -r .terraform/terraform.tfstate;         
+      gsutil -m cp -r .terraform/plugins gs://${_TF_CACHE_BUCKET}/google/scc/plugins
+      gsutil -m cp -r .terraform.lock.hcl gs://${_TF_CACHE_BUCKET}/google/scc/plugins
+      echo; echo; echo "terraform init completed for sre cache"; echo; echo;
+  volumes:
+   - name: 'ssh'
+     path: /root/.ssh
+substitutions:
+  _KEY_PROJECT: cio-secrets-pr-cb7b98
+  _READ_KEY_NAME: rpabot_read_key
+  _KEY_VERSION: "latest"
+  _ENV: np
+  _REGISTRY_PROJECT: cio-gke-devops-e4993356
+  _TERRAFORM_VERSION: terraform:0.13.3
+  _TF_CACHE_BUCKET: tf-cache-${PROJECT_ID} 
+  _DIR: .
+  _TF_COMMAND: plan
+  _TF_DIR: terraform
+  _BACKEND_CONFIG_BUCKET: bucket=tf-state-${PROJECT_ID} 
+  _BACKEND_CONFIG_PREFIX: prefix=terraform/${_ENV}
+  _DASHBOARD_BACKEND_CONFIG_PREFIX: prefix=terraform/${_ENV}/dashboard
+  _NOTIFICATION_BACKEND_CONFIG_PREFIX: prefix=terraform/${_ENV}/notification
+  _POLICY_BACKEND_CONFIG_PREFIX: prefix=terraform/${_ENV}/policy
+  _UPTIME_BACKEND_CONFIG_PREFIX: prefix=terraform/${_ENV}/uptime
+  _SCC_BACKEND_CONFIG_PREFIX: prefix=terraform/${_ENV}/scc
+  _SRE_BACKEND_CONFIG_PREFIX: prefix=terraform/${_ENV}/sre
+
+  _VAR_FILE: ${_ENV}.tfvars
+  _TF_LOG:
+availableSecrets:
+  secretManager:
+  - versionName: projects/${_KEY_PROJECT}/secrets/${_READ_KEY_NAME}/versions/${_KEY_VERSION}
+    env: 'READ_KEY'
+timeout: 1200s

@@ -1,0 +1,11 @@
+{
+  "id": "datahub-ent-common-viewer",
+  "displayName": "Datahub Enterprise Layer Common Viewers",
+  "owners": [],
+  "managers": [],
+  "members": [
+    "bq-gcpbilling-srvacct@cio-gcp-bill-analysis-357b8b12.iam.gserviceaccount.com",
+    "gsa-dp-runner@cdo-dse-workspace-np-45d0d5.iam.gserviceaccount.com",
+    "gsa-vertex-ai@cdo-dse-workspace-np-45d0d5.iam.gserviceaccount.com"
+  ]
+}

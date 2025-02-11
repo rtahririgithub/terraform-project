@@ -1,0 +1,27 @@
+{
+  "id": "bq-resource-viewer",
+  "displayName": "BigQuery Resource Viewer",
+  "owners": [],
+  "managers": [
+    "ruxandra.cioraca@telus.com"
+  ],
+  "members": [
+    "alexander.rohvarger@telus.com",
+    "bilayer-sa@bi-srv-vhagar-pr-2640d0.iam.gserviceaccount.com",
+    "bilayer-sa@bi-srv-vhagar-pr-2640d0.iam.gserviceaccount.com",
+    "bilayer-sa@bi-stg-vhagar-pr-5f9b23.iam.gserviceaccount.com",
+    "bilayer-sa@bi-stg-vhagar-pr-5f9b23.iam.gserviceaccount.com",
+    "datahub-monitoring@cio-datahub-work-dv-c03a6c.iam.gserviceaccount.com",
+    "datahub-monitoring@cio-datahub-work-pr-0be526.iam.gserviceaccount.com",
+    "datahub-monitoring@cio-datahub-work-qa-1e9ecf.iam.gserviceaccount.com",
+    "edward.wong@telus.com",
+    "jordan.blum@telus.com",
+    "mark.gates@telus.com",
+    "matthew.maclellan@telus.com",
+    "rafid.javid@telus.com",
+    "rafid.javid@telus.com",
+    "raj.bains@telus.com",
+    "scott.lapish@telus.com",
+    "yang.yang@telus.com"
+  ]
+}

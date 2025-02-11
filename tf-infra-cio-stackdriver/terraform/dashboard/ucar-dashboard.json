@@ -1,0 +1,1153 @@
+{
+  "displayName": "UCAR Dashboard",
+  "mosaicLayout": {
+    "columns": 12,
+    "tiles": [
+      {
+        "xPos": 7,
+        "yPos": 10,
+        "width": 5,
+        "height": 3,
+        "widget": {
+          "title": "CPU Request Utilization",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/cpu/request_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"datahub-ucir\" resource.label.\"container_name\"=\"datahub-builder-${env}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "xPos": 3,
+        "yPos": 17,
+        "width": 3,
+        "height": 4,
+        "widget": {
+          "title": "Data Stored by Cluster",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"bigtable.googleapis.com/disk/bytes_used\" resource.type=\"bigtable_cluster\" resource.label.\"instance\"=\"datahub-instance\" resource.label.\"project_id\"=\"${bt_ucar_api_project_id}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_MEAN",
+                      "groupByFields": [
+                        "resource.label.\"cluster\""
+                      ]
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "xPos": 3,
+        "yPos": 21,
+        "width": 4,
+        "height": 4,
+        "widget": {
+          "title": "CPU load By Cluster",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"bigtable.googleapis.com/cluster/cpu_load\" resource.type=\"bigtable_cluster\" resource.label.\"instance\"=\"datahub-instance\" resource.label.\"project_id\"=\"${bt_ucar_api_project_id}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_MEAN",
+                      "groupByFields": [
+                        "resource.label.\"cluster\""
+                      ]
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "yPos": 17,
+        "width": 3,
+        "height": 2,
+        "widget": {
+          "title": "BATCH Cluster - Used Storage Gauge",
+          "scorecard": {
+            "timeSeriesQuery": {
+              "timeSeriesFilter": {
+                "filter": "metric.type=\"bigtable.googleapis.com/disk/bytes_used\" resource.type=\"bigtable_cluster\" resource.label.\"project_id\"=\"${bt_ucar_api_project_id}\" resource.label.\"instance\"=\"datahub-instance\" resource.label.\"cluster\"=\"batch-cluster\"",
+                "aggregation": {
+                  "alignmentPeriod": "60s",
+                  "perSeriesAligner": "ALIGN_MAX",
+                  "crossSeriesReducer": "REDUCE_MAX"
+                }
+              }
+            },
+            "gaugeView": {
+              "upperBound": 5000000000000
+            },
+            "thresholds": [
+              {
+                "value": 4800000000000,
+                "color": "RED",
+                "direction": "ABOVE"
+              },
+              {
+                "value": 110000000000,
+                "color": "RED",
+                "direction": "BELOW"
+              },
+              {
+                "value": 4500000000000,
+                "color": "YELLOW",
+                "direction": "ABOVE"
+              },
+              {
+                "value": 120000000000,
+                "color": "YELLOW",
+                "direction": "BELOW"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "xPos": 3,
+        "yPos": 10,
+        "width": 4,
+        "height": 3,
+        "widget": {
+          "title": "CPU limit utilization",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/cpu/limit_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"datahub-ucir\" resource.label.\"container_name\"=\"datahub-builder-${env}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MAX"
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "xPos": 3,
+        "yPos": 13,
+        "width": 4,
+        "height": 3,
+        "widget": {
+          "title": "Memory limit utilization",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/memory/limit_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"datahub-ucir\" resource.label.\"container_name\"=\"datahub-builder-${env}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MAX",
+                      "crossSeriesReducer": "REDUCE_MAX",
+                      "groupByFields": [
+                        "metric.label.\"memory_type\""
+                      ]
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "xPos": 7,
+        "yPos": 13,
+        "width": 5,
+        "height": 3,
+        "widget": {
+          "title": "Memory usage",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"datahub-ucir\" resource.label.\"container_name\"=\"datahub-builder-${env}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MAX",
+                      "crossSeriesReducer": "REDUCE_MAX",
+                      "groupByFields": [
+                        "metric.label.\"memory_type\""
+                      ]
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "yPos": 29,
+        "width": 6,
+        "height": 3,
+        "widget": {
+          "title": "Modified Rows",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"bigtable.googleapis.com/server/modified_rows_count\" resource.type=\"bigtable_table\" resource.label.\"instance\"=\"datahub-instance\" resource.label.\"project_id\"=\"${bt_ucar_api_project_id}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_RATE"
+                    },
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_MEAN",
+                      "groupByFields": [
+                        "resource.label.\"cluster\"",
+                        "resource.label.\"table\""
+                      ]
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "xPos": 6,
+        "yPos": 17,
+        "width": 3,
+        "height": 4,
+        "widget": {
+          "title": "BATCH - Data Stored By Table",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"bigtable.googleapis.com/table/bytes_used\" resource.type=\"bigtable_table\" resource.label.\"project_id\"=\"${bt_ucar_api_project_id}\" resource.label.\"instance\"=\"datahub-instance\" resource.label.\"cluster\"=\"batch-cluster\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_MEAN",
+                      "groupByFields": [
+                        "resource.label.\"table\""
+                      ]
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "xPos": 6,
+        "yPos": 29,
+        "width": 6,
+        "height": 3,
+        "widget": {
+          "title": "Request Counts",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"bigtable.googleapis.com/server/request_count\" resource.type=\"bigtable_table\" resource.label.\"project_id\"=\"${bt_ucar_api_project_id}\" resource.label.\"instance\"=\"datahub-instance\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_RATE"
+                    },
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_MEAN",
+                      "groupByFields": [
+                        "resource.label.\"cluster\"",
+                        "resource.label.\"table\""
+                      ]
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "xPos": 6,
+        "yPos": 25,
+        "width": 3,
+        "height": 4,
+        "widget": {
+          "title": "LIVE  - Server Latencies (50th)",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"bigtable.googleapis.com/server/latencies\" resource.type=\"bigtable_table\" resource.label.\"project_id\"=\"${bt_ucar_api_project_id}\" resource.label.\"instance\"=\"datahub-instance\" resource.label.\"cluster\"=\"live-cluster\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_PERCENTILE_50"
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "yPos": 7,
+        "width": 4,
+        "height": 3,
+        "widget": {
+          "title": "API Latency - 200",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesQueryLanguage": "{ fetch k8s_container\n  | metric 'external.googleapis.com/prometheus/http_server_requests_seconds_sum'\n  | filter (resource.namespace_name == 'datahub-ucir') && (metric.status = '200') && (resource.container_name == 'datahub-builder-${env}')\n  | align delta(1m)\n  | every 1m\n  | group_by [],\n      [value_http_server_requests_seconds_sum_aggregate:\n         aggregate(value.http_server_requests_seconds_sum)]\n; fetch k8s_container\n  | metric\n      'external.googleapis.com/prometheus/http_server_requests_seconds_count'\n  | filter (resource.namespace_name == 'datahub-ucir') && (metric.status == '200') && (resource.container_name == 'datahub-builder-${env}')\n  | align delta(1m)\n  | every 1m\n  | group_by [],\n      [value_http_server_requests_seconds_count_aggregate:\n        aggregate(value.http_server_requests_seconds_count)] }\n| join\n| div"
+                },
+                "plotType": "LINE"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "yPos": 13,
+        "width": 3,
+        "height": 3,
+        "widget": {
+          "title": "Memory Limit Utilization Gauge [MAX]",
+          "scorecard": {
+            "timeSeriesQuery": {
+              "timeSeriesFilter": {
+                "filter": "metric.type=\"kubernetes.io/container/memory/limit_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"datahub-ucir\" resource.label.\"container_name\"=\"datahub-builder-${env}\"",
+                "aggregation": {
+                  "alignmentPeriod": "60s",
+                  "perSeriesAligner": "ALIGN_MAX",
+                  "crossSeriesReducer": "REDUCE_MAX"
+                }
+              }
+            },
+            "gaugeView": {
+              "upperBound": 1
+            },
+            "thresholds": [
+              {
+                "value": 0.95,
+                "color": "RED",
+                "direction": "ABOVE"
+              },
+              {
+                "value": 0.85,
+                "color": "YELLOW",
+                "direction": "ABOVE"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "xPos": 8,
+        "width": 4,
+        "height": 2,
+        "widget": {
+          "title": "Capacity Information",
+          "text": {
+            "content": "**BigTable Storage Capacity**:\n 5 TB SSD - 2 Clusters (live-cluster - 2 nodes, batch-cluster - 2 nodes)  \n**Kubernetes Resources**:\nLimits - 1 core CPU/1G Mem; Requests - 0.2 core CPU/128M Mem\n",
+            "format": "MARKDOWN"
+          }
+        }
+      },
+      {
+        "xPos": 4,
+        "width": 4,
+        "height": 2,
+        "widget": {
+          "title": "Project Information",
+          "text": {
+            "content": " **BigTable Project**: ${bt_ucar_api_project_id}  \n**BigQuery Project**: ${bq_ucar_data_project_id}   \n**Kubernetes Project/Namespace/Container**: ${gke_ucar_api_project_id}/datahub-ucir/datahub-builder-${env}",
+            "format": "MARKDOWN"
+          }
+        }
+      },
+      {
+        "yPos": 10,
+        "width": 3,
+        "height": 3,
+        "widget": {
+          "title": "CPU Limit Utilization Gauge [MAX]",
+          "scorecard": {
+            "timeSeriesQuery": {
+              "timeSeriesFilter": {
+                "filter": "metric.type=\"kubernetes.io/container/cpu/limit_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"datahub-ucir\" resource.label.\"container_name\"=\"datahub-builder-${env}\"",
+                "aggregation": {
+                  "alignmentPeriod": "60s",
+                  "perSeriesAligner": "ALIGN_MAX",
+                  "crossSeriesReducer": "REDUCE_MAX"
+                }
+              }
+            },
+            "gaugeView": {
+              "upperBound": 1
+            },
+            "thresholds": [
+              {
+                "value": 0.95,
+                "color": "RED",
+                "direction": "ABOVE"
+              },
+              {
+                "value": 0.85,
+                "color": "YELLOW",
+                "direction": "ABOVE"
+              },
+              {
+                "color": "YELLOW",
+                "direction": "BELOW"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "width": 4,
+        "height": 2,
+        "widget": {
+          "title": "System Health Check",
+          "text": {
+            "content": "  [Kong Health](https://console.cloud.google.com/monitoring/uptime?project=${dashboard_project_id})  \n [GCP Health](https://status.cloud.google.com) ",
+            "format": "MARKDOWN"
+          }
+        }
+      },
+      {
+        "xPos": 8,
+        "yPos": 3,
+        "width": 4,
+        "height": 4,
+        "widget": {
+          "title": "API Request Latency (Seconds)",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_sum\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"datahub-ucir\" resource.label.\"container_name\"=\"datahub-builder-${env}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_DELTA"
+                    },
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_DELTA",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "metric.label.\"status\"",
+                        "metric.label.\"uri\""
+                      ]
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "xPos": 4,
+        "yPos": 3,
+        "width": 4,
+        "height": 4,
+        "widget": {
+          "title": "API Request Counts",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_count\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"datahub-ucir\" resource.label.\"container_name\"=\"datahub-builder-${env}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_DELTA"
+                    },
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_DELTA",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "metric.label.\"status\"",
+                        "metric.label.\"uri\""
+                      ]
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "xPos": 2,
+        "yPos": 3,
+        "width": 2,
+        "height": 2,
+        "widget": {
+          "title": "API - Errors",
+          "scorecard": {
+            "timeSeriesQuery": {
+              "timeSeriesFilter": {
+                "filter": "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_count\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"datahub-ucir\" metric.label.\"status\"=\"500\" resource.label.\"container_name\"=\"datahub-builder-${env}\"",
+                "aggregation": {
+                  "alignmentPeriod": "60s",
+                  "perSeriesAligner": "ALIGN_DELTA"
+                },
+                "secondaryAggregation": {
+                  "alignmentPeriod": "60s",
+                  "perSeriesAligner": "ALIGN_DELTA",
+                  "crossSeriesReducer": "REDUCE_SUM"
+                }
+              }
+            },
+            "gaugeView": {
+              "upperBound": 5
+            },
+            "thresholds": [
+              {
+                "value": 3,
+                "color": "RED",
+                "direction": "ABOVE"
+              },
+              {
+                "value": 1,
+                "color": "YELLOW",
+                "direction": "ABOVE"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "yPos": 3,
+        "width": 2,
+        "height": 2,
+        "widget": {
+          "title": "API - Success Rate",
+          "scorecard": {
+            "timeSeriesQuery": {
+              "timeSeriesFilter": {
+                "filter": "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_count\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"datahub-ucir\" metric.label.\"status\"=\"200\" resource.label.\"container_name\"=\"datahub-builder-${env}\"",
+                "aggregation": {
+                  "alignmentPeriod": "60s",
+                  "perSeriesAligner": "ALIGN_RATE"
+                },
+                "secondaryAggregation": {
+                  "alignmentPeriod": "60s",
+                  "perSeriesAligner": "ALIGN_MEAN",
+                  "crossSeriesReducer": "REDUCE_SUM"
+                }
+              }
+            },
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            }
+          }
+        }
+      },
+      {
+        "yPos": 5,
+        "width": 2,
+        "height": 2,
+        "widget": {
+          "title": "API - Not Found Rate",
+          "scorecard": {
+            "timeSeriesQuery": {
+              "timeSeriesFilter": {
+                "filter": "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_count\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"datahub-ucir\" metric.label.\"status\"=\"404\" resource.label.\"container_name\"=\"datahub-builder-${env}\"",
+                "aggregation": {
+                  "alignmentPeriod": "60s",
+                  "perSeriesAligner": "ALIGN_RATE"
+                },
+                "secondaryAggregation": {
+                  "alignmentPeriod": "60s",
+                  "perSeriesAligner": "ALIGN_MEAN",
+                  "crossSeriesReducer": "REDUCE_SUM"
+                }
+              }
+            },
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            }
+          }
+        }
+      },
+      {
+        "yPos": 2,
+        "width": 12,
+        "height": 1,
+        "widget": {
+          "title": "\u003e\u003e KUBERNETES - UCAR API",
+          "text": {
+            "format": "RAW"
+          }
+        }
+      },
+      {
+        "yPos": 16,
+        "width": 12,
+        "height": 1,
+        "widget": {
+          "title": "\u003e\u003e BIGTABLE",
+          "text": {
+            "format": "RAW"
+          }
+        }
+      },
+      {
+        "xPos": 4,
+        "yPos": 7,
+        "width": 4,
+        "height": 3,
+        "widget": {
+          "title": "API Latency - 404",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesQueryLanguage": "{ fetch k8s_container\n  | metric 'external.googleapis.com/prometheus/http_server_requests_seconds_sum'\n  | filter (resource.namespace_name == 'datahub-ucir') && (metric.status = '404') && (resource.container_name == 'datahub-builder-${env}')\n  | align delta(1m)\n  | every 1m\n  | group_by [],\n      [value_http_server_requests_seconds_sum_aggregate:\n         aggregate(value.http_server_requests_seconds_sum)]\n; fetch k8s_container\n  | metric\n      'external.googleapis.com/prometheus/http_server_requests_seconds_count'\n  | filter (resource.namespace_name == 'datahub-ucir') && (metric.status == '404') && (resource.container_name == 'datahub-builder-${env}')\n  | align delta(1m)\n  | every 1m\n  | group_by [],\n      [value_http_server_requests_seconds_count_aggregate:\n        aggregate(value.http_server_requests_seconds_count)] }\n| join\n| div"
+                },
+                "plotType": "LINE"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "xPos": 8,
+        "yPos": 7,
+        "width": 4,
+        "height": 3,
+        "widget": {
+          "title": "API Latency - 500",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesQueryLanguage": "{ fetch k8s_container\n  | metric 'external.googleapis.com/prometheus/http_server_requests_seconds_sum'\n  | filter (resource.namespace_name == 'datahub-ucir') && (metric.status = '500') && (resource.container_name == 'datahub-builder-${env}')\n  | align delta(1m)\n  | every 1m\n  | group_by [],\n      [value_http_server_requests_seconds_sum_aggregate:\n         aggregate(value.http_server_requests_seconds_sum)]\n; fetch k8s_container\n  | metric\n      'external.googleapis.com/prometheus/http_server_requests_seconds_count'\n  | filter (resource.namespace_name == 'datahub-ucir') && (metric.status == '500') && (resource.container_name == 'datahub-builder-${env}')\n  | align delta(1m)\n  | every 1m\n  | group_by [],\n      [value_http_server_requests_seconds_count_aggregate:\n        aggregate(value.http_server_requests_seconds_count)] }\n| join\n| div"
+                },
+                "plotType": "LINE"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "yPos": 25,
+        "width": 3,
+        "height": 4,
+        "widget": {
+          "title": "BATCH - Server Latencies (50th)",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"bigtable.googleapis.com/server/latencies\" resource.type=\"bigtable_table\" resource.label.\"instance\"=\"datahub-instance\" resource.label.\"project_id\"=\"${bt_ucar_api_project_id}\" resource.label.\"cluster\"=\"batch-cluster\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_PERCENTILE_50"
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "xPos": 2,
+        "yPos": 5,
+        "width": 2,
+        "height": 2,
+        "widget": {
+          "title": "API - Bad Requests",
+          "scorecard": {
+            "timeSeriesQuery": {
+              "timeSeriesFilter": {
+                "filter": "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_count\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"datahub-ucir\" metric.label.\"status\"=\"400\" resource.label.\"container_name\"=\"datahub-builder-${env}\"",
+                "aggregation": {
+                  "alignmentPeriod": "60s",
+                  "perSeriesAligner": "ALIGN_DELTA"
+                },
+                "secondaryAggregation": {
+                  "alignmentPeriod": "60s",
+                  "perSeriesAligner": "ALIGN_DELTA",
+                  "crossSeriesReducer": "REDUCE_SUM"
+                }
+              }
+            },
+            "gaugeView": {
+              "upperBound": 5
+            },
+            "thresholds": [
+              {
+                "value": 4,
+                "color": "RED",
+                "direction": "ABOVE"
+              },
+              {
+                "value": 2,
+                "color": "YELLOW",
+                "direction": "ABOVE"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "yPos": 21,
+        "width": 3,
+        "height": 2,
+        "widget": {
+          "title": "BATCH Cluster - CPU Load Gauge",
+          "scorecard": {
+            "timeSeriesQuery": {
+              "timeSeriesFilter": {
+                "filter": "metric.type=\"bigtable.googleapis.com/cluster/cpu_load\" resource.type=\"bigtable_cluster\" resource.label.\"project_id\"=\"${bt_ucar_api_project_id}\" resource.label.\"cluster\"=\"batch-cluster\" resource.label.\"instance\"=\"datahub-instance\"",
+                "aggregation": {
+                  "alignmentPeriod": "60s",
+                  "perSeriesAligner": "ALIGN_MAX",
+                  "crossSeriesReducer": "REDUCE_MAX"
+                }
+              }
+            },
+            "gaugeView": {
+              "upperBound": 1
+            },
+            "thresholds": [
+              {
+                "value": 1,
+                "color": "YELLOW",
+                "direction": "ABOVE"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "yPos": 23,
+        "width": 3,
+        "height": 2,
+        "widget": {
+          "title": "LIVE Cluster - CPU Load Gauge",
+          "scorecard": {
+            "timeSeriesQuery": {
+              "timeSeriesFilter": {
+                "filter": "metric.type=\"bigtable.googleapis.com/cluster/cpu_load\" resource.type=\"bigtable_cluster\" resource.label.\"project_id\"=\"${bt_ucar_api_project_id}\" resource.label.\"instance\"=\"datahub-instance\" resource.label.\"cluster\"=\"live-cluster\"",
+                "aggregation": {
+                  "alignmentPeriod": "60s",
+                  "perSeriesAligner": "ALIGN_MAX",
+                  "crossSeriesReducer": "REDUCE_MAX"
+                }
+              }
+            },
+            "gaugeView": {
+              "upperBound": 1
+            },
+            "thresholds": [
+              {
+                "value": 0.9,
+                "color": "RED",
+                "direction": "ABOVE"
+              },
+              {
+                "value": 0.7,
+                "color": "YELLOW",
+                "direction": "ABOVE"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "yPos": 19,
+        "width": 3,
+        "height": 2,
+        "widget": {
+          "title": "LIVE Cluster - Data Stored Gauge",
+          "scorecard": {
+            "timeSeriesQuery": {
+              "timeSeriesFilter": {
+                "filter": "metric.type=\"bigtable.googleapis.com/disk/bytes_used\" resource.type=\"bigtable_cluster\" resource.label.\"project_id\"=\"${bt_ucar_api_project_id}\" resource.label.\"instance\"=\"datahub-instance\" resource.label.\"cluster\"=\"live-cluster\"",
+                "aggregation": {
+                  "alignmentPeriod": "60s",
+                  "perSeriesAligner": "ALIGN_MAX",
+                  "crossSeriesReducer": "REDUCE_MAX"
+                }
+              }
+            },
+            "gaugeView": {
+              "upperBound": 5000000000000
+            },
+            "thresholds": [
+              {
+                "value": 4800000000000,
+                "color": "RED",
+                "direction": "ABOVE"
+              },
+              {
+                "value": 110000000000,
+                "color": "RED",
+                "direction": "BELOW"
+              },
+              {
+                "value": 4500000000000,
+                "color": "YELLOW",
+                "direction": "ABOVE"
+              },
+              {
+                "value": 120000000000,
+                "color": "YELLOW",
+                "direction": "BELOW"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "xPos": 9,
+        "yPos": 17,
+        "width": 3,
+        "height": 4,
+        "widget": {
+          "title": "LIVE - Data Stored By Table",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"bigtable.googleapis.com/table/bytes_used\" resource.type=\"bigtable_table\" resource.label.\"project_id\"=\"${bt_ucar_api_project_id}\" resource.label.\"instance\"=\"datahub-instance\" resource.label.\"cluster\"=\"live-cluster\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_MEAN",
+                      "groupByFields": [
+                        "resource.label.\"table\""
+                      ]
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "xPos": 3,
+        "yPos": 25,
+        "width": 3,
+        "height": 4,
+        "widget": {
+          "title": "BATCH - Server Latencies (99th)",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"bigtable.googleapis.com/server/latencies\" resource.type=\"bigtable_table\" resource.label.\"project_id\"=\"${bt_ucar_api_project_id}\" resource.label.\"instance\"=\"datahub-instance\" resource.label.\"cluster\"=\"batch-cluster\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_PERCENTILE_99"
+                    },
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s"
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "xPos": 9,
+        "yPos": 25,
+        "width": 3,
+        "height": 4,
+        "widget": {
+          "title": "LIVE - Server Latencies (99th)",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"bigtable.googleapis.com/server/latencies\" resource.type=\"bigtable_table\" resource.label.\"project_id\"=\"${bt_ucar_api_project_id}\" resource.label.\"instance\"=\"datahub-instance\" resource.label.\"cluster\"=\"live-cluster\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_PERCENTILE_99"
+                    },
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s"
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "xPos": 7,
+        "yPos": 21,
+        "width": 5,
+        "height": 4,
+        "widget": {
+          "title": "LIVE - Replication latencies (50th)",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"bigtable.googleapis.com/replication/latency\" resource.type=\"bigtable_table\" resource.label.\"project_id\"=\"${bt_ucar_api_project_id}\" resource.label.\"instance\"=\"datahub-instance\" resource.label.\"cluster\"=\"live-cluster\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_PERCENTILE_50"
+                    },
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s"
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

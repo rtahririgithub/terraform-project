@@ -1,0 +1,302 @@
+{
+    "displayName": "WNP-Port",
+    "mosaicLayout": {
+        "columns": 12,
+        "tiles": [
+            {
+                "width": 2,
+                "height": 2,
+                "widget": {
+                    "title": "Dashboard Notes",
+                    "text": {
+                        "content": "This dashboard is for monitoring WNP Port",
+                        "format": "MARKDOWN"
+                    }
+                }
+            },
+            {
+                "xPos": 6,
+                "width": 2,
+                "height": 2,
+                "widget": {
+                    "title": "Pending Portout",
+                    "scorecard": {
+                        "timeSeriesQuery": {
+                            "timeSeriesFilter": {
+                                "filter": "metric.type=\"external.googleapis.com/prometheus/portout_pending\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"notify-wnp-processor.*\")",
+                                "aggregation": {
+                                    "perSeriesAligner": "ALIGN_MEAN",
+                                    "crossSeriesReducer": "REDUCE_SUM"
+                                }
+                            }
+                        },
+                        "sparkChartView": {
+                            "sparkChartType": "SPARK_LINE"
+                        }
+                    }
+                }
+            },
+            {
+                "xPos": 4,
+                "width": 2,
+                "height": 2,
+                "widget": {
+                    "title": "Total Portout",
+                    "scorecard": {
+                        "timeSeriesQuery": {
+                            "timeSeriesFilter": {
+                                "filter": "metric.type=\"external.googleapis.com/prometheus/portoutRequest_count_total\" resource.type=\"k8s_container\" metric.label.\"type\"=\"total\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"notify-wnp-processor.*\")",
+                                "aggregation": {
+                                    "perSeriesAligner": "ALIGN_DELTA"
+                                },
+                                "secondaryAggregation": {
+                                    "perSeriesAligner": "ALIGN_MEAN",
+                                    "crossSeriesReducer": "REDUCE_SUM"
+                                }
+                            }
+                        },
+                        "sparkChartView": {
+                            "sparkChartType": "SPARK_LINE"
+                        }
+                    }
+                }
+            },
+            {
+                "xPos": 2,
+                "width": 2,
+                "height": 2,
+                "widget": {
+                    "title": "Errors",
+                    "scorecard": {
+                        "timeSeriesQuery": {
+                            "timeSeriesFilter": {
+                                "filter": "metric.type=\"logging.googleapis.com/user/notification_wnp_processor/error_count\" resource.type=\"k8s_container\"",
+                                "aggregation": {
+                                    "perSeriesAligner": "ALIGN_RATE"
+                                },
+                                "secondaryAggregation": {
+                                    "crossSeriesReducer": "REDUCE_SUM"
+                                }
+                            }
+                        },
+                        "sparkChartView": {
+                            "sparkChartType": "SPARK_LINE"
+                        },
+                        "thresholds": [
+                            {
+                                "label": "Danger",
+                                "color": "RED",
+                                "direction": "ABOVE"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "xPos": 8,
+                "width": 2,
+                "height": 2,
+                "widget": {
+                    "title": "Expired Request",
+                    "scorecard": {
+                        "timeSeriesQuery": {
+                            "timeSeriesFilter": {
+                                "filter": "metric.type=\"external.googleapis.com/prometheus/portout_expired_total\" resource.type=\"k8s_container\"",
+                                "aggregation": {
+                                    "perSeriesAligner": "ALIGN_DELTA"
+                                },
+                                "secondaryAggregation": {
+                                    "perSeriesAligner": "ALIGN_MEAN",
+                                    "crossSeriesReducer": "REDUCE_SUM"
+                                }
+                            }
+                        },
+                        "sparkChartView": {
+                            "sparkChartType": "SPARK_LINE"
+                        }
+                    }
+                }
+            },
+            {
+                "xPos": 10,
+                "width": 2,
+                "height": 2,
+                "widget": {
+                    "title": "Redis Cached Bytes",
+                    "scorecard": {
+                        "timeSeriesQuery": {
+                            "timeSeriesFilter": {
+                                "filter": "metric.type=\"external.googleapis.com/prometheus/redis_memory_used_bytes\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"notify-wnp-processor-redis.*\")",
+                                "aggregation": {
+                                    "alignmentPeriod": "60s",
+                                    "perSeriesAligner": "ALIGN_MEAN",
+                                    "crossSeriesReducer": "REDUCE_SUM"
+                                }
+                            },
+                            "unitOverride": "By"
+                        },
+                        "thresholds": [
+                            {
+                                "label": "Danger",
+                                "value": 209715200,
+                                "color": "RED",
+                                "direction": "ABOVE"
+                            },
+                            {
+                                "label": "Warning",
+                                "value": 131072000,
+                                "color": "YELLOW",
+                                "direction": "ABOVE"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "yPos": 2,
+                "width": 3,
+                "height": 3,
+                "widget": {
+                    "title": "Account Owner Fallout",
+                    "xyChart": {
+                        "dataSets": [
+                            {
+                                "timeSeriesQuery": {
+                                    "timeSeriesFilter": {
+                                        "filter": "metric.type=\"external.googleapis.com/prometheus/portoutRequest_count_total\" resource.type=\"k8s_container\"",
+                                        "aggregation": {
+                                            "perSeriesAligner": "ALIGN_DELTA",
+                                            "crossSeriesReducer": "REDUCE_SUM",
+                                            "groupByFields": [
+                                                "metric.label.\"type\""
+                                            ]
+                                        }
+                                    }
+                                },
+                                "plotType": "LINE",
+                                "minAlignmentPeriod": "60s"
+                            }
+                        ],
+                        "timeshiftDuration": "0s",
+                        "yAxis": {
+                            "label": "y1Axis",
+                            "scale": "LINEAR"
+                        },
+                        "chartOptions": {
+                            "mode": "COLOR"
+                        }
+                    }
+                }
+            },
+            {
+                "xPos": 3,
+                "yPos": 2,
+                "width": 3,
+                "height": 3,
+                "widget": {
+                    "title": "Pending Request",
+                    "xyChart": {
+                        "dataSets": [
+                            {
+                                "timeSeriesQuery": {
+                                    "timeSeriesFilter": {
+                                        "filter": "metric.type=\"external.googleapis.com/prometheus/portout_pending\" resource.type=\"k8s_container\"",
+                                        "aggregation": {
+                                            "perSeriesAligner": "ALIGN_MEAN",
+                                            "crossSeriesReducer": "REDUCE_MEAN"
+                                        }
+                                    }
+                                },
+                                "plotType": "LINE",
+                                "minAlignmentPeriod": "60s"
+                            }
+                        ],
+                        "timeshiftDuration": "0s",
+                        "yAxis": {
+                            "label": "y1Axis",
+                            "scale": "LINEAR"
+                        },
+                        "chartOptions": {
+                            "mode": "COLOR"
+                        }
+                    }
+                }
+            },
+            {
+                "xPos": 6,
+                "yPos": 2,
+                "width": 3,
+                "height": 3,
+                "widget": {
+                    "title": "Memory",
+                    "xyChart": {
+                        "dataSets": [
+                            {
+                                "timeSeriesQuery": {
+                                    "timeSeriesFilter": {
+                                        "filter": "metric.type=\"external.googleapis.com/prometheus/jvm_memory_used_bytes\" resource.type=\"k8s_container\" resource.label.\"container_name\"=monitoring.regex.full_match(\"notify-wnp-processor.*|notify-wnp-portin.*\")",
+                                        "aggregation": {
+                                            "perSeriesAligner": "ALIGN_MEAN",
+                                            "crossSeriesReducer": "REDUCE_SUM",
+                                            "groupByFields": [
+                                                "metric.label.\"area\"",
+                                                "resource.label.\"pod_name\""
+                                            ]
+                                        }
+                                    }
+                                },
+                                "plotType": "LINE",
+                                "minAlignmentPeriod": "60s"
+                            }
+                        ],
+                        "timeshiftDuration": "0s",
+                        "yAxis": {
+                            "label": "y1Axis",
+                            "scale": "LINEAR"
+                        },
+                        "chartOptions": {
+                            "mode": "COLOR"
+                        }
+                    }
+                }
+            },
+            {
+                "xPos": 9,
+                "yPos": 2,
+                "width": 3,
+                "height": 3,
+                "widget": {
+                    "title": "CPU",
+                    "xyChart": {
+                        "dataSets": [
+                            {
+                                "timeSeriesQuery": {
+                                    "timeSeriesFilter": {
+                                        "filter": "metric.type=\"kubernetes.io/container/cpu/request_utilization\" resource.type=\"k8s_container\" resource.label.\"container_name\"=monitoring.regex.full_match(\"notify-wnp-processor.*|notify-wnp-portin.*\")",
+                                        "aggregation": {
+                                            "perSeriesAligner": "ALIGN_MEAN",
+                                            "crossSeriesReducer": "REDUCE_MEAN",
+                                            "groupByFields": [
+                                                "resource.label.\"pod_name\""
+                                            ]
+                                        }
+                                    }
+                                },
+                                "plotType": "LINE",
+                                "minAlignmentPeriod": "60s"
+                            }
+                        ],
+                        "timeshiftDuration": "0s",
+                        "yAxis": {
+                            "label": "y1Axis",
+                            "scale": "LINEAR"
+                        },
+                        "chartOptions": {
+                            "mode": "COLOR"
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

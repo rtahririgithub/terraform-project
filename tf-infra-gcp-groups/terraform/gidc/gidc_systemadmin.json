@@ -1,0 +1,13 @@
+{
+  "id": "gidc-system-admin",
+  "displayName": "TELUS GIDC System Admin",
+  "owners": [],
+  "managers": [],
+  "members": [
+    "corey.sprung@telus.com",
+    "dlbt-nssunixinternalmanila@telus.com",
+    "dlbt-nsswindowsinternalmanila@telus.com",
+    "dlbtocorporatesystemsunixt4@telus.com",
+    "dlbtocorporatesystemswindowst4@telus.com"
+  ]
+}

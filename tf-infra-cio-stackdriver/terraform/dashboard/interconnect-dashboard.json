@@ -1,0 +1,186 @@
+{
+  "displayName": "Interconnect Status",
+  "mosaicLayout": {
+    "columns": 12,
+    "tiles": [
+      {
+        "width": 6,
+        "height": 4,
+        "widget": {
+          "title": "Circuit Operational Status",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"interconnect.googleapis.com/network/interconnect/link/operational\" resource.type=\"interconnect\" resource.label.\"interconnect\"!=\"torkonvo-eyrkonae-01\" resource.label.\"interconnect\"!=\"torkonvo-torkonvo-01\" resource.label.\"interconnect\"!=\"toroonxn-toroonxn-01\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_COUNT_TRUE"
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "xPos": 6,
+        "width": 6,
+        "height": 4,
+        "widget": {
+          "title": "Operational Status",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"interconnect.googleapis.com/network/interconnect/operational\" resource.type=\"interconnect\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_COUNT_TRUE"
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "yPos": 4,
+        "width": 6,
+        "height": 4,
+        "widget": {
+          "title": "Interconnect Attachment - Ingress Bytes",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"interconnect.googleapis.com/network/attachment/received_bytes_count\" resource.type=\"interconnect_attachment\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE"
+                    }
+                  },
+                  "unitOverride": "By"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "xPos": 6,
+        "yPos": 4,
+        "width": 6,
+        "height": 4,
+        "widget": {
+          "title": "Interconnect Attachment - Egress Bytes",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"interconnect.googleapis.com/network/attachment/sent_bytes_count\" resource.type=\"interconnect_attachment\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE"
+                    }
+                  },
+                  "unitOverride": "By"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "yPos": 8,
+        "width": 6,
+        "height": 4,
+        "widget": {
+          "title": "BGP Received Routes",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"router.googleapis.com/bgp/received_routes_count\" resource.type=\"gce_router\" metric.label.\"bgp_peer_name\"=\"mtrlfb08er10-00-bgp\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              },
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"router.googleapis.com/bgp/received_routes_count\" resource.type=\"gce_router\" metric.label.\"bgp_peer_name\"=\"mtlxvv03er10-00-bgp\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

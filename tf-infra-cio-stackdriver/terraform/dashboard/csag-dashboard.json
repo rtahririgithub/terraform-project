@@ -1,0 +1,355 @@
+{
+	"displayName": "CSAG Dashboard",
+	"gridLayout": {
+		"columns": "2",
+		"widgets": [{
+				"title": "Microservice Requests Count By Component",
+				"xyChart": {
+					"dataSets": [{
+						"timeSeriesQuery": {
+							"timeSeriesFilter": {
+								"filter": "metric.type=\"logging.googleapis.com/user/csag/request_count\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"contract-cons-csag\"",
+								"aggregation": {
+									"perSeriesAligner": "ALIGN_MEAN",
+									"crossSeriesReducer": "REDUCE_SUM",
+									"groupByFields": [
+										"metric.label.\"serviceName\"",
+										"metric.label.\"api_method\""
+									]
+								}
+							},
+							"unitOverride": "1"
+						},
+						"plotType": "LINE",
+						"minAlignmentPeriod": "60s"
+					}],
+					"timeshiftDuration": "0s",
+					"yAxis": {
+						"label": "y1Axis",
+						"scale": "LINEAR"
+					},
+					"chartOptions": {
+						"mode": "COLOR"
+					}
+				}
+			},
+			{
+				"title": "Microservice Response Time Rate By Component",
+				"xyChart": {
+					"dataSets": [{
+						"timeSeriesQuery": {
+							"timeSeriesFilter": {
+								"filter": "metric.type=\"logging.googleapis.com/user/csag/response_time\" resource.type=\"k8s_container\"  resource.label.\"namespace_name\"=\"contract-cons-csag\"",
+								"aggregation": {
+									"perSeriesAligner": "ALIGN_DELTA",
+									"crossSeriesReducer": "REDUCE_MEAN",
+									"groupByFields": [
+										"metric.label.\"serviceName\"",
+										"metric.label.\"api_method\""
+									]
+								}
+							}
+						},
+						"plotType": "LINE",
+						"minAlignmentPeriod": "60s"
+					}],
+					"timeshiftDuration": "0s",
+					"yAxis": {
+						"label": "y1Axis",
+						"scale": "LINEAR"
+					},
+					"chartOptions": {
+						"mode": "COLOR"
+					}
+				}
+			},
+			{
+				"title": "Microservice Critical Errors By Component",
+				"xyChart": {
+					"chartOptions": {
+						"mode": "COLOR"
+					},
+					"dataSets": [{
+						"minAlignmentPeriod": "60s",
+						"plotType": "LINE",
+						"timeSeriesQuery": {
+							"timeSeriesFilter": {
+								"aggregation": {
+									"perSeriesAligner": "ALIGN_MEAN",
+									"crossSeriesReducer": "REDUCE_SUM",
+									"groupByFields": [
+										"metric.label.\"serviceName\"",
+										"metric.label.\"api_method\""
+									]
+								},
+								"filter": "metric.type=\"logging.googleapis.com/user/csag/error_response_count\" resource.type=\"k8s_container\" metric.label.\"error_code\"=starts_with(\"5\") resource.label.\"namespace_name\"=\"contract-cons-csag\""
+							},
+							"unitOverride": "1"
+						}
+					}],
+					"timeshiftDuration": "0s",
+					"yAxis": {
+						"label": "y1Axis",
+						"scale": "LINEAR"
+					}
+				}
+			},
+			{
+				"title": "Microservice Timeout Errors by Component",
+				"xyChart": {
+					"chartOptions": {
+						"mode": "COLOR"
+					},
+					"dataSets": [{
+						"minAlignmentPeriod": "60s",
+						"plotType": "LINE",
+						"targetAxis": "Y1",
+						"timeSeriesQuery": {
+							"apiSource": "DEFAULT_CLOUD",
+							"timeSeriesFilter": {
+								"aggregation": {
+									"alignmentPeriod": "60s",
+									"crossSeriesReducer": "REDUCE_SUM",
+									"perSeriesAligner": "ALIGN_MEAN",
+									"groupByFields": [
+										"metric.label.\"serviceName\"",
+										"metric.label.\"api_method\""
+									]									
+								},
+								"filter": "metric.type=\"logging.googleapis.com/user/csag/csag_kong_timeout_error\" resource.type=\"l7_lb_rule\""
+							},
+							"unitOverride": "1"
+						}
+					}],
+					"timeshiftDuration": "0s",
+					"yAxis": {
+						"label": "y1Axis",
+						"scale": "LINEAR"
+					}
+				}
+			},
+			{
+				"title": "Microservice Non Critical Errors By Component",
+				"xyChart": {
+					"chartOptions": {
+						"mode": "COLOR"
+					},
+					"dataSets": [{
+						"minAlignmentPeriod": "60s",
+						"plotType": "LINE",
+						"timeSeriesQuery": {
+							"timeSeriesFilter": {
+								"aggregation": {
+									"perSeriesAligner": "ALIGN_MEAN",
+									"crossSeriesReducer": "REDUCE_SUM",
+									"groupByFields": [
+										"metric.label.\"serviceName\"",
+										"metric.label.\"api_method\""
+									]
+								},
+								"filter": "metric.type=\"logging.googleapis.com/user/csag/error_response_count\" resource.type=\"k8s_container\" metric.label.\"error_code\"=starts_with(\"4\") resource.label.\"namespace_name\"=\"contract-cons-csag\""
+							},
+							"unitOverride": "1"
+						}
+					}],
+					"timeshiftDuration": "0s",
+					"yAxis": {
+						"label": "y1Axis",
+						"scale": "LINEAR"
+					}
+				}
+			},			
+			{
+				"title": "Cloud SQL CPU Utilization",
+				"xyChart": {
+					"dataSets": [{
+						"timeSeriesQuery": {
+							"timeSeriesFilter": {
+								"filter": "metric.type=\"cloudsql.googleapis.com/database/cpu/utilization\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"${csag_project_id}\"",
+								"aggregation": {
+									"perSeriesAligner": "ALIGN_MEAN",
+									"crossSeriesReducer": "REDUCE_NONE",
+									"groupByFields": []
+								}
+							},
+							"unitOverride": "ratio"
+						},
+						"plotType": "LINE",
+						"minAlignmentPeriod": "60s"
+					}],
+					"chartOptions": {
+						"mode": "COLOR"
+					},
+					"timeshiftDuration": "0s",
+					"yAxis": {
+						"label": "y1Axis",
+						"scale": "LINEAR"
+					}
+				}
+			},
+			{
+				"title": "Cloud SQL Memory Utilization",
+				"xyChart": {
+					"dataSets": [{
+						"timeSeriesQuery": {
+							"timeSeriesFilter": {
+								"filter": "metric.type=\"cloudsql.googleapis.com/database/memory/utilization\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"${csag_project_id}\"",
+								"aggregation": {
+									"perSeriesAligner": "ALIGN_MEAN",
+									"crossSeriesReducer": "REDUCE_NONE",
+									"groupByFields": []
+								}
+							},
+							"unitOverride": "ratio"
+						},
+						"plotType": "LINE",
+						"minAlignmentPeriod": "60s"
+					}],
+					"chartOptions": {
+						"mode": "COLOR"
+					},
+					"timeshiftDuration": "0s",
+					"yAxis": {
+						"label": "y1Axis",
+						"scale": "LINEAR"
+					}
+				}
+			},
+			{
+				"title": "Cloud SQL Connections",
+				"xyChart": {
+					"dataSets": [{
+						"timeSeriesQuery": {
+							"timeSeriesFilter": {
+								"filter": "metric.type=\"cloudsql.googleapis.com/database/postgresql/num_backends\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"${csag_project_id}\"",
+								"aggregation": {
+									"perSeriesAligner": "ALIGN_MEAN",
+									"crossSeriesReducer": "REDUCE_SUM",
+									"groupByFields": []
+								}
+							},
+							"unitOverride": "1"
+						},
+						"plotType": "LINE",
+						"minAlignmentPeriod": "60s"
+					}],
+					"chartOptions": {
+						"mode": "COLOR"
+					},
+					"timeshiftDuration": "0s",
+					"yAxis": {
+						"label": "y1Axis",
+						"scale": "LINEAR"
+					}
+				}
+			},
+			{
+				"title": "Cloud SQL transaction_count",
+				"xyChart": {
+					"dataSets": [{
+						"timeSeriesQuery": {
+							"timeSeriesFilter": {
+								"filter": "metric.type=\"cloudsql.googleapis.com/database/postgresql/transaction_count\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"${csag_project_id}\"",
+								"aggregation": {
+									"perSeriesAligner": "ALIGN_RATE",
+									"groupByFields": [
+										"resource.label.\"database_id\""
+									]
+								},
+								"secondaryAggregation": {
+									"perSeriesAligner": "ALIGN_MEAN",
+									"crossSeriesReducer": "REDUCE_SUM",
+									"groupByFields": [
+										"resource.label.\"database_id\""
+									]
+								}
+							}
+						},
+						"plotType": "LINE",
+						"minAlignmentPeriod": "60s"
+					}],
+					"timeshiftDuration": "0s",
+					"yAxis": {
+						"label": "y1Axis",
+						"scale": "LINEAR"
+					},
+					"chartOptions": {
+						"mode": "COLOR"
+					}
+				}
+			},
+			{
+				"title": "Cloud Function Executions",
+				"xyChart": {
+					"dataSets": [{
+						"timeSeriesQuery": {
+							"timeSeriesFilter": {
+								"filter": "metric.type=\"cloudfunctions.googleapis.com/function/execution_count\" resource.type=\"cloud_function\" resource.label.\"project_id\"=\"${csag_project_id}\"",
+								"aggregation": {
+									"perSeriesAligner": "ALIGN_RATE",
+									"groupByFields": [
+										"resource.label.\"function_name\""
+									]
+								},
+								"secondaryAggregation": {
+
+									"crossSeriesReducer": "REDUCE_NONE",
+									"perSeriesAligner": "ALIGN_MEAN",
+									"groupByFields": [
+										"resource.label.\"function_name\""
+									]
+								}
+							}
+						},
+						"plotType": "LINE",
+						"minAlignmentPeriod": "60s"
+					}],
+					"timeshiftDuration": "0s",
+					"yAxis": {
+						"label": "y1Axis",
+						"scale": "LINEAR"
+					},
+					"chartOptions": {
+						"mode": "COLOR"
+					}
+				}
+			},
+			{
+				"title": "Cloud Storage Request By Buckets",
+				"xyChart": {
+					"dataSets": [{
+						"timeSeriesQuery": {
+							"timeSeriesFilter": {
+								"filter": "metric.type=\"storage.googleapis.com/api/request_count\" resource.type=\"gcs_bucket\" resource.label.\"project_id\"=\"${csag_project_id}\" resource.label.\"bucket_name\"=monitoring.regex.full_match(\"(telus|koodo).+\")",
+								"aggregation": {
+									"perSeriesAligner": "ALIGN_RATE",
+									"groupByFields": [
+										"resource.label.\"bucket_name\""
+									]
+								},
+								"secondaryAggregation": {
+
+									"perSeriesAligner": "ALIGN_MEAN",
+									"crossSeriesReducer": "REDUCE_NONE",
+									"groupByFields": [
+										"resource.label.\"bucket_name\""
+									]
+								}
+							}
+						},
+						"plotType": "LINE",
+						"minAlignmentPeriod": "60s"
+					}],
+					"timeshiftDuration": "0s",
+					"yAxis": {
+						"label": "y1Axis",
+						"scale": "LINEAR"
+					},
+					"chartOptions": {
+						"mode": "COLOR"
+					}
+				}
+			}
+		]
+	}
+}

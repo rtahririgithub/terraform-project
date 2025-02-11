@@ -1,0 +1,60 @@
+{
+  "group": [
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/groups/1559090779455577079",
+      "displayName": "cio-onboarding-test",
+      "filter": "resource.labels.project_id=\"cio-onboarding-test-24184b\""
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/groups/1897453847252133503",
+      "displayName": "uptime-check-group private-yul-001",
+      "filter": "resource.labels.project_id=\"cio-gke-private-yul-001-9ed5d0\""
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/groups/3399448423553779030",
+      "displayName": "cio-notification-np group",
+      "filter": "resource.labels.project_id=\"cio-notification-np-93822f\""
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/groups/5691575196756790154",
+      "displayName": "Converged Charging NP Group",
+      "filter": "resource.metadata.region=\"northamerica-northeast1\""
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/groups/6315438499525305205",
+      "displayName": "cio-billing-rtp-np",
+      "filter": "resource.labels.project_id=\"cio-billing-rtp-np-156462\""
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/groups/6621730854277276781",
+      "displayName": "cio-equipment-drs-np group",
+      "filter": "resource.labels.project_id=\"cio-equipment-drs-np-157827\""
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/groups/6688459246105010190",
+      "displayName": "cio-insights-covid-np",
+      "filter": "resource.labels.project_id=\"cio-insights-covid-np-ff0bef\""
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/groups/7225949453283934835",
+      "displayName": "cio-insights-covid-ds1-np-c881",
+      "filter": "resource.metadata.cloud_account = \"cio-insights-covid-ds1-np-c881\""
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/groups/8730426775054658153",
+      "displayName": "cio-converged-charging-np",
+      "filter": "resource.labels.project_id = \"cio-converged-charging-np-ac52\""
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/groups/956074305877365145",
+      "displayName": "cio-mediation-np",
+      "filter": "resource.labels.project_id=\"cio-mediation-4ef712a3\""
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/groups/981517275491918756",
+      "displayName": "test",
+      "parentName": "projects/cio-stackdriver-np-c4636c/groups/3399448423553779030",
+      "filter": "resource.type=\"k8s_container\""
+    }
+  ]
+}

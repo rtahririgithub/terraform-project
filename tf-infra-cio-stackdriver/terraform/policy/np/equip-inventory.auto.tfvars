@@ -1,0 +1,5 @@
+equip_inventory_project_id                    = "cio-equip-inventory-np-e45a37"
+equip_inventory_unhandled_error_metric        = "unhandled-error-np"
+equip_inventory_http_gateway_error_metric     = "http-gateway-error-np"
+equip_goods_movement_unhandled_error_metric   = "gm-unhandled-error-np"
+equip_goods_movement_processing_failed_metric = "gm-processing-failed-np"

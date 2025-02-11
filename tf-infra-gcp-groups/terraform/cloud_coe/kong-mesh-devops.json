@@ -1,0 +1,10 @@
+{
+  "id": "kong-mesh-devops",
+  "displayName": "AUTOMATION ONLY GROUP: Grants permission on service mesh GCP project.",
+  "owners": [],
+  "managers": [
+    "dhanoj.jose_alapatt@telus.com",
+    "harpreet.paul@telus.com"
+  ],
+  "members": []
+}

@@ -1,0 +1,308 @@
+{
+  "displayName": "VOMP Dashboard",
+  "gridLayout": {
+    "columns": "2",
+    "widgets": [
+      {
+        "title": "VOMP Requests By Component",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_count\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"ordermgmt-ipt\"",
+                  "aggregation": {
+                    "perSeriesAligner": "ALIGN_RATE",
+                    "crossSeriesReducer": "REDUCE_SUM",
+                    "groupByFields": [
+                      "resource.label.\"container_name\""
+                    ]
+                  },
+                  "secondaryAggregation": {},
+                  "pickTimeSeriesFilter": {
+                    "rankingMethod": "METHOD_MEAN",
+                    "numTimeSeries": 6,
+                    "direction": "TOP"
+                  }
+                }
+              },
+              "plotType": "LINE",
+              "minAlignmentPeriod": "60s"
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          },
+          "chartOptions": {
+            "mode": "COLOR"
+          }
+        }
+      },
+      {
+        "title": "VOMP Response Time Rate By Components",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_sum\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"ordermgmt-ipt\"",
+                  "aggregation": {
+                    "perSeriesAligner": "ALIGN_DELTA",
+                    "crossSeriesReducer": "REDUCE_MEAN",
+                    "groupByFields": [
+                      "resource.label.\"container_name\""
+                    ]
+                  },
+                  "secondaryAggregation": {},
+                  "pickTimeSeriesFilter": {
+                    "rankingMethod": "METHOD_MEAN",
+                    "numTimeSeries": 6,
+                    "direction": "TOP"
+                  }
+                }
+              },
+              "plotType": "LINE",
+              "minAlignmentPeriod": "60s"
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          },
+          "chartOptions": {
+            "mode": "COLOR"
+          }
+        }
+      },
+      {
+        "title": "VOMP Errors",
+        "xyChart": {
+          "chartOptions": {
+            "mode": "COLOR"
+          },
+          "dataSets": [
+            {
+              "minAlignmentPeriod": "60s",
+              "plotType": "LINE",
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "aggregation": {
+                    "perSeriesAligner": "ALIGN_DELTA"
+                  },
+                  "filter": "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_count\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"ordermgmt-ipt\" metric.label.\"status\"!=\"200\" metric.label.\"status\"!=\"404\" metric.label.\"status\"!=\"201\""
+                },
+                "unitOverride": "1"
+              }
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          }
+        }
+      },
+      {
+        "title": "CPU Utilization",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"kubernetes.io/container/cpu/request_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"ordermgmt-ipt\"",
+                  "aggregation": {
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_SUM",
+                    "groupByFields": [
+                      "resource.label.\"pod_name\""
+                    ]
+                  },
+                  "secondaryAggregation": {},
+                  "pickTimeSeriesFilter": {
+                    "rankingMethod": "METHOD_MEAN",
+                    "numTimeSeries": 10,
+                    "direction": "TOP"
+                  }
+                },
+                "unitOverride": "1"
+              },
+              "plotType": "LINE",
+              "minAlignmentPeriod": "60s"
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          },
+          "chartOptions": {
+            "mode": "COLOR"
+          }
+        }
+      },
+      {
+        "title": "Memory Utilization",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"kubernetes.io/container/memory/request_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"ordermgmt-ipt\"",
+                  "aggregation": {
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_SUM",
+                    "groupByFields": [
+                      "resource.label.\"pod_name\""
+                    ]
+                  },
+                  "secondaryAggregation": {},
+                  "pickTimeSeriesFilter": {
+                    "rankingMethod": "METHOD_MEAN",
+                    "numTimeSeries": 10,
+                    "direction": "TOP"
+                  }
+                },
+                "unitOverride": "1"
+              },
+              "plotType": "LINE",
+              "minAlignmentPeriod": "60s"
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          },
+          "chartOptions": {
+            "mode": "COLOR"
+          }
+        }
+      },
+      {
+        "title": "Service Restarts",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"kubernetes.io/container/restart_count\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"ordermgmt-ipt\"",
+                  "aggregation": {
+                    "perSeriesAligner": "ALIGN_DELTA",
+                    "crossSeriesReducer": "REDUCE_SUM",
+                    "groupByFields": [
+                      "resource.label.\"container_name\""
+                    ]
+                  }
+                },
+                "unitOverride": "1"
+              },
+              "plotType": "LINE",
+              "minAlignmentPeriod": "60s"
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          },
+          "chartOptions": {
+            "mode": "COLOR"
+          }
+        }
+      },
+      {
+        "title": "PostgreSQL Instance CPU Usage",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"cloudsql.googleapis.com/database/cpu/utilization\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"${vomp_project_id}\"",
+                  "aggregation": {
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_NONE",
+                    "groupByFields": []
+                  }
+                },
+                "unitOverride": "ratio"
+              },
+              "plotType": "LINE",
+              "minAlignmentPeriod": "60s"
+            }
+          ],
+          "chartOptions": {
+            "mode": "COLOR"
+          },
+          "timeshiftDuration": "0s",
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          }
+        }
+      },
+      {
+        "title": "PostgreSQL Instance Memory Usage",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"cloudsql.googleapis.com/database/memory/utilization\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"${vomp_project_id}\"",
+                  "aggregation": {
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_NONE",
+                    "groupByFields": []
+                  }
+                },
+                "unitOverride": "ratio"
+              },
+              "plotType": "LINE",
+              "minAlignmentPeriod": "60s"
+            }
+          ],
+          "chartOptions": {
+            "mode": "COLOR"
+          },
+          "timeshiftDuration": "0s",
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          }
+        }
+      },
+      {
+        "title": "PostgreSQL Active Connections",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"cloudsql.googleapis.com/database/postgresql/num_backends\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"${vomp_project_id}\"",
+                  "aggregation": {
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_SUM",
+                    "groupByFields": []
+                  }
+                },
+                "unitOverride": "1"
+              },
+              "plotType": "LINE",
+              "minAlignmentPeriod": "60s"
+            }
+          ],
+          "chartOptions": {
+            "mode": "COLOR"
+          },
+          "timeshiftDuration": "0s",
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          }
+        }
+      }
+    ]
+  }
+}

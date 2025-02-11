@@ -1,0 +1,35 @@
+# Defines site name
+site_name: "Your Site Name"
+
+# Defines navigation menu. Read more: https://www.mkdocs.org/user-guide/configuration/#documentation-layout
+# You can render markdowns in different folders by providing the folder path.
+nav:
+  - Home: README.md
+  # - Topic 2: topic2.md
+  # - Subtopic: subtopic/subtopic.md
+
+#####  Do not remove or modify this value ####
+docs_dir: . # Do not remove or modify this value
+site_dir: site
+
+# Mkdocs theme. Do not remove or modify this value
+theme:
+  name: material
+  custom_dir: docs/overrides
+  features: []
+extra_css:
+  - docs/overrides/stylesheets/extra.css
+
+# Do not remove or modify this plugins configuration
+plugins:
+  - exclude:
+      regex:
+        - "node_modules/"
+        - "plugins/.*?/node_modules/"
+        - "packages/.*?/node_modules/"
+  - same-dir
+  - search
+  - git-authors:
+      show_contribution: true
+      show_line_count: false
+      count_empty_lines: false

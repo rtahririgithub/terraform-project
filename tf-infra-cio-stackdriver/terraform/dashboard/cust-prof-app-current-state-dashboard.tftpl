@@ -1,0 +1,249 @@
+{
+  "category": "CUSTOM",
+  "displayName": "Customer profile current state ${cust_prof_container}",
+  "mosaicLayout": {
+    "columns": 12,
+    "tiles": [
+      {
+        "height": 2,
+        "widget": {
+          "scorecard": {
+            "gaugeView": {
+              "upperBound": 1
+            },
+            "thresholds": [
+              {
+                "color": "RED",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 0.8
+              },
+              {
+                "color": "YELLOW",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 0.6
+              }
+            ],
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "60s",
+                  "crossSeriesReducer": "REDUCE_MEAN",
+                  "perSeriesAligner": "ALIGN_MEAN"
+                },
+                "filter": "metric.type=\"kubernetes.io/container/cpu/limit_utilization\" resource.type=\"k8s_container\" resource.label.\"project_id\"=\"${gke_project_id}\" resource.label.\"container_name\"=\"cust-prof-service-api-${cust_prof_container}-${cust_prof_env}\""
+              }
+            }
+          },
+          "title": "CPU limit utilization"
+        },
+        "width": 4,
+        "xPos": 0,
+        "yPos": 0
+      },
+      {
+        "height": 2,
+        "widget": {
+          "scorecard": {
+            "gaugeView": {
+              "upperBound": 1
+            },
+            "thresholds": [
+              {
+                "color": "RED",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 0.9
+              },
+              {
+                "color": "YELLOW",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 0.7
+              }
+            ],
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "60s",
+                  "crossSeriesReducer": "REDUCE_SUM",
+                  "perSeriesAligner": "ALIGN_MEAN"
+                },
+                "filter": "metric.type=\"kubernetes.io/container/memory/limit_utilization\" resource.type=\"k8s_container\" resource.label.\"project_id\"=\"${gke_project_id}\" resource.label.\"container_name\"=\"cust-prof-service-api-${cust_prof_container}-${cust_prof_env}\""
+              }
+            }
+          },
+          "title": "Memory limit utilization"
+        },
+        "width": 4,
+        "xPos": 4,
+        "yPos": 0
+      },
+      {
+        "height": 2,
+        "widget": {
+          "scorecard": {
+            "gaugeView": {
+              "upperBound": 1
+            },
+            "thresholds": [
+              {
+                "color": "RED",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 0.9
+              },
+              {
+                "color": "YELLOW",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 0.7
+              }
+            ],
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "60s",
+                  "crossSeriesReducer": "REDUCE_MEAN",
+                  "perSeriesAligner": "ALIGN_MEAN"
+                },
+                "filter": "metric.type=\"kubernetes.io/pod/volume/utilization\" resource.type=\"k8s_pod\" resource.label.\"project_id\"=\"${gke_project_id}\" metadata.system_labels.\"top_level_controller_name\"=\"cust-prof-service-api-${cust_prof_container}-${cust_prof_env}\""
+              }
+            }
+          },
+          "title": "Volume utilization"
+        },
+        "width": 4,
+        "xPos": 8,
+        "yPos": 0
+      },
+      {
+        "height": 2,
+        "widget": {
+          "scorecard": {
+            "gaugeView": {
+              "upperBound": 5
+            },
+            "thresholds": [
+              {
+                "color": "RED",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 3
+              },
+              {
+                "color": "YELLOW",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 1
+              }
+            ],
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "60s",
+                  "crossSeriesReducer": "REDUCE_SUM",
+                  "groupByFields": [],
+                  "perSeriesAligner": "ALIGN_SUM"
+                },
+                "filter": "metric.type=\"logging.googleapis.com/user/cust-prof/http-gateway-error-${cust_prof_container}\" resource.type=\"k8s_container\" resource.label.\"project_id\"=\"${gke_project_id}\""
+              }
+            }
+          },
+          "title": "Gateway errors"
+        },
+        "width": 4,
+        "xPos": 0,
+        "yPos": 2
+      },
+      {
+        "height": 2,
+        "widget": {
+          "scorecard": {
+            "gaugeView": {
+              "upperBound": 1
+            },
+            "thresholds": [
+              {
+                "color": "RED",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 0
+              }
+            ],
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "60s",
+                  "crossSeriesReducer": "REDUCE_SUM",
+                  "groupByFields": [],
+                  "perSeriesAligner": "ALIGN_SUM"
+                },
+                "filter": "metric.type=\"logging.googleapis.com/user/cust-prof/event-critical-server-error-${cust_prof_container}\" resource.type=\"k8s_container\" resource.label.\"project_id\"=\"${gke_project_id}\""
+              }
+            }
+          },
+          "title": "Events critical errors"
+        },
+        "width": 4,
+        "xPos": 4,
+        "yPos": 2
+      },
+      {
+        "height": 2,
+        "widget": {
+          "scorecard": {
+            "gaugeView": {
+              "upperBound": 0.01
+            },
+            "thresholds": [
+              {
+                "color": "RED",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 0
+              }
+            ],
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "60s",
+                  "crossSeriesReducer": "REDUCE_SUM",
+                  "groupByFields": [],
+                  "perSeriesAligner": "ALIGN_SUM"
+                },
+                "filter": "metric.type=\"logging.googleapis.com/user/cust-prof/unexpected-errors-${cust_prof_container}\" resource.type=\"k8s_container\" resource.label.\"project_id\"=\"${gke_project_id}\""
+              }
+            }
+          },
+          "title": "Unexpected errors"
+        },
+        "width": 4,
+        "xPos": 8,
+        "yPos": 2
+      },
+      {
+        "height": 7,
+        "widget": {
+          "logsPanel": {
+            "filter": "resource.type=\"k8s_container\"\nresource.labels.project_id=\"${gke_project_id}\"\nresource.labels.location=\"northamerica-northeast1\"\nresource.labels.cluster_name=\"private-yul-${cust_prof_env}-001\"\nresource.labels.namespace_name=\"cust-cust-prof\"\nlabels.k8s-pod/app=\"cust-prof-service-api-${cust_prof_container}-${cust_prof_env}\" severity>=DEFAULT\nresource.labels.container_name!=\"cloudsql-proxy\"",
+            "resourceNames": [
+              "projects/${gke_project_number}"
+            ]
+          },
+          "title": "Application log panel"
+        },
+        "width": 12,
+        "xPos": 0,
+        "yPos": 4
+      }
+    ]
+  }
+}

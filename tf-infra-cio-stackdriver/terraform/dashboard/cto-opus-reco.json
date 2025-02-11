@@ -1,0 +1,414 @@
+{
+  "displayName": "cto-opus-reco-${env}",
+  "mosaicLayout": {
+    "columns": 12,
+    "tiles": [
+      {
+        "yPos": 3,
+        "width": 6,
+        "height": 4,
+        "widget": {
+          "title": "System lag for dataflow",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"dataflow.googleapis.com/job/system_lag\" resource.type=\"dataflow_job\" resource.label.\"project_id\"=\"${reco_env_project_id}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s"
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s",
+                "targetAxis": "Y1"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "xPos": 6,
+        "yPos": 7,
+        "width": 6,
+        "height": 4,
+        "widget": {
+          "title": "Current number of vCPU for dataflow",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"dataflow.googleapis.com/job/current_num_vcpus\" resource.type=\"dataflow_job\" resource.label.\"project_id\"=\"${reco_env_project_id}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s",
+                "targetAxis": "Y1"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "yPos": 7,
+        "width": 6,
+        "height": 4,
+        "widget": {
+          "title": "Data watermark lag for dataflow job",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"dataflow.googleapis.com/job/data_watermark_age\" resource.type=\"dataflow_job\" resource.label.\"project_id\"=\"${reco_env_project_id}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s",
+                "targetAxis": "Y1"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "xPos": 6,
+        "yPos": 11,
+        "width": 6,
+        "height": 4,
+        "widget": {
+          "title": "Disk Space Capacity for dataflow",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"dataflow.googleapis.com/job/disk_space_capacity\" resource.type=\"dataflow_job\" resource.label.\"project_id\"=\"${reco_env_project_id}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s",
+                "targetAxis": "Y1"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "yPos": 1,
+        "width": 6,
+        "height": 2,
+        "widget": {
+          "title": "Time running the dataflow job dev",
+          "scorecard": {
+            "timeSeriesQuery": {
+              "timeSeriesFilter": {
+                "filter": "metric.type=\"dataflow.googleapis.com/job/elapsed_time\" resource.type=\"dataflow_job\" resource.label.\"project_id\"=\"${reco_env_project_id}\"",
+                "aggregation": {
+                  "alignmentPeriod": "60s",
+                  "perSeriesAligner": "ALIGN_MAX",
+                  "crossSeriesReducer": "REDUCE_MAX"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "xPos": 6,
+        "yPos": 3,
+        "width": 6,
+        "height": 4,
+        "widget": {
+          "title": "Dataflow job logs",
+          "logsPanel": {
+            "filter": "resource.type=\"dataflow_step\"\n",
+            "resourceNames": [
+              "projects/1097449414586"
+            ]
+          }
+        }
+      },
+      {
+        "width": 12,
+        "height": 1,
+        "widget": {
+          "title": "CTO OPUS RECO PROJECT",
+          "text": {
+            "format": "RAW"
+          }
+        }
+      },
+      {
+        "yPos": 11,
+        "width": 6,
+        "height": 4,
+        "widget": {
+          "title": "Memory Capacity for dataflow",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"dataflow.googleapis.com/job/memory_capacity\" resource.type=\"dataflow_job\" resource.label.\"project_id\"=\"${reco_env_project_id}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s",
+                "targetAxis": "Y1"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "xPos": 6,
+        "yPos": 1,
+        "width": 6,
+        "height": 2,
+        "widget": {
+          "title": "Failed job dev",
+          "scorecard": {
+            "timeSeriesQuery": {
+              "timeSeriesFilter": {
+                "filter": "metric.type=\"dataflow.googleapis.com/job/is_failed\" resource.type=\"dataflow_job\" resource.label.\"project_id\"=\"${reco_env_project_id}\" resource.label.\"job_name\"=\"streaming-beam-latest\"",
+                "aggregation": {
+                  "alignmentPeriod": "60s",
+                  "perSeriesAligner": "ALIGN_MAX",
+                  "crossSeriesReducer": "REDUCE_MAX"
+                }
+              }
+            },
+            "gaugeView": {
+              "upperBound": 1
+            },
+            "thresholds": [
+              {
+                "value": 1,
+                "color": "RED",
+                "direction": "ABOVE"
+              },
+              {
+                "color": "RED",
+                "direction": "BELOW"
+              },
+              {
+                "value": 1,
+                "color": "YELLOW",
+                "direction": "ABOVE"
+              },
+              {
+                "color": "YELLOW",
+                "direction": "BELOW"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "yPos": 15,
+        "width": 6,
+        "height": 4,
+        "widget": {
+          "title": "Pub/Sub Pull Request Latencies for ${reco_env_project_id} [95TH PERCENTILE]",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"dataflow.googleapis.com/job/pubsub/read_latencies\" resource.type=\"dataflow_job\" resource.label.\"project_id\"=\"${reco_env_project_id}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_PERCENTILE_95"
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s",
+                "targetAxis": "Y1"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "xPos": 6,
+        "yPos": 15,
+        "width": 6,
+        "height": 4,
+        "widget": {
+          "title": "PubsubIO.Read requests from Dataflow jobs for ${reco_env_project_id} [MEAN]",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"dataflow.googleapis.com/job/pubsub/read_count\" resource.type=\"dataflow_job\" resource.label.\"project_id\"=\"${reco_env_project_id}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_RATE"
+                    },
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s",
+                "targetAxis": "Y1"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "yPos": 19,
+        "width": 6,
+        "height": 4,
+        "widget": {
+          "title": "Object count for bucket reco storage",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"storage.googleapis.com/storage/object_count\" resource.type=\"gcs_bucket\" resource.label.\"project_id\"=\"${reco_env_project_id}\" resource.label.\"bucket_name\"=\"reco_storage_${reco_env_project_id}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s",
+                "targetAxis": "Y1"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "xPos": 6,
+        "yPos": 19,
+        "width": 6,
+        "height": 4,
+        "widget": {
+          "title": "Total bytes for bucket reco storage",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"storage.googleapis.com/storage/total_bytes\" resource.type=\"gcs_bucket\" resource.label.\"bucket_name\"=\"reco_storage_${reco_env_project_id}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s",
+                "targetAxis": "Y1"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "id": "oracle-weblogic-media-admin",
+  "displayName": "Oracle WebLogic Media Admins",
+  "owners": [],
+  "managers": [],
+  "members": [
+    "compute-instance@gidc-dba-tools-pr-dd789e.iam.gserviceaccount.com"
+  ]
+}

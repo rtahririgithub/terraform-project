@@ -1,0 +1,14 @@
+{
+  "id": "orbit-pr-admin",
+  "displayName": "DevOps Engineering Orbit Prod Admin",
+  "owners": [],
+  "managers": [
+    "karl.pena@telus.com"
+  ],
+  "members": [
+    "dldoe-marauders@telus.com",
+    "dlinfrastructuresupport@telus.com",
+    "dlraiders@telus.com",
+    "sheroy.mowdawala@telus.com"
+  ]
+}

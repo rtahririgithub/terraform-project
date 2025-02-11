@@ -1,0 +1,17 @@
+{
+  "id": "opus-gke-sit-user",
+  "displayName": "Opus GKE SIT User",
+  "owners": [],
+  "managers": [
+    "eduard.petreanu@telus.com"
+  ],
+  "members": [
+    "conor.courtenay@telus.com",
+    "dhruva.vangipuram@telus.com",
+    "lilydavis.moradirasouli@telus.com",
+    "mythili.viswanathan@telus.com",
+    "sidharth.kolanjinathan@telus.com",
+    "sunil.kakarla@telus.com",
+    "supriya.sadhwani@telus.com"
+  ]
+}

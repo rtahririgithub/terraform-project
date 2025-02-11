@@ -1,0 +1,103 @@
+{
+	"displayName": "CWPPS Dashboard",
+	"gridLayout": {
+		"columns": "2",
+		"widgets": [
+			{
+				"title": "Microservice Requests Count By Component",
+				"xyChart": {
+					"dataSets": [
+						{
+							"timeSeriesQuery": {
+								"timeSeriesFilter": {
+									"filter": "metric.type=\"logging.googleapis.com/user/cwpps/request_count\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"chnlsales-config\"",
+									"aggregation": {
+										"perSeriesAligner": "ALIGN_MEAN",
+										"crossSeriesReducer": "REDUCE_SUM",
+										"groupByFields": [
+											"resource.label.\"container_name\"",
+											"metric.label.\"api_method\""
+										]
+									}
+								},
+								"unitOverride": "1"
+							},
+							"plotType": "LINE",
+							"minAlignmentPeriod": "60s"
+						}
+					],
+					"timeshiftDuration": "0s",
+					"yAxis": {
+						"label": "y1Axis",
+						"scale": "LINEAR"
+					},
+					"chartOptions": {
+						"mode": "COLOR"
+					}
+				}
+			},
+			{
+				"title": "Microservice Response Time Rate By Component",
+				"xyChart": {
+					"dataSets": [
+						{
+							"timeSeriesQuery": {
+								"timeSeriesFilter": {
+									"filter": "metric.type=\"logging.googleapis.com/user/cwpps/response_time\" resource.type=\"k8s_container\"  resource.label.\"namespace_name\"=\"chnlsales-config\"",
+									"aggregation": {
+										"perSeriesAligner": "ALIGN_DELTA",
+										"crossSeriesReducer": "REDUCE_MEAN",
+										"groupByFields": [
+											"resource.label.\"container_name\""
+										]
+									}
+								}
+							},
+							"plotType": "LINE",
+							"minAlignmentPeriod": "60s"
+						}
+					],
+					"timeshiftDuration": "0s",
+					"yAxis": {
+						"label": "y1Axis",
+						"scale": "LINEAR"
+					},
+					"chartOptions": {
+						"mode": "COLOR"
+					}
+				}
+			},
+			{
+				"title": " API Errors By Component",
+				"xyChart": {
+					"chartOptions": {
+						"mode": "COLOR"
+					},
+					"dataSets": [
+						{
+							"minAlignmentPeriod": "60s",
+							"plotType": "LINE",
+							"timeSeriesQuery": {
+								"timeSeriesFilter": {
+									"aggregation": {
+										"perSeriesAligner": "ALIGN_MEAN",
+										"crossSeriesReducer": "REDUCE_SUM"
+									},
+									"filter": "metric.type=\"logging.googleapis.com/user/cwpps/error_response_count\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"chnlsales-config\""
+								},
+								"unitOverride": "1"
+							}
+						}
+					],
+					"timeshiftDuration": "0s",
+					"yAxis": {
+						"label": "y1Axis",
+						"scale": "LINEAR"
+					}
+				}
+			}		
+	
+			
+		]
+	}
+}

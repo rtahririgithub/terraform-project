@@ -1,0 +1,268 @@
+{
+  "uptimeCheckConfigs": [
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/uptimeCheckConfigs/simulated-failures",
+      "displayName": "Simulated failures",
+      "monitoredResource": {
+        "type": "uptime_url",
+        "labels": {
+          "host": "merlot.netstart.com",
+          "project_id": "cio-stackdriver-np-c4636c"
+        }
+      },
+      "httpCheck": {
+        "useSsl": true,
+        "path": "/cgi-bin/failtest?p=20",
+        "port": 443,
+        "validateSsl": true,
+        "requestMethod": "GET"
+      },
+      "period": "300s",
+      "timeout": "10s",
+      "contentMatchers": [
+        {
+          "content": "OK",
+          "matcher": "CONTAINS_STRING"
+        }
+      ]
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/uptimeCheckConfigs/https-public-public-yul-np-uptime-check-1583349700",
+      "displayName": "https: public-public-yul-np uptime check",
+      "monitoredResource": {
+        "type": "uptime_url",
+        "labels": {
+          "host": "public-public-yul-np-001.cloudapps.telus.com",
+          "project_id": "cio-stackdriver-np-c4636c"
+        }
+      },
+      "httpCheck": {
+        "useSsl": true,
+        "path": "/healthz",
+        "port": 443,
+        "maskHeaders": true,
+        "requestMethod": "GET"
+      },
+      "period": "60s",
+      "timeout": "10s"
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/uptimeCheckConfigs/https-protected-public-yul-np-uptime-check-1583349700",
+      "displayName": "https: protected-public-yul-np uptime check",
+      "monitoredResource": {
+        "type": "uptime_url",
+        "labels": {
+          "project_id": "cio-stackdriver-np-c4636c",
+          "host": "protected-public-yul-np-001.cloudapps.telus.com"
+        }
+      },
+      "httpCheck": {
+        "useSsl": true,
+        "path": "/healthz",
+        "port": 443,
+        "maskHeaders": true,
+        "requestMethod": "GET"
+      },
+      "period": "60s",
+      "timeout": "10s"
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/uptimeCheckConfigs/https-api-protected-public-yul-np-uptime-check-1583349700",
+      "displayName": "https: api-protected-public-yul-np uptime check",
+      "monitoredResource": {
+        "type": "uptime_url",
+        "labels": {
+          "host": "api-protected-public-yul-001.cloudapps.telus.com",
+          "project_id": "cio-stackdriver-np-c4636c"
+        }
+      },
+      "httpCheck": {
+        "useSsl": true,
+        "path": "/healthz",
+        "port": 443,
+        "maskHeaders": true,
+        "requestMethod": "GET"
+      },
+      "period": "60s",
+      "timeout": "10s"
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/uptimeCheckConfigs/https-go-dv-uptime-checkk",
+      "displayName": "https: go-dv uptime check",
+      "monitoredResource": {
+        "type": "uptime_url",
+        "labels": {
+          "host": "go-dv.telus.com",
+          "project_id": "cio-stackdriver-np-c4636c"
+        }
+      },
+      "httpCheck": {
+        "useSsl": true,
+        "path": "/healthz",
+        "port": 443,
+        "maskHeaders": true,
+        "requestMethod": "GET"
+      },
+      "period": "60s",
+      "timeout": "10s"
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/uptimeCheckConfigs/https-lca-np-uptime-check",
+      "displayName": "https: lca-np uptime check",
+      "monitoredResource": {
+        "type": "uptime_url",
+        "labels": {
+          "project_id": "cio-stackdriver-np-c4636c",
+          "host": "localcallingarea-protected-public-yul-np-001.cloudapps.telus.com"
+        }
+      },
+      "httpCheck": {
+        "useSsl": true,
+        "path": "/version",
+        "port": 443,
+        "maskHeaders": true,
+        "requestMethod": "GET"
+      },
+      "period": "60s",
+      "timeout": "10s"
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/uptimeCheckConfigs/https-devops-url-uptime-check-1584659697",
+      "displayName": "https: Devops url uptime check",
+      "monitoredResource": {
+        "type": "uptime_url",
+        "labels": {
+          "host": "protected-devops-yul-np-001.cloudapps.telus.com",
+          "project_id": "cio-stackdriver-np-c4636c"
+        }
+      },
+      "httpCheck": {
+        "useSsl": true,
+        "path": "/healthz",
+        "port": 443,
+        "maskHeaders": true,
+        "requestMethod": "GET"
+      },
+      "period": "60s",
+      "timeout": "10s"
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/uptimeCheckConfigs/https-apigw-private-yul-np-001-cloudapps-telus-com-url-uptime-check-kong",
+      "displayName": "https: apigw-private-yul-np-001.cloudapps.telus.com url uptime check - Kong",
+      "monitoredResource": {
+        "type": "uptime_url",
+        "labels": {
+          "project_id": "cio-stackdriver-np-c4636c",
+          "host": "apigw-private-yul-np-001.cloudapps.telus.com"
+        }
+      },
+      "httpCheck": {
+        "useSsl": true,
+        "path": "/healthz",
+        "port": 443,
+        "maskHeaders": true,
+        "requestMethod": "GET"
+      },
+      "period": "60s",
+      "timeout": "5s"
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/uptimeCheckConfigs/https-apigw-public-yul-np-002-cloudapps-telus-com-url-uptime-check-kong",
+      "displayName": "https: apigw-public-yul-np-002.cloudapps.telus.com url uptime check - Kong",
+      "monitoredResource": {
+        "type": "uptime_url",
+        "labels": {
+          "project_id": "cio-stackdriver-np-c4636c",
+          "host": "apigw-public-yul-np-002.cloudapps.telus.com"
+        }
+      },
+      "httpCheck": {
+        "useSsl": true,
+        "path": "/healthz",
+        "port": 443,
+        "maskHeaders": true,
+        "requestMethod": "GET"
+      },
+      "period": "60s",
+      "timeout": "5s"
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/uptimeCheckConfigs/https-techhub-ui-url-uptime-check",
+      "displayName": "https:techhub-ui url uptime check",
+      "monitoredResource": {
+        "type": "uptime_url",
+        "labels": {
+          "project_id": "cio-stackdriver-np-c4636c",
+          "host": "rendezvous-np.cloudapps.telus.com"
+        }
+      },
+      "httpCheck": {
+        "useSsl": true,
+        "path": "/techhub/version",
+        "port": 443,
+        "requestMethod": "GET"
+      },
+      "period": "60s",
+      "timeout": "5s"
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/uptimeCheckConfigs/https-protected-private-yul-001-uptime-check",
+      "displayName": "https: protected-private-yul-001 uptime check",
+      "monitoredResource": {
+        "type": "uptime_url",
+        "labels": {
+          "host": "protected-private-yul-np-001.cloudapps.telus.com",
+          "project_id": "cio-stackdriver-np-c4636c"
+        }
+      },
+      "httpCheck": {
+        "useSsl": true,
+        "path": "/healthz",
+        "port": 443,
+        "maskHeaders": true,
+        "requestMethod": "GET"
+      },
+      "period": "60s",
+      "timeout": "10s"
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/uptimeCheckConfigs/https-public-public-yul-002-uptime-check",
+      "displayName": "https: public-public-yul-002 uptime check",
+      "monitoredResource": {
+        "type": "uptime_url",
+        "labels": {
+          "host": "public-public-yul-np-002.cloudapps.telus.com",
+          "project_id": "cio-stackdriver-np-c4636c"
+        }
+      },
+      "httpCheck": {
+        "useSsl": true,
+        "path": "/healthz",
+        "port": 443,
+        "maskHeaders": true,
+        "requestMethod": "GET"
+      },
+      "period": "60s",
+      "timeout": "10s"
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/uptimeCheckConfigs/techhub-ui-openshift-url-uptime-check",
+      "displayName": "[techhub-ui] openshift url uptime check: warning",
+      "monitoredResource": {
+        "type": "uptime_url",
+        "labels": {
+          "project_id": "cio-stackdriver-np-c4636c",
+          "host": "techhub-service-it02.paas-app-east-np.tsl.telus.com"
+        }
+      },
+      "httpCheck": {
+        "path": "/v1/version",
+        "port": 80,
+        "requestMethod": "GET"
+      },
+      "period": "60s",
+      "timeout": "5s"
+    }
+  ],
+  "totalSize": 13
+}

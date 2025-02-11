@@ -1,0 +1,14 @@
+{
+  "id": "org-resource-viewer",
+  "displayName": "Organizational Resource Viewer Group",
+  "owners": [],
+  "managers": [
+    "ruxandra.cioraca@telus.com"
+  ],
+  "members": [
+    "alexander.rohvarger@telus.com",
+    "jordan.blum@telus.com",
+    "mark.gates@telus.com",
+    "yang.yang@telus.com"
+  ]
+}

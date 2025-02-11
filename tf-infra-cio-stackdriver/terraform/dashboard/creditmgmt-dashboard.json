@@ -1,0 +1,367 @@
+{
+    "displayName": "creditmgmt",
+    "gridLayout": {
+      "columns": "2",
+      "widgets": [
+        {
+		  "title": "container cpu request_utilization - Top 10", 
+          "xyChart": {
+			"dataSets": [
+				{
+					"minAlignmentPeriod": "60s",
+					"plotType": "LINE",
+					"timeSeriesQuery": {
+						"timeSeriesFilter": {
+							"aggregation": {
+								"crossSeriesReducer": "REDUCE_SUM",
+								"groupByFields": [
+									"resource.label.\"pod_name\""
+								],
+								"perSeriesAligner": "ALIGN_MEAN"
+							},
+							"filter": "metric.type=\"kubernetes.io/container/cpu/request_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"cio-creditmgmt\"",
+							"pickTimeSeriesFilter": {
+								"direction": "TOP",
+								"numTimeSeries": 10,
+								"rankingMethod": "METHOD_MEAN"
+							}
+						}
+					}
+				}
+			],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+		  "title": "container cpu limit_utilization",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/cpu/limit_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"cio-creditmgmt\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "percent"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },		
+        {
+          "title": "container memory used_bytes",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"cio-creditmgmt\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "resource.label.\"pod_name\""
+                      ]
+                    },
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "By"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],			
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "Database Memory Utilization",
+          "xyChart": {
+			"dataSets": [
+				{
+					"legendTemplate": "Memory: $${resource.labels.database_id}",
+					"minAlignmentPeriod": "60s",
+					"plotType": "LINE",
+					"timeSeriesQuery": {
+						"timeSeriesFilter": {
+							"aggregation": {
+								"crossSeriesReducer": "REDUCE_MEAN",
+								"groupByFields": [
+									"resource.label.\"database_id\""
+								],
+								"perSeriesAligner": "ALIGN_MEAN"
+							},
+							"filter": "metric.type=\"cloudsql.googleapis.com/database/memory/utilization\" resource.type=\"cloudsql_database\" resource.label.\"database_id\"=monitoring.regex.full_match(\"cio-creditmgmt.*\")",
+							"secondaryAggregation": {}
+						}
+					}
+				}
+			],		
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "PostgreSQL transaction_count",
+          "xyChart": {
+			"dataSets": [
+				{
+					"timeSeriesQuery": {
+						"timeSeriesFilter": {
+							"filter": "metric.type=\"cloudsql.googleapis.com/database/postgresql/transaction_count\" resource.type=\"cloudsql_database\" resource.label.\"database_id\"=monitoring.regex.full_match(\"cio-creditmgmt.*\")",
+							"aggregation": {
+								"perSeriesAligner": "ALIGN_RATE",
+								"groupByFields": [
+									"resource.label.\"database_id\""
+								]
+							},
+							"secondaryAggregation": {
+								"perSeriesAligner": "ALIGN_MEAN",
+								"crossSeriesReducer": "REDUCE_SUM",
+								"groupByFields": [
+									"resource.label.\"database_id\""
+								]
+							}
+						}
+					},
+					"plotType": "LINE",
+					"minAlignmentPeriod": "60s"
+				}
+			],		
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },	
+      {
+		  "title": "PostgreSQL Number of connections ",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+					"filter": "metric.type=\"cloudsql.googleapis.com/database/postgresql/num_backends\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"${creditmgmt_project_id}\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],	
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },		
+        {
+          "title": "Pubsub - Published Messages",
+          "xyChart": {
+				"dataSets": [
+					{
+						"minAlignmentPeriod": "60s",
+						"plotType": "LINE",
+						"timeSeriesQuery": {
+							"timeSeriesFilter": {
+								"aggregation": {
+									"perSeriesAligner": "ALIGN_RATE"
+								},
+								"filter": "metric.type=\"pubsub.googleapis.com/topic/send_request_count\" resource.type=\"pubsub_topic\" resource.label.\"project_id\"=\"${creditmgmt_project_id}\""
+							},
+							"unitOverride": "1"
+						}
+					}
+				],	
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "PubSub - Unacked Message - Top 10",
+          "xyChart": {
+			"dataSets": [
+				{
+					"minAlignmentPeriod": "60s",
+					"plotType": "LINE",
+					"timeSeriesQuery": {
+						"timeSeriesFilter": {
+							"aggregation": {
+								"perSeriesAligner": "ALIGN_MEAN"
+							},
+							"filter": "metric.type=\"pubsub.googleapis.com/subscription/num_undelivered_messages\" resource.type=\"pubsub_subscription\" resource.label.\"project_id\"=\"${creditmgmt_project_id}\"",
+							"pickTimeSeriesFilter": {
+								"direction": "TOP",
+								"numTimeSeries": 10,
+								"rankingMethod": "METHOD_MEAN"
+							}
+						},
+						"unitOverride": "1"
+					}
+				}
+			],	
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+      {
+        "title": "API Requests count By Component",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_count\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"cio-creditmgmt\"",
+                  "aggregation": {
+                    "perSeriesAligner": "ALIGN_RATE",
+                    "crossSeriesReducer": "REDUCE_SUM",
+                    "groupByFields": [
+                      "resource.label.\"container_name\""
+                    ]
+                  },
+                  "secondaryAggregation": {},
+                  "pickTimeSeriesFilter": {
+                    "rankingMethod": "METHOD_MEAN",
+                    "numTimeSeries": 6,
+                    "direction": "TOP"
+                  }
+                }
+              },
+              "plotType": "LINE",
+              "minAlignmentPeriod": "60s"
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          },
+          "chartOptions": {
+            "mode": "COLOR"
+          }
+        }
+      },		
+      {
+        "title": "API Response Time Rate By Component",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_sum\" resource.type=\"k8s_container\"  resource.label.\"namespace_name\"=\"cio-creditmgmt\"",
+                  "aggregation": {
+                    "perSeriesAligner": "ALIGN_DELTA",
+                    "crossSeriesReducer": "REDUCE_MEAN",
+                    "groupByFields": [
+                      "resource.label.\"container_name\""
+                    ]
+                  },
+                  "secondaryAggregation": {},
+                  "pickTimeSeriesFilter": {
+                    "rankingMethod": "METHOD_MEAN",
+                    "numTimeSeries": 6,
+                    "direction": "TOP"
+                  }
+                }
+              },
+              "plotType": "LINE",
+              "minAlignmentPeriod": "60s"
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          },
+          "chartOptions": {
+            "mode": "COLOR"
+          }
+        }
+      },
+      {
+        "title": " API Errors By Component",
+        "xyChart": {
+          "chartOptions": {
+            "mode": "COLOR"
+          },
+          "dataSets": [
+            {
+              "minAlignmentPeriod": "60s",
+              "plotType": "LINE",
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "aggregation": {
+                    "perSeriesAligner": "ALIGN_DELTA"
+                  },
+                  "filter": "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_count\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"cio-creditmgmt\" metric.label.\"status\"!=\"200\"  metric.label.\"status\"!=\"201\""
+                },
+                "unitOverride": "1"
+              }
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          }
+        }
+      }		
+      ]
+    }
+  }

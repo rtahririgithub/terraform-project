@@ -1,0 +1,14 @@
+{
+  "id": "opus-gke-preprod-montreal-user",
+  "displayName": "Opus GKE Pre Prod Montreal User",
+  "owners": [],
+  "managers": [
+    "eduard.petreanu@telus.com"
+  ],
+  "members": [
+    "conor.courtenay@telus.com",
+    "sidharth.kolanjinathan@telus.com",
+    "sunil.kakarla@telus.com",
+    "supriya.sadhwani@telus.com"
+  ]
+}

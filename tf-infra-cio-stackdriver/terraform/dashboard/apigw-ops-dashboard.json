@@ -1,0 +1,37 @@
+{
+    "displayName": "Kong Ops",
+    "gridLayout": {
+      "columns": "2",
+      "widgets": [
+        {
+          "title": "CPU limit utilization for kong-ee",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/cpu/limit_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"kong-ee\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      ]
+    }
+  }

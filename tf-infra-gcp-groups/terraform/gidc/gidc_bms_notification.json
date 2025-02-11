@@ -1,0 +1,10 @@
+{
+  "id": "gidc-bms-notification",
+  "displayName": "TELUS GIDC BMS Notification",
+  "owners": [],
+  "managers": [],
+  "members": [
+    "atul.walia@telus.com",
+    "shrikant.tawde@telus.com"
+  ]
+}

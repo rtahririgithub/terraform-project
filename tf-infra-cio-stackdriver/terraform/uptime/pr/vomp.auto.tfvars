@@ -1,0 +1,1 @@
+vomp_ui_uptime_host = "cio-ordermgmt-ipt-ui.cloudapps.telus.com"

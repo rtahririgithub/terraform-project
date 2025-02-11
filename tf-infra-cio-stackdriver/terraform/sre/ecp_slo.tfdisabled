@@ -1,0 +1,55 @@
+resource "google_monitoring_slo" "ecp-request-seconds" {
+  project             = var.project_id
+  service             = google_monitoring_custom_service.ecp-communication-api-sender.service_id
+  display_name        = "ECP Request Seconds: 95% under 500ms"
+  goal                = 0.95
+  rolling_period_days = 1
+
+  request_based_sli {
+    distribution_cut {
+      distribution_filter = "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_count\"  resource.type=\"k8s_container\" "
+      range {
+        min = 0
+        max = 0.5
+      }
+    }
+  }
+}
+
+resource "google_monitoring_slo" "ecp-request-window" {
+  project      = var.project_id
+  service      = google_monitoring_custom_service.ecp-communication-api-sender.service_id
+  display_name = "ECP Request Window"
+
+  goal            = 0.95
+  calendar_period = "FORTNIGHT"
+
+  windows_based_sli {
+    window_period = "400s"
+    good_bad_metric_filter = join(" AND ", [
+      "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_count\"",
+      "resource.type=\"k8s_container\" "
+      # "container_name=\"communication-api-sender-dv\""
+    ])
+  }
+}
+
+
+
+resource "google_monitoring_slo" "ecp-windows-based" {
+  project      = var.project_id
+  service      = google_monitoring_custom_service.ecp-communication-api-sender.service_id
+  display_name = "Terraform Test SLO with window based SLI"
+
+  goal            = 0.95
+  calendar_period = "FORTNIGHT"
+
+  windows_based_sli {
+    window_period = "400s"
+    good_bad_metric_filter = join(" AND ", [
+      "metric.type=\"monitoring.googleapis.com/uptime_check/check_passed\"",
+      "resource.type=\"uptime_url\"",
+    ])
+  }
+}
+

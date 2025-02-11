@@ -1,0 +1,11 @@
+{
+  "id": "datahub-hsmdse-viewer",
+  "displayName": "Datahub viewer group for HSM DSE",
+  "owners": [],
+  "managers": [],
+  "members": [
+    "dlcdo-dse-workspace-developer@telus.com",
+    "gsa-dp-runner@cdo-dse-workspace-np-45d0d5.iam.gserviceaccount.com",
+    "gsa-vertex-ai@cdo-dse-workspace-np-45d0d5.iam.gserviceaccount.com"
+  ]
+}

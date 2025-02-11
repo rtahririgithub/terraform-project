@@ -1,0 +1,779 @@
+{
+  "category": "CUSTOM",
+  "displayName": "TPS TMF APIs Dashboard",
+  "mosaicLayout": {
+    "columns": 12,
+    "tiles": [
+      {
+        "height": 3,
+        "widget": {
+          "title": "CPU Usage time",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_NONE",
+                      "perSeriesAligner": "ALIGN_RATE"
+                    },
+                    "filter": "metric.type=\"kubernetes.io/container/cpu/core_usage_time\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"tps-agreement.*\")",
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_NONE",
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "xPos": 6,
+        "yPos": 5
+      },
+      {
+        "height": 3,
+        "widget": {
+          "title": "CPU Usage time",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_NONE",
+                      "perSeriesAligner": "ALIGN_RATE"
+                    },
+                    "filter": "metric.type=\"kubernetes.io/container/cpu/core_usage_time\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"tps-product-catalog.*\")",
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_NONE",
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "xPos": 6,
+        "yPos": 12
+      },
+      {
+        "height": 3,
+        "widget": {
+          "scorecard": {
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [
+              {
+                "color": "RED",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 6000
+              },
+              {
+                "color": "YELLOW",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 4000
+              }
+            ],
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "86400s",
+                  "crossSeriesReducer": "REDUCE_COUNT",
+                  "perSeriesAligner": "ALIGN_SUM"
+                },
+                "filter": "metric.type=\"logging.googleapis.com/user/oe_tps_product_order/tps_agreement_mgmt/request_response_times\" resource.type=\"k8s_container\" metric.label.\"statusCode\"!=\"200\""
+              }
+            }
+          },
+          "title": "Error count (Today)"
+        },
+        "width": 2,
+        "xPos": 2,
+        "yPos": 5
+      },
+      {
+        "height": 3,
+        "widget": {
+          "scorecard": {
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [
+              {
+                "color": "RED",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 6000
+              },
+              {
+                "color": "YELLOW",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 4000
+              }
+            ],
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "86400s",
+                  "crossSeriesReducer": "REDUCE_COUNT",
+                  "perSeriesAligner": "ALIGN_SUM"
+                },
+                "filter": "metric.type=\"logging.googleapis.com/user/oe_tps_product_order/tps_product_catalog_mgmt/request_response_times\" resource.type=\"k8s_container\" metric.label.\"statusCode\"!=\"200\""
+              }
+            }
+          },
+          "title": "Error count (Today)"
+        },
+        "width": 2,
+        "xPos": 2,
+        "yPos": 12
+      },
+      {
+        "height": 3,
+        "widget": {
+          "title": "Request status",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "metric.label.\"status_code\""
+                      ],
+                      "perSeriesAligner": "ALIGN_SUM"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/oe_tps_product_order/tps_agreement_mgmt/status_code_count\" resource.type=\"k8s_container\"",
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_NONE",
+                      "perSeriesAligner": "ALIGN_SUM"
+                    }
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "xPos": 0,
+        "yPos": 8
+      },
+      {
+        "height": 3,
+        "widget": {
+          "title": "Request status",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "metric.label.\"status_code\""
+                      ],
+                      "perSeriesAligner": "ALIGN_SUM"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/oe_tps_product_order/tps_product_catalog_mgmt/status_code_count\" resource.type=\"k8s_container\"",
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_NONE",
+                      "perSeriesAligner": "ALIGN_SUM"
+                    }
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "xPos": 0,
+        "yPos": 15
+      },
+      {
+        "height": 3,
+        "widget": {
+          "title": "Response time",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_MEAN",
+                      "perSeriesAligner": "ALIGN_DELTA"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/oe_tps_product_order/tps_agreement_mgmt/request_response_times\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"oe-tps-product-order\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "xPos": 6,
+        "yPos": 8
+      },
+      {
+        "height": 3,
+        "widget": {
+          "title": "Response time",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_MEAN",
+                      "perSeriesAligner": "ALIGN_DELTA"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/oe_tps_product_order/tps_product_catalog_mgmt/request_response_times\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"oe-tps-product-order\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "xPos": 6,
+        "yPos": 15
+      },
+      {
+        "height": 3,
+        "widget": {
+          "scorecard": {
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [
+              {
+                "color": "RED",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 6000
+              },
+              {
+                "color": "YELLOW",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 4000
+              }
+            ],
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "86400s",
+                  "crossSeriesReducer": "REDUCE_COUNT",
+                  "perSeriesAligner": "ALIGN_SUM"
+                },
+                "filter": "metric.type=\"logging.googleapis.com/user/oe_tps_product_order/tps_agreement_mgmt/request_response_times\" resource.type=\"k8s_container\""
+              }
+            }
+          },
+          "title": "Total request (Today)"
+        },
+        "width": 2,
+        "xPos": 0,
+        "yPos": 5
+      },
+      {
+        "height": 3,
+        "widget": {
+          "scorecard": {
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [
+              {
+                "color": "RED",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 6000
+              },
+              {
+                "color": "YELLOW",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 4000
+              }
+            ],
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "86400s",
+                  "crossSeriesReducer": "REDUCE_COUNT",
+                  "perSeriesAligner": "ALIGN_SUM"
+                },
+                "filter": "metric.type=\"logging.googleapis.com/user/oe_tps_product_order/tps_product_catalog_mgmt/request_response_times\" resource.type=\"k8s_container\""
+              }
+            }
+          },
+          "title": "Total request (Today)"
+        },
+        "width": 2,
+        "xPos": 0,
+        "yPos": 12
+      },
+      {
+        "height": 1,
+        "widget": {
+          "text": {
+            "content": "",
+            "format": "RAW"
+          },
+          "title": "TPS API Monitoring Dashboard"
+        },
+        "width": 4,
+        "xPos": 4,
+        "yPos": 0
+      },
+      {
+        "height": 1,
+        "widget": {
+          "text": {
+            "content": "",
+            "format": "RAW"
+          },
+          "title": "TPS Agreement Mgmt (TMF651)"
+        },
+        "width": 12,
+        "xPos": 0,
+        "yPos": 4
+      },
+      {
+        "height": 3,
+        "widget": {
+          "scorecard": {
+            "gaugeView": {
+              "upperBound": 100
+            },
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "86400s",
+                  "crossSeriesReducer": "REDUCE_COUNT",
+                  "perSeriesAligner": "ALIGN_SUM"
+                },
+                "filter": "metric.type=\"logging.googleapis.com/user/oe_tps_product_order/tps_agreement_mgmt/request_response_times\" resource.type=\"k8s_container\" metric.label.\"responseTime\">\"200\""
+              }
+            }
+          },
+          "title": "Response time > 200ms (Today)"
+        },
+        "width": 2,
+        "xPos": 4,
+        "yPos": 5
+      },
+      {
+        "height": 3,
+        "widget": {
+          "scorecard": {
+            "gaugeView": {
+              "upperBound": 100
+            },
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "86400s",
+                  "crossSeriesReducer": "REDUCE_COUNT",
+                  "perSeriesAligner": "ALIGN_SUM"
+                },
+                "filter": "metric.type=\"logging.googleapis.com/user/oe_tps_product_order/tps_product_catalog_mgmt/request_response_times\" resource.type=\"k8s_container\" metric.label.\"responseTime\">\"200\""
+              }
+            }
+          },
+          "title": "Response time > 200ms (Today)"
+        },
+        "width": 2,
+        "xPos": 4,
+        "yPos": 12
+      },
+      {
+        "height": 1,
+        "widget": {
+          "text": {
+            "content": "",
+            "format": "RAW"
+          },
+          "title": "TPS Product Catalog Mgmt (TMF620)"
+        },
+        "width": 12,
+        "xPos": 0,
+        "yPos": 11
+      },
+      {
+        "height": 3,
+        "widget": {
+          "title": "VM Instance - CPU utilization [MEAN]",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_NONE",
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "filter": "metric.type=\"compute.googleapis.com/instance/cpu/utilization\" resource.type=\"gce_instance\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "xPos": 3,
+        "yPos": 1
+      },
+      {
+        "height": 1,
+        "widget": {
+          "text": {
+            "content": "",
+            "format": "RAW"
+          },
+          "title": "TPS Product Offering Qualification Mgmt (TMF679)"
+        },
+        "width": 12,
+        "xPos": 0,
+        "yPos": 18
+      },
+      {
+        "height": 3,
+        "widget": {
+          "scorecard": {
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [
+              {
+                "color": "RED",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 6000
+              },
+              {
+                "color": "YELLOW",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 4000
+              }
+            ],
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "86400s",
+                  "crossSeriesReducer": "REDUCE_COUNT",
+                  "perSeriesAligner": "ALIGN_SUM"
+                },
+                "filter": "metric.type=\"logging.googleapis.com/user/oe_tps_product_order/tps_product_offering_qualification_mgmt/request_response_times\" resource.type=\"k8s_container\""
+              }
+            }
+          },
+          "title": "Total request (Today)"
+        },
+        "width": 2,
+        "xPos": 0,
+        "yPos": 19
+      },
+      {
+        "height": 3,
+        "widget": {
+          "scorecard": {
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "thresholds": [
+              {
+                "color": "RED",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 6000
+              },
+              {
+                "color": "YELLOW",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 4000
+              }
+            ],
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "86400s",
+                  "crossSeriesReducer": "REDUCE_COUNT",
+                  "perSeriesAligner": "ALIGN_SUM"
+                },
+                "filter": "metric.type=\"logging.googleapis.com/user/oe_tps_product_order/tps_product_offering_qualification_mgmt/request_response_times\" resource.type=\"k8s_container\" metric.label.\"statusCode\"!=\"200\""
+              }
+            }
+          },
+          "title": "Error count (Today)"
+        },
+        "width": 2,
+        "xPos": 2,
+        "yPos": 19
+      },
+      {
+        "height": 3,
+        "widget": {
+          "scorecard": {
+            "gaugeView": {
+              "upperBound": 100
+            },
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "86400s",
+                  "crossSeriesReducer": "REDUCE_COUNT",
+                  "perSeriesAligner": "ALIGN_SUM"
+                },
+                "filter": "metric.type=\"logging.googleapis.com/user/oe_tps_product_order/tps_product_offering_qualification_mgmt/request_response_times\" resource.type=\"k8s_container\" metric.label.\"responseTime\">\"200\""
+              }
+            }
+          },
+          "title": "Response time > 200ms (Today)"
+        },
+        "width": 2,
+        "xPos": 4,
+        "yPos": 19
+      },
+      {
+        "height": 3,
+        "widget": {
+          "title": "CPU Usage time",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_NONE",
+                      "perSeriesAligner": "ALIGN_RATE"
+                    },
+                    "filter": "metric.type=\"kubernetes.io/container/cpu/core_usage_time\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"cdo-tps-product-offering-qualification-mgmt-api.*\")",
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_NONE",
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "xPos": 6,
+        "yPos": 19
+      },
+      {
+        "height": 3,
+        "widget": {
+          "title": "Request status",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "metric.label.\"status_code\""
+                      ],
+                      "perSeriesAligner": "ALIGN_SUM"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/oe_tps_product_order/tps_product_offering_qualification_mgmt/status_code_count\" resource.type=\"k8s_container\"",
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_NONE",
+                      "perSeriesAligner": "ALIGN_SUM"
+                    }
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "xPos": 0,
+        "yPos": 22
+      },
+      {
+        "height": 3,
+        "widget": {
+          "title": "Response time",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_MEAN",
+                      "perSeriesAligner": "ALIGN_DELTA"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/oe_tps_product_order/tps_product_offering_qualification_mgmt/request_response_times\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"oe-tps-product-order\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "xPos": 6,
+        "yPos": 22
+      }
+    ]
+  }
+}

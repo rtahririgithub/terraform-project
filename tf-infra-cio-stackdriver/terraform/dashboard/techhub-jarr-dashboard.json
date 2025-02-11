@@ -1,0 +1,188 @@
+{
+    "displayName": "TechHub Jarr Dashboard ",
+    "gridLayout": {
+      "columns": "2",
+      "widgets": [
+        {
+          "title": "CPU limit utilization for wfm-techhub-api",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/cpu/limit_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"wfm-techhub-api\" resource.label.\"container_name\"=\"${techhub_jarr_api_container}\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "secondaryAggregation": {}
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "Memory usage for wfm-techhub-api",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"wfm-techhub-api\" resource.label.\"container_name\"=\"${techhub_jarr_api_container}\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "secondaryAggregation": {}
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "techub-jarr-api-np - Restart Count",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/restart_count\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"${techhub_jarr_api_container}\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE"
+                    },
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "Sent Bytes - ${techhub_jarr_api_container} (SUM)",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/pod/network/sent_bytes_count\" resource.type=\"k8s_pod\" resource.label.\"namespace_name\"=\"wfm-techhub-api\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE",
+                      "crossSeriesReducer": "REDUCE_SUM"
+                    },
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "By"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "${techhub_jarr_api_container} - received bytes  (SUM)",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/pod/network/received_bytes_count\" resource.type=\"k8s_pod\" resource.label.\"namespace_name\"=\"wfm-techhub-api\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE",
+                      "crossSeriesReducer": "REDUCE_SUM"
+                    },
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "By"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "TechHUb_API Error (Count)",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"logging.googleapis.com/user/private-yul-${env}-001/techhub_api_error\" resource.type=\"k8s_container\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE",
+                      "crossSeriesReducer": "REDUCE_COUNT",
+                      "groupByFields": [
+                        "metric.label.\"UnhandledPromiseRejectionWarningError101\"",
+                        "metric.label.\"UnhandledPromiseRejectionWarningError103\"",
+                        "metric.label.\"UnhandledPromiseRejectionWarningError100\"",
+                        "metric.label.\"UnhandledPromiseRejectionWarningError102\""
+                      ]
+                    },
+                    "secondaryAggregation": {}
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "300s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      ]
+    }
+  }

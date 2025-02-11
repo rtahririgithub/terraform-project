@@ -1,0 +1,176 @@
+{
+  "category": "CUSTOM",
+  "displayName": "merlin-nc-cloud-bss-api-logs",
+  "mosaicLayout": {
+    "columns": 12,
+    "tiles": [
+      {
+        "height": 2,
+        "widget": {
+          "scorecard": {
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "600s",
+                  "crossSeriesReducer": "REDUCE_COUNT",
+                  "perSeriesAligner": "ALIGN_COUNT"
+                },
+                "filter": "metric.type=\"logging.googleapis.com/user/nc_private_yul_${env}/merlin/nccbss_lb_api_count\" metric.label.\"status\"=monitoring.regex.full_match(\"4[0-9]{2}\")"
+              }
+            }
+          },
+          "title": "Status 4xx"
+        },
+        "width": 2,
+        "xPos": 8,
+        "yPos": 0
+      },
+      {
+        "height": 2,
+        "widget": {
+          "scorecard": {
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "600s",
+                  "crossSeriesReducer": "REDUCE_COUNT",
+                  "perSeriesAligner": "ALIGN_COUNT"
+                },
+                "filter": "metric.type=\"logging.googleapis.com/user/nc_private_yul_${env}/merlin/nccbss_lb_api_count\" metric.label.\"status\"=monitoring.regex.full_match(\"5[0-9]{2}\")"
+              }
+            }
+          },
+          "title": "Status 5xx"
+        },
+        "width": 2,
+        "xPos": 10,
+        "yPos": 0
+      },
+      {
+        "height": 2,
+        "widget": {
+          "scorecard": {
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "600s",
+                  "crossSeriesReducer": "REDUCE_COUNT",
+                  "perSeriesAligner": "ALIGN_COUNT"
+                },
+                "filter": "metric.type=\"logging.googleapis.com/user/nc_private_yul_${env}/merlin/nccbss_lb_api_count\" metric.label.\"status\"=monitoring.regex.full_match(\"3[0-9]{2}\")"
+              }
+            }
+          },
+          "title": "Status 3xx"
+        },
+        "width": 2,
+        "xPos": 6,
+        "yPos": 0
+      },
+      {
+        "height": 2,
+        "widget": {
+          "scorecard": {
+            "sparkChartView": {
+              "sparkChartType": "SPARK_LINE"
+            },
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "600s",
+                  "crossSeriesReducer": "REDUCE_COUNT",
+                  "perSeriesAligner": "ALIGN_COUNT"
+                },
+                "filter": "metric.type=\"logging.googleapis.com/user/nc_private_yul_${env}/merlin/nccbss_lb_api_count\" metric.label.\"status\"=monitoring.regex.full_match(\"2[0-9]{2}\")"
+              }
+            }
+          },
+          "title": "Status 2xx"
+        },
+        "width": 2,
+        "xPos": 4,
+        "yPos": 0
+      },
+      {
+        "height": 7,
+        "widget": {
+          "timeSeriesTable": {
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "600s",
+                "tableDisplayOptions": {},
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "600s",
+                      "crossSeriesReducer": "REDUCE_NONE",
+                      "perSeriesAligner": "ALIGN_RATE"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/nc_private_yul_${env}/merlin/nccbss_lb_api_count\"",
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_COUNT",
+                      "groupByFields": [
+                        "metric.label.\"status\"",
+                        "metric.label.\"requestEnv\""
+                      ],
+                      "perSeriesAligner": "ALIGN_COUNT"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "title": "Env x Status"
+        },
+        "width": 8,
+        "xPos": 4,
+        "yPos": 2
+      },
+      {
+        "height": 9,
+        "widget": {
+          "timeSeriesTable": {
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "tableDisplayOptions": {},
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_COUNT",
+                      "groupByFields": [
+                        "metric.label.\"requestCluster\"",
+                        "metric.label.\"status\""
+                      ],
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/nc_private_yul_${env}/merlin/nccbss_lb_api_count\""
+                  }
+                }
+              }
+            ]
+          },
+          "title": "Cluster x Status"
+        },
+        "width": 4,
+        "xPos": 0,
+        "yPos": 0
+      }
+    ]
+  }
+}

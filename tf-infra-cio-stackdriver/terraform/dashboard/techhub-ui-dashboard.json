@@ -1,0 +1,367 @@
+{
+    "displayName": "Techhub UI Dashboard ",
+    "gridLayout": {
+      "columns": "2",
+      "widgets": [
+        {
+          "title": "Techhub pods  - Memory usage ",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" resource.type=\"k8s_container\" resource.label.\"project_id\"=\"${cluster_id}\" resource.label.\"namespace_name\"=\"wfm-techhub-ui\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "By"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "CPU utilization for techhub-ui pods ",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/cpu/limit_utilization\" resource.type=\"k8s_container\" resource.label.\"project_id\"=\"${cluster_id}\" resource.label.\"namespace_name\"=\"wfm-techhub-ui\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "Restart count",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/restart_count\" resource.type=\"k8s_container\" resource.label.\"project_id\"=\"${cluster_id}\" resource.label.\"namespace_name\"=\"wfm-techhub-ui\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "resource.label.\"pod_name\""
+                      ]
+                    },
+                    "secondaryAggregation": {}
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "300s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "Kubernetes Pod - Bytes received for wfm-techhub-ui [SUM]",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/pod/network/received_bytes_count\" resource.type=\"k8s_pod\" resource.label.\"namespace_name\"=\"wfm-techhub-ui\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE",
+                      "crossSeriesReducer": "REDUCE_SUM"
+                    },
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "By"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "Kubernetes Pod - Bytes transmitted for wfm-techhub-ui [SUM]",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/pod/network/sent_bytes_count\" resource.type=\"k8s_pod\" resource.label.\"namespace_name\"=\"wfm-techhub-ui\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE",
+                      "crossSeriesReducer": "REDUCE_SUM"
+                    },
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "By"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "OpenCensus/opencensus.io/http/server/response_count_by_status_code (filtered)...",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"custom.googleapis.com/opencensus/opencensus.io/http/server/response_count_by_status_code\" resource.type=\"k8s_container\" resource.label.\"cluster_name\"=\"wfm-techhub-ui\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE",
+                      "crossSeriesReducer": "REDUCE_SUM"
+                    },
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "GCP Service Consumed – Request Count (filtered)",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesQueryLanguage": "fetch consumed_api\n| metric 'serviceruntime.googleapis.com/api/request_count'\n| filter\n    resource.project_id == '${techhub_project_id}' && (metric.response_code != '200')\n| align rate(1m)\n| every 1m\n| group_by [], [value_request_count_aggregate: aggregate(value.request_count)]"
+                },
+                "plotType": "LINE"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "GCP Service Consumed API request sizes [COUNT]",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesQueryLanguage": "fetch consumed_api\n| metric 'serviceruntime.googleapis.com/api/request_sizes'\n| align delta(1m)\n| every 1m\n| group_by [], [row_count: row_count()]"
+                },
+                "plotType": "LINE"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "GCP Service Consumed API – Request Latencies ",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesQueryLanguage": "fetch consumed_api\n| metric 'serviceruntime.googleapis.com/api/request_latencies'\n| filter resource.project_id == '${techhub_project_id}'\n| align delta(1m)\n| every 1m\n| group_by [], [row_count: row_count()]"
+                },
+                "plotType": "LINE"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "FireStore Request Status",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesQueryLanguage": "fetch datastore_request\n| metric 'firestore.googleapis.com/api/request_count'\n| filter resource.project_id == '${techhub_project_id}'\n| align rate(1m)\n| every 1m"
+                },
+                "plotType": "LINE"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "Firestore request Error",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesQueryLanguage": "fetch datastore_request\n| metric 'firestore.googleapis.com/api/request_count'\n| filter\n    resource.project_id == '${techhub_project_id}'\n    && (metric.api_method == 'RunQuery' && metric.response_code != 'OK')\n| align rate(1m)\n| every 1m\n| group_by [], [row_count: row_count()]"
+                },
+                "plotType": "LINE"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "firestore instance – connected clients",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesQueryLanguage": "fetch firestore_instance\n| metric 'firestore.googleapis.com/network/active_connections'\n| filter resource.project_id == '${techhub_project_id}'\n| group_by 1m, [value_active_connections_mean: mean(value.active_connections)]\n| every 1m"
+                },
+                "plotType": "LINE"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "TechHub pub/sub retained acked messages ",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesQueryLanguage": "fetch pubsub_subscription\n| metric 'pubsub.googleapis.com/subscription/num_retained_acked_messages'\n| filter\n    resource.project_id == '${techhub_project_id}'\n    && (metadata.system_labels.topic_id == '')\n| group_by 1m,\n    [value_num_retained_acked_messages_mean:\n       mean(value.num_retained_acked_messages)]\n| every 1m\n| group_by [],\n    [value_num_retained_acked_messages_mean_aggregate:\n       aggregate(value_num_retained_acked_messages_mean)]"
+                },
+                "plotType": "LINE"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "Restart count (filtered) (grouped) [COUNT]",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/restart_count\" resource.type=\"k8s_container\" resource.label.\"project_id\"=\"${cluster_id}\" resource.label.\"namespace_name\"=\"wfm-techhub-ui\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE",
+                      "crossSeriesReducer": "REDUCE_COUNT",
+                      "groupByFields": [
+                        "resource.label.\"pod_name\""
+                      ]
+                    },
+                    "secondaryAggregation": {}
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      ]
+    }
+  }

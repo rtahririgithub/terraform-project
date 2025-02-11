@@ -1,0 +1,224 @@
+{
+  "displayName": "Channel Portal Lite",
+  "mosaicLayout": {
+    "columns": 12,
+    "tiles": [
+      {
+        "height": 2,
+        "width": 12,
+        "widget": {
+          "title": "Dashboard Notes",
+          "text": {
+            "content": " ### Dashboards for Channel Portal Lite ",
+            "format": "MARKDOWN"
+          }
+        }
+      },
+      {
+        "height": 3,
+        "width": 4,
+        "xPos": 0,
+        "yPos": 2,
+        "widget": {
+          "title": "Nodejs Heap Space Size Used (BFF)",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "LINE",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/nodejs_heap_space_size_used_bytes\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"${cpl_web_container_name}-${env}\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        }
+      },
+      {
+        "height": 3,
+        "width": 4,
+        "xPos": 4,
+        "yPos": 2,
+        "widget": {
+          "title": "CPU Request Utilization (BFF)",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "LINE",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "filter": "metric.type=\"kubernetes.io/container/cpu/request_utilization\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"${cpl_web_container_name}-${env}\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        }
+      },
+      {
+        "height": 3,
+        "width": 4,
+        "xPos": 8,
+        "yPos": 2,
+        "widget": {
+          "title": "Memory Utilization (BFF)",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "LINE",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"${cpl_web_container_name}-${env}\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        }
+      },
+      {
+        "height": 3,
+        "width": 4,
+        "xPos": 0,
+        "yPos": 5,
+        "widget": {
+          "title": "JVM Memory Max Bytes (EXP)",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "LINE",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_MEAN",
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/jvm_memory_max_bytes\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"${cpl_exp_container_name}-${env}\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        }
+      },
+      {
+        "height": 3,
+        "width": 4,
+        "xPos": 4,
+        "yPos": 5,
+        "widget": {
+          "title": "System CPU Usage (EXP)",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "LINE",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "crossSeriesReducer": "REDUCE_MEAN",
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/system_cpu_usage\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"${cpl_exp_container_name}-${env}\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        }
+      },
+      {
+        "height": 3,
+        "width": 4,
+        "xPos": 8,
+        "yPos": 5,
+        "widget": {
+          "title": "Http Server Requests Seconds Count (EXP)",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "LINE",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "crossSeriesReducer": "REDUCE_MEAN",
+                      "perSeriesAligner": "ALIGN_RATE"
+                    },
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_count\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"${cpl_exp_container_name}-${env}\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

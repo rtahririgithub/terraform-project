@@ -1,0 +1,19 @@
+{
+  "id": "cloud-coe-admin",
+  "displayName": "TELUS Cloud CoE Admin",
+  "owners": [],
+  "managers": [
+    "ken.duffy@telus.com"
+  ],
+  "members": [
+    "benjamen.ngo@telus.com",
+    "erik.walker@telus.com",
+    "eugene.thai@telus.com",
+    "harpreet.paul@telus.com",
+    "michael.lapish@telus.com",
+    "parin.pankajkumar_kothari@telus.com",
+    "rick.foster@telus.com",
+    "ruxandra.cioraca@telus.com",
+    "scott.lapish@telus.com"
+  ]
+}

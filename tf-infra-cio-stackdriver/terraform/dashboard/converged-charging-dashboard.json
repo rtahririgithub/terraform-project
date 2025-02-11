@@ -1,0 +1,123 @@
+{
+    "displayName": "cio-converged-charging-${env}",
+    "gridLayout": {
+      "columns": "2",
+      "widgets": [
+        {
+          "title": "Firestore Database - Document Reads",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"firestore.googleapis.com/document/read_count\" resource.type=\"firestore_instance\" resource.label.\"project_id\"=\"${project_id}\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE"
+                    },
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "Firestore Database - Document writes",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"firestore.googleapis.com/document/write_count\" resource.type=\"firestore_instance\" resource.label.\"project_id\"=\"${project_id}\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE"
+                    },
+                    "secondaryAggregation": {}
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "Firestore Database - Document Deletes",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"firestore.googleapis.com/document/delete_count\" resource.type=\"firestore_instance\" resource.label.\"project_id\"=\"${project_id}\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE"
+                    },
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "Firestore Database Connected Clients",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"firestore.googleapis.com/network/active_connections\" resource.type=\"firestore_instance\" resource.label.\"project_id\"=\"${project_id}\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "secondaryAggregation": {}
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      ]
+    }
+  }

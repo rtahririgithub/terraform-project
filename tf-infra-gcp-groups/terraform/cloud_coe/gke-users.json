@@ -1,0 +1,19 @@
+{
+  "id": "gke-users",
+  "displayName": "GKE Users",
+  "owners": [],
+  "managers": [],
+  "members": [
+    "benjamen.ngo@telus.com",
+    "chris.collition@telus.com",
+    "edward.wong@telus.com",
+    "erik.walker@telus.com",
+    "jaydeep.singh@telus.com",
+    "ken.duffy@telus.com",
+    "parin.pankajkumar_kothari@telus.com",
+    "rick.foster@telus.com",
+    "ruxandra.cioraca@telus.com",
+    "scott.lapish@telus.com",
+    "tiger.yu@telus.com"
+  ]
+}

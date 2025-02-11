@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: tf-infra-gcp-groups
+  annotations:
+    github.com/project-slug: telus/tf-infra-gcp-groups
+    backstage.io/techdocs-ref: dir:.
+spec:
+  type: other
+  lifecycle: production
+  owner: cloud-coe

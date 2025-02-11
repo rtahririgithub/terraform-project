@@ -1,0 +1,1 @@
+offer_targeting_project_id = "cio-offer-targeting-np-01c1c6"

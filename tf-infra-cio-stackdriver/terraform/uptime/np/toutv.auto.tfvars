@@ -1,0 +1,7 @@
+toutv_ui_uptime_host       = "toutv-np.telus.com"
+toutv_ui_uptime_path       = ""
+toutv_be_uptime_path       = "/be/probe"
+toutv_admin_ui_uptime_host = "toutv-admin-np.cloudapps.telus.com"
+toutv_admin_ui_uptime_path = ""
+toutv_admin_be_uptime_path = "/be/probe"
+toutv_premium_uptime_path  = "/premium/probe"

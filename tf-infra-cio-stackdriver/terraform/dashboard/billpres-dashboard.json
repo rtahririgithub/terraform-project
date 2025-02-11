@@ -1,0 +1,333 @@
+{
+    "displayName": "BillPresentment Dashboard",
+    "gridLayout": {
+      "columns": "2",
+      "widgets": [
+        {
+          "title": "Bill Image Requests for metadata",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/bills_time_seconds_count\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billpres-bill-retrieval\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "resource.label.\"container_name\""
+                      ]
+                    },
+                    "secondaryAggregation": {},
+                    "pickTimeSeriesFilter": {
+                      "rankingMethod": "METHOD_MEAN",
+                      "numTimeSeries": 6,
+                      "direction": "TOP"
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "Bill Image Requests for pdf files",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/pdf_time_seconds_count\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billpres-bill-retrieval\"" ,
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_DELTA",
+                      "crossSeriesReducer": "REDUCE_MEAN",
+                      "groupByFields": [
+                        "resource.label.\"container_name\""
+                      ]
+                    },
+                    "secondaryAggregation": {},
+                    "pickTimeSeriesFilter": {
+                      "rankingMethod": "METHOD_MEAN",
+                      "numTimeSeries": 6,
+                      "direction": "TOP"
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "CPU Utilization",
+          "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/cpu/core_usage_time\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billpres-bill-retrieval\"",
+                      "aggregation": 
+                      {
+                        "perSeriesAligner": "ALIGN_DELTA",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "resource.label.\"pod_name\""
+                        ]
+                      },
+                      "secondaryAggregation": {
+                        "perSeriesAligner": "ALIGN_NONE",
+                        "crossSeriesReducer": "REDUCE_NONE",
+                        "groupByFields": []
+                      },
+                      "pickTimeSeriesFilter": {
+                        "rankingMethod": "METHOD_MEAN",
+                        "numTimeSeries": 10,
+                        "direction": "TOP"
+                      }
+                    },
+                    "unitOverride": "1"
+                  },
+                  "minAlignmentPeriod": "60s",
+                  "plotType": "LINE"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+        },
+        {
+          "title": "Memory Utilization",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billpres-bill-retrieval\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "resource.label.\"pod_name\""
+                      ]
+                    },
+                    "secondaryAggregation": {},
+                    "pickTimeSeriesFilter": {
+                      "rankingMethod": "METHOD_MEAN",
+                      "numTimeSeries": 10,
+                      "direction": "TOP"
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "CPU Request Utilization (%)",
+          "xyChart": {
+            "dataSets": [{
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/cpu/request_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billpres-bill-retrieval\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_NONE",
+                      "groupByFields": [
+                        "resource.label.\"container_name\""
+                      ]
+                    }
+                  },
+                  "unitOverride": "percent"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        {
+          "title": "Memory Request Utilization (%)",
+          "xyChart": {
+            "dataSets": [{
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/memory/request_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billpres-bill-retrieval\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_NONE",
+                      "groupByFields": [
+                        "resource.label.\"container_name\""
+                      ]
+                    }
+                  },
+                  "unitOverride": "percent"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        {
+          "title": "scheduler Job errors",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"logging.googleapis.com/user/scheduler/error\" resource.type=\"cloud_scheduler_job\"",
+                    "aggregation": 
+                      {
+                        "perSeriesAligner": "ALIGN_RATE",
+                        "crossSeriesReducer": "REDUCE_COUNT",
+                        "groupByFields": []
+                      },
+                      "secondaryAggregation": {
+                        "crossSeriesReducer": "REDUCE_NONE",
+                        "groupByFields": []
+                      }
+                    
+                  },
+                  "unitOverride": "1"
+                },
+                "minAlignmentPeriod": "60s",
+                "plotType": "STACKED_BAR"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "Service Restarts",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/restart_count\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billpres-bill-retrieval\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_DELTA",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "resource.label.\"container_name\""
+                      ]
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+		{
+          "title": "API Status Response - By response code and Pod Name",
+        "xyChart": {
+          "chartOptions": {
+            "mode": "COLOR"
+          },
+          "dataSets": [
+              {
+                "minAlignmentPeriod": "86400s",
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "86400s",
+                      "crossSeriesReducer": "REDUCE_NONE",
+                      "perSeriesAligner": "ALIGN_DELTA"
+                    },
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/http_server_responses_count\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billpres-bill-retrieval\"",
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "metric.label.\"status\"",
+                        "resource.label.\"pod_name\""
+                      ],
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  }
+                }
+              }
+            ],
+          "timeshiftDuration": "0s",
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          }
+        }
+        }
+      ]
+    }
+  }

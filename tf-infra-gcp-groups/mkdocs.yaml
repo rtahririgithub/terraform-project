@@ -1,0 +1,13 @@
+site_name: Gooogle Groups
+site_description: Group management and access to common resources
+docs_dir: .
+site_dir: site
+nav:
+  - Home: README.md
+plugins:
+  - techdocs-core
+  - same-dir
+  - exclude:
+      regex:
+        - .git/*
+

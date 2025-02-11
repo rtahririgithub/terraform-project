@@ -1,0 +1,142 @@
+{
+  "category": "CUSTOM",
+  "displayName": "Merlin Capacity",
+  "mosaicLayout": {
+    "columns": 12,
+    "tiles": [
+      {
+        "height": 4,
+        "widget": {
+          "timeSeriesTable": {
+            "dataSets": [
+              {
+                "tableDisplayOptions": {},
+                "timeSeriesQuery": {
+                  "timeSeriesQueryLanguage": "fetch k8s_cluster::logging.googleapis.com/log_entry_count\r\n|filter metric.log=\"events\"\r\n|filter resource.cluster_name=~\"^nc\\\\-private\\\\-yul\\\\-.+\"\r\n"
+                }
+              }
+            ]
+          },
+          "title": "Cluster Events"
+        },
+        "width": 6,
+        "xPos": 0,
+        "yPos": 0
+      },
+      {
+        "height": 5,
+        "widget": {
+          "timeSeriesTable": {
+            "dataSets": [
+              {
+                "tableDisplayOptions": {},
+                "timeSeriesQuery": {
+                  "timeSeriesQueryLanguage": "fetch k8s_node::kubernetes.io/node/cpu/allocatable_utilization\n|filter resource.cluster_name=~'^nc\\\\-private\\\\-yul\\\\-.+'\n| every 10m\n| value[CPU_Utilization: value.allocatable_utilization*100]"
+                }
+              }
+            ]
+          },
+          "title": "CPU Utilization"
+        },
+        "width": 5,
+        "xPos": 6,
+        "yPos": 0
+      },
+      {
+        "height": 5,
+        "widget": {
+          "timeSeriesTable": {
+            "dataSets": [
+              {
+                "tableDisplayOptions": {},
+                "timeSeriesQuery": {
+                  "timeSeriesQueryLanguage": "{t0:fetch k8s_node::kubernetes.io/node/memory/total_bytes\n|filter resource.cluster_name =~ '^nc\\\\-private\\\\-yul\\\\-.+'\n|every 10m\n; \nt1:fetch k8s_node::kubernetes.io/node/memory/used_bytes\n|filter resource.cluster_name =~ '^nc\\\\-private\\\\-yul\\\\-.+'\n|every 10m\n}|join | value[div((t0.value.total_bytes-t1.value.used_bytes),t0.value.total_bytes)*100]"
+                }
+              }
+            ]
+          },
+          "title": "Memory Usage"
+        },
+        "width": 5,
+        "xPos": 6,
+        "yPos": 10
+      },
+      {
+        "height": 5,
+        "widget": {
+          "timeSeriesTable": {
+            "dataSets": [
+              {
+                "tableDisplayOptions": {},
+                "timeSeriesQuery": {
+                  "timeSeriesQueryLanguage": "{t0:fetch k8s_node::kubernetes.io/node/ephemeral_storage/total_bytes\n|filter resource.cluster_name=~'^nc\\\\-private\\\\-yul\\\\-.+'\n| every 10m;\nt1:fetch k8s_node::kubernetes.io/node/ephemeral_storage/used_bytes\n| filter resource.cluster_name=~'^nc\\\\-private\\\\-yul\\\\-.+'\n| every 10m}\n|join | value[DiskSpaceUsage: div(t1.value.used_bytes,t0.value.total_bytes)*100]"
+                }
+              }
+            ]
+          },
+          "title": "Disk Space Usage"
+        },
+        "width": 5,
+        "xPos": 6,
+        "yPos": 5
+      },
+      {
+        "height": 4,
+        "widget": {
+          "timeSeriesTable": {
+            "dataSets": [
+              {
+                "tableDisplayOptions": {},
+                "timeSeriesQuery": {
+                  "timeSeriesQueryLanguage": "fetch k8s_node::kubernetes.io/node/network/received_bytes_count\r\n|filter resource.cluster_name=~'^nc\\\\-private\\\\-yul\\\\-.+'\r\n| group_by 30m, [value_utilization_mean: mean(value.received_bytes_count)]\r\n| every 30m"
+                }
+              }
+            ]
+          },
+          "title": "Network user recieved"
+        },
+        "width": 3,
+        "xPos": 0,
+        "yPos": 4
+      },
+      {
+        "height": 4,
+        "widget": {
+          "timeSeriesTable": {
+            "dataSets": [
+              {
+                "tableDisplayOptions": {},
+                "timeSeriesQuery": {
+                  "timeSeriesQueryLanguage": "fetch k8s_node::kubernetes.io/node/network/sent_bytes_count\n|filter resource.cluster_name=~'^nc\\\\-private\\\\-yul\\\\-.+'\n| group_by 30m, [value_utilization_mean: mean(value.sent_bytes_count)]\n| every 30m"
+                }
+              }
+            ]
+          },
+          "title": "Network user sent"
+        },
+        "width": 3,
+        "xPos": 3,
+        "yPos": 4
+      },
+      {
+        "height": 7,
+        "widget": {
+          "timeSeriesTable": {
+            "dataSets": [
+              {
+                "tableDisplayOptions": {},
+                "timeSeriesQuery": {
+                  "timeSeriesQueryLanguage": "fetch k8s_node::kubernetes.io/node/pid_used\n|filter resource.cluster_name=~'^nc\\\\-private\\\\-yul\\\\-.+'\n| group_by 30m, [value_utilization_mean: sum(value.pid_used)]\n| every 30m"
+                }
+              }
+            ]
+          }
+        },
+        "width": 6,
+        "xPos": 0,
+        "yPos": 8
+      }
+    ]
+  }
+  
+}

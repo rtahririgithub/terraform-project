@@ -1,0 +1,14 @@
+{
+  "id": "oracle-database-media-admin",
+  "displayName": "Oracle Database Media Admin",
+  "owners": [],
+  "managers": [
+    "jeffrey.yu@telus.com",
+    "kurt.harfst@telus.com"
+  ],
+  "members": [
+    "compute-instance@gidc-dba-tools-pr-dd789e.iam.gserviceaccount.com",
+    "jeffrey.yu@telus.com",
+    "kurt.harfst@telus.com"
+  ]
+}

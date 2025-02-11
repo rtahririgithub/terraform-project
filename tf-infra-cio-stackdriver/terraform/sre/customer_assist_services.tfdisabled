@@ -1,0 +1,20 @@
+locals {
+  customer-assist-env = var.env == "np" ? "dv" : "pr"
+}
+
+resource "google_monitoring_custom_service" "customer-assist-account-exp-service" {
+  project      = var.project_id
+  service_id   = "customer-assist-account-exp-service"
+  display_name = "Customer Assist Account Experience API Monitoring Service"
+
+  telemetry {
+    resource_name = format("%s/namespaces/%s/services/%s",
+      local.gke_private_yul_001,
+      "webconsb2b-customer-assist",
+    format("account-exp-api-svc-%s", local.customer-assist-env))
+  }
+}
+
+
+
+#resource_name = "//container.googleapis.com/projects/cio-gke-private-yul-001-9ed5d0/locations/northamerica-northeast1/clusters/private-yul-np-001/k8s/namespaces/webconsb2b-customer-assist/services/account-exp-api-svc-dv"

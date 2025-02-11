@@ -1,0 +1,13 @@
+{
+  "id": "hce-frontdoor",
+  "displayName": "TELUS HCE Frontdoor",
+  "owners": [
+    "brent.colmer@telus.com",
+    "charles.macdonald@telus.com",
+    "corey.sprung@telus.com"
+  ],
+  "managers": [],
+  "members": [
+    "kevin.strike@telus.com"
+  ]
+}

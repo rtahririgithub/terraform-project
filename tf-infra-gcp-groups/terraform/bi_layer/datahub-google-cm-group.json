@@ -1,0 +1,14 @@
+{
+  "id": "datahub-google-cm",
+  "displayName": "Datahub Google Campaign Manager group",
+  "owners": [],
+  "managers": [],
+  "members": [
+    "connect-cust-intractn@cio-datahub-connect-dv-d9e5c4.iam.gserviceaccount.com",
+    "connect-cust-intractn@cio-datahub-connect-pr-06ad39.iam.gserviceaccount.com",
+    "connect-cust-intractn@cio-datahub-connect-qa-9c6267.iam.gserviceaccount.com",
+    "project-386163132368@storage-transfer-service.iam.gserviceaccount.com",
+    "project-919509316192@storage-transfer-service.iam.gserviceaccount.com",
+    "project-983598753455@storage-transfer-service.iam.gserviceaccount.com"
+  ]
+}

@@ -1,0 +1,4346 @@
+{
+  "dashboards": [
+    {
+      "name": "projects/379308499179/dashboards/10826484280279075342",
+      "displayName": "Enterprise Communication Platform",
+      "etag": "729d0563872b5c0e0c5f22a6399295e8",
+      "mosaicLayout": {
+        "columns": 6,
+        "tiles": [
+          {
+            "width": 2,
+            "height": 1,
+            "widget": {
+              "title": "Dashboard Notes",
+              "text": {
+                "content": "- [Kong Health](https://console.cloud.google.com/monitoring/uptime?project=cio-stackdriver-pr-152b74) [WNP Portout](https://console.cloud.google.com/monitoring/dashboards/custom/18420227487629563934?project=cio-stackdriver-np-c4636c&timeDomain=1h) \n- [GCP Health](https://status.cloud.google.com) \n*",
+                "format": "MARKDOWN"
+              }
+            }
+          },
+          {
+            "yPos": 1,
+            "width": 1,
+            "height": 1,
+            "widget": {
+              "title": "Cached Templates",
+              "scorecard": {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/redis_db_keys\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"template-transformation-redis.*\")",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_SUM"
+                    }
+                  },
+                  "unitOverride": "1"
+                }
+              }
+            }
+          },
+          {
+            "xPos": 1,
+            "yPos": 1,
+            "width": 1,
+            "height": 1,
+            "widget": {
+              "title": "Template Cached Bytes",
+              "scorecard": {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/redis_memory_used_bytes\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"template-transformation-redis.*\")",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_SUM"
+                    }
+                  },
+                  "unitOverride": "By"
+                },
+                "thresholds": [
+                  {
+                    "label": "Danger",
+                    "value": 209715200,
+                    "color": "RED",
+                    "direction": "ABOVE"
+                  },
+                  {
+                    "label": "Warning",
+                    "value": 131072000,
+                    "color": "YELLOW",
+                    "direction": "ABOVE"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "xPos": 2,
+            "width": 1,
+            "height": 1,
+            "widget": {
+              "title": "CommAPI Sender Instances",
+              "scorecard": {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/up\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"communication-api-sender-.*\")",
+                    "aggregation": {
+                      "alignmentPeriod": "600s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_SUM"
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "sparkChartView": {
+                  "sparkChartType": "SPARK_BAR"
+                },
+                "thresholds": [
+                  {
+                    "label": "Danger",
+                    "value": 1.999,
+                    "color": "RED",
+                    "direction": "BELOW"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "xPos": 3,
+            "width": 1,
+            "height": 1,
+            "widget": {
+              "title": "CommAPI Retrieval Instances",
+              "scorecard": {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/up\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"communication-api-retrieval-.*\")",
+                    "aggregation": {
+                      "alignmentPeriod": "600s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_SUM"
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "sparkChartView": {
+                  "sparkChartType": "SPARK_BAR"
+                },
+                "thresholds": [
+                  {
+                    "label": "Danger",
+                    "value": 1.999,
+                    "color": "YELLOW",
+                    "direction": "BELOW"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "xPos": 4,
+            "width": 1,
+            "height": 1,
+            "widget": {
+              "title": "Message Publisher Instances",
+              "scorecard": {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/up\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"message-publisher.*\")",
+                    "aggregation": {
+                      "alignmentPeriod": "600s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_SUM"
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "sparkChartView": {
+                  "sparkChartType": "SPARK_BAR"
+                },
+                "thresholds": [
+                  {
+                    "label": "Danger",
+                    "value": 1.999,
+                    "color": "RED",
+                    "direction": "BELOW"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "xPos": 5,
+            "width": 1,
+            "height": 1,
+            "widget": {
+              "title": "Template Transform Instances",
+              "scorecard": {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/up\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"template-transformation.*\")",
+                    "aggregation": {
+                      "alignmentPeriod": "600s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_SUM"
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "sparkChartView": {
+                  "sparkChartType": "SPARK_BAR"
+                },
+                "thresholds": [
+                  {
+                    "label": "Danger",
+                    "value": 1.999,
+                    "color": "RED",
+                    "direction": "BELOW"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "xPos": 3,
+            "yPos": 1,
+            "width": 1,
+            "height": 1,
+            "widget": {
+              "title": "Message Persistence Instances",
+              "scorecard": {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/up\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"message-persistence.*\")",
+                    "aggregation": {
+                      "alignmentPeriod": "600s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_SUM"
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "sparkChartView": {
+                  "sparkChartType": "SPARK_BAR"
+                },
+                "thresholds": [
+                  {
+                    "label": "Danger",
+                    "value": 1.999,
+                    "color": "RED",
+                    "direction": "BELOW"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "xPos": 2,
+            "yPos": 1,
+            "width": 1,
+            "height": 1,
+            "widget": {
+              "title": "Config Service Uptime",
+              "scorecard": {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"kubernetes.io/container/uptime\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"spring-config.*\")",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_MEAN"
+                    }
+                  },
+                  "unitOverride": "s"
+                },
+                "thresholds": [
+                  {
+                    "label": "Danger",
+                    "value": 1,
+                    "color": "RED",
+                    "direction": "BELOW"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "xPos": 4,
+            "yPos": 1,
+            "width": 1,
+            "height": 1,
+            "widget": {
+              "title": "Message Subscriber Instances",
+              "scorecard": {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/up\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"message-subscriber.*\")",
+                    "aggregation": {
+                      "alignmentPeriod": "600s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_SUM"
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "sparkChartView": {
+                  "sparkChartType": "SPARK_BAR"
+                },
+                "thresholds": [
+                  {
+                    "label": "Danger",
+                    "value": 1.999,
+                    "color": "RED",
+                    "direction": "BELOW"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "xPos": 5,
+            "yPos": 1,
+            "width": 1,
+            "height": 1,
+            "widget": {
+              "title": "Communication Message DB",
+              "scorecard": {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"cloudsql.googleapis.com/database/up\" resource.type=\"cloudsql_database\" resource.label.\"database_id\"=monitoring.regex.full_match(\"cio-notification.*:communication-message-.*\")",
+                    "aggregation": {
+                      "alignmentPeriod": "600s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_MEAN"
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "sparkChartView": {
+                  "sparkChartType": "SPARK_BAR"
+                },
+                "thresholds": [
+                  {
+                    "label": "Danger",
+                    "value": 0.999,
+                    "color": "RED",
+                    "direction": "BELOW"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "xPos": 4,
+            "yPos": 2,
+            "width": 1,
+            "height": 1,
+            "widget": {
+              "title": "Sender - TPS",
+              "scorecard": {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_count\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"communication-api-sender-.*\")",
+                    "aggregation": {
+                      "alignmentPeriod": "600s",
+                      "perSeriesAligner": "ALIGN_RATE",
+                      "crossSeriesReducer": "REDUCE_SUM"
+                    }
+                  },
+                  "unitOverride": "1/s"
+                },
+                "sparkChartView": {
+                  "sparkChartType": "SPARK_LINE"
+                },
+                "thresholds": [
+                  {
+                    "label": "Danger",
+                    "value": 60,
+                    "color": "RED",
+                    "direction": "ABOVE"
+                  },
+                  {
+                    "label": "Warning",
+                    "value": 40,
+                    "color": "YELLOW",
+                    "direction": "ABOVE"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "xPos": 4,
+            "yPos": 3,
+            "width": 1,
+            "height": 1,
+            "widget": {
+              "title": "Sender - Latency(MAX)",
+              "scorecard": {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_max\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"communication-api-sender-.*\")",
+                    "aggregation": {
+                      "alignmentPeriod": "600s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_MEAN"
+                    }
+                  },
+                  "unitOverride": "s"
+                },
+                "sparkChartView": {
+                  "sparkChartType": "SPARK_LINE"
+                },
+                "thresholds": [
+                  {
+                    "label": "Danger",
+                    "value": 10,
+                    "color": "RED",
+                    "direction": "ABOVE"
+                  },
+                  {
+                    "label": "Warning",
+                    "value": 5,
+                    "color": "YELLOW",
+                    "direction": "ABOVE"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "xPos": 5,
+            "yPos": 3,
+            "width": 1,
+            "height": 1,
+            "widget": {
+              "title": "Retrieval - Latency(MAX)",
+              "scorecard": {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_max\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"communication-api-retrieval-.*\")",
+                    "aggregation": {
+                      "alignmentPeriod": "600s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_MEAN"
+                    }
+                  },
+                  "unitOverride": "s"
+                },
+                "sparkChartView": {
+                  "sparkChartType": "SPARK_LINE"
+                },
+                "thresholds": [
+                  {
+                    "label": "Danger",
+                    "value": 10,
+                    "color": "RED",
+                    "direction": "ABOVE"
+                  },
+                  {
+                    "label": "Warning",
+                    "value": 5,
+                    "color": "YELLOW",
+                    "direction": "ABOVE"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "xPos": 5,
+            "yPos": 2,
+            "width": 1,
+            "height": 1,
+            "widget": {
+              "title": "Retrieval - TPS",
+              "scorecard": {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_sum\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"communication-api-retrieval.*\")",
+                    "aggregation": {
+                      "alignmentPeriod": "600s",
+                      "perSeriesAligner": "ALIGN_RATE",
+                      "crossSeriesReducer": "REDUCE_SUM"
+                    }
+                  },
+                  "unitOverride": "1/s"
+                },
+                "sparkChartView": {
+                  "sparkChartType": "SPARK_LINE"
+                },
+                "thresholds": [
+                  {
+                    "label": "Danger",
+                    "value": 10,
+                    "color": "RED",
+                    "direction": "ABOVE"
+                  },
+                  {
+                    "label": "Warning",
+                    "value": 5,
+                    "color": "YELLOW",
+                    "direction": "ABOVE"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "yPos": 2,
+            "width": 2,
+            "height": 2,
+            "widget": {
+              "title": "Notify-Communication TPS - Top 10",
+              "xyChart": {
+                "dataSets": [
+                  {
+                    "timeSeriesQuery": {
+                      "timeSeriesFilter": {
+                        "filter": "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_count\" resource.type=\"k8s_container\"",
+                        "aggregation": {
+                          "perSeriesAligner": "ALIGN_RATE",
+                          "crossSeriesReducer": "REDUCE_SUM",
+                          "groupByFields": [
+                            "resource.label.\"container_name\""
+                          ]
+                        },
+                        "secondaryAggregation": {},
+                        "pickTimeSeriesFilter": {
+                          "rankingMethod": "METHOD_MEAN",
+                          "numTimeSeries": 10,
+                          "direction": "TOP"
+                        }
+                      }
+                    },
+                    "plotType": "LINE",
+                    "minAlignmentPeriod": "60s"
+                  }
+                ],
+                "timeshiftDuration": "0s",
+                "yAxis": {
+                  "label": "y1Axis",
+                  "scale": "LINEAR"
+                },
+                "chartOptions": {
+                  "mode": "COLOR"
+                }
+              }
+            }
+          },
+          {
+            "xPos": 2,
+            "yPos": 2,
+            "width": 2,
+            "height": 2,
+            "widget": {
+              "title": "Notify-Communication Request Latency - Top 6",
+              "xyChart": {
+                "dataSets": [
+                  {
+                    "timeSeriesQuery": {
+                      "timeSeriesFilter": {
+                        "filter": "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_sum\" resource.type=\"k8s_container\"",
+                        "aggregation": {
+                          "perSeriesAligner": "ALIGN_RATE",
+                          "crossSeriesReducer": "REDUCE_MEAN",
+                          "groupByFields": [
+                            "resource.label.\"container_name\""
+                          ]
+                        },
+                        "secondaryAggregation": {},
+                        "pickTimeSeriesFilter": {
+                          "rankingMethod": "METHOD_MEAN",
+                          "numTimeSeries": 6,
+                          "direction": "TOP"
+                        }
+                      }
+                    },
+                    "plotType": "LINE",
+                    "minAlignmentPeriod": "60s"
+                  }
+                ],
+                "timeshiftDuration": "0s",
+                "yAxis": {
+                  "label": "y1Axis",
+                  "scale": "LINEAR"
+                },
+                "chartOptions": {
+                  "mode": "COLOR"
+                }
+              }
+            }
+          },
+          {
+            "yPos": 4,
+            "width": 2,
+            "height": 2,
+            "widget": {
+              "title": "Notify-Communication Errors",
+              "xyChart": {
+                "dataSets": [
+                  {
+                    "timeSeriesQuery": {
+                      "timeSeriesFilter": {
+                        "filter": "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_count\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"notify-communication\" metric.label.\"status\"!=\"200\" metric.label.\"status\"!=\"404\" metric.label.\"status\"!=\"201\"",
+                        "aggregation": {
+                          "perSeriesAligner": "ALIGN_RATE"
+                        },
+                        "secondaryAggregation": {}
+                      },
+                      "unitOverride": "1"
+                    },
+                    "plotType": "LINE",
+                    "minAlignmentPeriod": "60s"
+                  }
+                ],
+                "timeshiftDuration": "0s",
+                "yAxis": {
+                  "label": "y1Axis",
+                  "scale": "LINEAR"
+                },
+                "chartOptions": {
+                  "mode": "COLOR"
+                }
+              }
+            }
+          },
+          {
+            "xPos": 2,
+            "yPos": 4,
+            "width": 2,
+            "height": 2,
+            "widget": {
+              "title": "CPU Request Utilization - Top 10",
+              "xyChart": {
+                "dataSets": [
+                  {
+                    "timeSeriesQuery": {
+                      "timeSeriesFilter": {
+                        "filter": "metric.type=\"kubernetes.io/container/cpu/request_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"notify-communication\"",
+                        "aggregation": {
+                          "perSeriesAligner": "ALIGN_MEAN",
+                          "crossSeriesReducer": "REDUCE_SUM",
+                          "groupByFields": [
+                            "resource.label.\"pod_name\""
+                          ]
+                        },
+                        "secondaryAggregation": {},
+                        "pickTimeSeriesFilter": {
+                          "rankingMethod": "METHOD_MEAN",
+                          "numTimeSeries": 10,
+                          "direction": "TOP"
+                        }
+                      },
+                      "unitOverride": "1"
+                    },
+                    "plotType": "LINE",
+                    "minAlignmentPeriod": "60s"
+                  }
+                ],
+                "timeshiftDuration": "0s",
+                "yAxis": {
+                  "label": "y1Axis",
+                  "scale": "LINEAR"
+                },
+                "chartOptions": {
+                  "mode": "COLOR"
+                }
+              }
+            }
+          },
+          {
+            "yPos": 6,
+            "width": 2,
+            "height": 2,
+            "widget": {
+              "title": "Database Utilization",
+              "xyChart": {
+                "dataSets": [
+                  {
+                    "timeSeriesQuery": {
+                      "timeSeriesFilter": {
+                        "filter": "metric.type=\"cloudsql.googleapis.com/database/memory/utilization\" resource.type=\"cloudsql_database\" resource.label.\"database_id\"=monitoring.regex.full_match(\"cio-notification.*\")",
+                        "aggregation": {
+                          "perSeriesAligner": "ALIGN_MEAN"
+                        },
+                        "secondaryAggregation": {}
+                      }
+                    },
+                    "plotType": "LINE",
+                    "legendTemplate": "${resource.labels.database_id} - Memory",
+                    "minAlignmentPeriod": "60s"
+                  },
+                  {
+                    "timeSeriesQuery": {
+                      "timeSeriesFilter": {
+                        "filter": "metric.type=\"cloudsql.googleapis.com/database/memory/utilization\" resource.type=\"cloudsql_database\" resource.label.\"database_id\"=monitoring.regex.full_match(\"cio-notification.*\")",
+                        "aggregation": {
+                          "perSeriesAligner": "ALIGN_MEAN"
+                        },
+                        "secondaryAggregation": {}
+                      }
+                    },
+                    "plotType": "LINE",
+                    "legendTemplate": "${resource.labels.database_id} - CPU",
+                    "minAlignmentPeriod": "60s"
+                  },
+                  {
+                    "timeSeriesQuery": {
+                      "timeSeriesFilter": {
+                        "filter": "metric.type=\"cloudsql.googleapis.com/database/memory/utilization\" resource.type=\"cloudsql_database\" resource.label.\"database_id\"=monitoring.regex.full_match(\"cio-notification.*\")",
+                        "aggregation": {
+                          "perSeriesAligner": "ALIGN_MEAN"
+                        },
+                        "secondaryAggregation": {}
+                      }
+                    },
+                    "plotType": "LINE",
+                    "legendTemplate": "${resource.labels.database_id} - Disk",
+                    "minAlignmentPeriod": "60s"
+                  }
+                ],
+                "timeshiftDuration": "0s",
+                "yAxis": {
+                  "label": "y1Axis",
+                  "scale": "LINEAR"
+                },
+                "chartOptions": {
+                  "mode": "COLOR"
+                }
+              }
+            }
+          },
+          {
+            "xPos": 2,
+            "yPos": 6,
+            "width": 2,
+            "height": 2,
+            "widget": {
+              "title": "DataBase Transactions",
+              "xyChart": {
+                "dataSets": [
+                  {
+                    "timeSeriesQuery": {
+                      "timeSeriesFilter": {
+                        "filter": "metric.type=\"cloudsql.googleapis.com/database/postgresql/transaction_count\" resource.type=\"cloudsql_database\" resource.label.\"database_id\"=monitoring.regex.full_match(\"cio-notification.*\")",
+                        "aggregation": {
+                          "perSeriesAligner": "ALIGN_RATE",
+                          "crossSeriesReducer": "REDUCE_SUM",
+                          "groupByFields": [
+                            "resource.label.\"database_id\""
+                          ]
+                        },
+                        "secondaryAggregation": {}
+                      },
+                      "unitOverride": "1"
+                    },
+                    "plotType": "LINE",
+                    "legendTemplate": "transactions - ${resource.labels.database_id}",
+                    "minAlignmentPeriod": "60s"
+                  }
+                ],
+                "timeshiftDuration": "0s",
+                "yAxis": {
+                  "label": "y1Axis",
+                  "scale": "LINEAR"
+                },
+                "chartOptions": {
+                  "mode": "COLOR"
+                }
+              }
+            }
+          },
+          {
+            "xPos": 4,
+            "yPos": 6,
+            "width": 2,
+            "height": 2,
+            "widget": {
+              "title": "Pubsub - Publish Message",
+              "xyChart": {
+                "dataSets": [
+                  {
+                    "timeSeriesQuery": {
+                      "timeSeriesFilter": {
+                        "filter": "metric.type=\"pubsub.googleapis.com/topic/send_request_count\" resource.type=\"pubsub_topic\" resource.label.\"project_id\"=\"cio-notification-np-93822f\"",
+                        "aggregation": {
+                          "perSeriesAligner": "ALIGN_RATE"
+                        },
+                        "secondaryAggregation": {}
+                      },
+                      "unitOverride": "1"
+                    },
+                    "plotType": "LINE",
+                    "minAlignmentPeriod": "60s"
+                  }
+                ],
+                "timeshiftDuration": "0s",
+                "yAxis": {
+                  "label": "y1Axis",
+                  "scale": "LINEAR"
+                },
+                "chartOptions": {
+                  "mode": "COLOR"
+                }
+              }
+            }
+          },
+          {
+            "xPos": 4,
+            "yPos": 4,
+            "width": 2,
+            "height": 2,
+            "widget": {
+              "title": "PubSub - Unacked Message - Top 6",
+              "xyChart": {
+                "dataSets": [
+                  {
+                    "timeSeriesQuery": {
+                      "timeSeriesFilter": {
+                        "filter": "metric.type=\"pubsub.googleapis.com/subscription/num_undelivered_messages\" resource.type=\"pubsub_subscription\" resource.label.\"project_id\"=\"cio-notification-np-93822f\"",
+                        "aggregation": {
+                          "perSeriesAligner": "ALIGN_MEAN"
+                        },
+                        "secondaryAggregation": {},
+                        "pickTimeSeriesFilter": {
+                          "rankingMethod": "METHOD_MEAN",
+                          "numTimeSeries": 6,
+                          "direction": "TOP"
+                        }
+                      },
+                      "unitOverride": "1"
+                    },
+                    "plotType": "LINE",
+                    "minAlignmentPeriod": "60s"
+                  }
+                ],
+                "timeshiftDuration": "0s",
+                "yAxis": {
+                  "label": "y1Axis",
+                  "scale": "LINEAR"
+                },
+                "chartOptions": {
+                  "mode": "COLOR"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "projects/379308499179/dashboards/11581924102714837081",
+      "displayName": "cio-converged-charging-np",
+      "etag": "5448cf43a1c22aa48de9cb9d37bc2cc4",
+      "gridLayout": {
+        "columns": "2",
+        "widgets": [
+          {
+            "title": "Firestore Database - Document Reads",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"firestore.googleapis.com/document/read_count\" resource.type=\"firestore_instance\" resource.label.\"project_id\"=\"cio-converged-charging-np-ac52\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Firestore Database - Document writes",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"firestore.googleapis.com/document/write_count\" resource.type=\"firestore_instance\" resource.label.\"project_id\"=\"cio-converged-charging-np-ac52\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE"
+                      },
+                      "secondaryAggregation": {}
+                    }
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Firestore Database - Document Deletes",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"firestore.googleapis.com/document/delete_count\" resource.type=\"firestore_instance\" resource.label.\"project_id\"=\"cio-converged-charging-np-ac52\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Firestore Database Connected Clients",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"firestore.googleapis.com/network/active_connections\" resource.type=\"firestore_instance\" resource.label.\"project_id\"=\"cio-converged-charging-np-ac52\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "projects/379308499179/dashboards/11740687391659193099",
+      "displayName": "ECP Dashboard",
+      "etag": "014aedb26ec45bb556b215afc640382e",
+      "gridLayout": {
+        "columns": "2",
+        "widgets": [
+          {
+            "title": "Num of Requests By Component",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_count\" resource.type=\"k8s_container\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "resource.label.\"container_name\""
+                        ]
+                      },
+                      "secondaryAggregation": {},
+                      "pickTimeSeriesFilter": {
+                        "rankingMethod": "METHOD_MEAN",
+                        "numTimeSeries": 6,
+                        "direction": "TOP"
+                      }
+                    }
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Response Time Rate By Components",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_sum\" resource.type=\"k8s_container\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_DELTA",
+                        "crossSeriesReducer": "REDUCE_MEAN",
+                        "groupByFields": [
+                          "resource.label.\"container_name\""
+                        ]
+                      },
+                      "secondaryAggregation": {},
+                      "pickTimeSeriesFilter": {
+                        "rankingMethod": "METHOD_MEAN",
+                        "numTimeSeries": 6,
+                        "direction": "TOP"
+                      }
+                    }
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "CPU Utilization",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/cpu/request_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"notify-communication\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "resource.label.\"pod_name\""
+                        ]
+                      },
+                      "secondaryAggregation": {},
+                      "pickTimeSeriesFilter": {
+                        "rankingMethod": "METHOD_MEAN",
+                        "numTimeSeries": 10,
+                        "direction": "TOP"
+                      }
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Memory Utilization",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/memory/request_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"notify-communication\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "resource.label.\"pod_name\""
+                        ]
+                      },
+                      "secondaryAggregation": {},
+                      "pickTimeSeriesFilter": {
+                        "rankingMethod": "METHOD_MEAN",
+                        "numTimeSeries": 10,
+                        "direction": "TOP"
+                      }
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "PubSub - Unacked Message",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"pubsub.googleapis.com/subscription/num_undelivered_messages\" resource.type=\"pubsub_subscription\" resource.label.\"project_id\"=\"cio-notification-np-93822f\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      },
+                      "secondaryAggregation": {},
+                      "pickTimeSeriesFilter": {
+                        "rankingMethod": "METHOD_MEAN",
+                        "numTimeSeries": 6,
+                        "direction": "TOP"
+                      }
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Publish Message",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"pubsub.googleapis.com/topic/send_request_count\" resource.type=\"pubsub_topic\" resource.label.\"project_id\"=\"cio-notification-np-93822f\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE"
+                      },
+                      "secondaryAggregation": {},
+                      "pickTimeSeriesFilter": {
+                        "rankingMethod": "METHOD_MEAN",
+                        "numTimeSeries": 6,
+                        "direction": "TOP"
+                      }
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "CommAPI Sender - Heap",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/jvm_memory_used_bytes\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"communication-api-sender-dv\" metric.label.\"area\"=\"heap\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "resource.label.\"pod_name\""
+                        ]
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "legendTemplate": "used - ${resource.labels.pod_name}",
+                  "minAlignmentPeriod": "60s"
+                },
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/jvm_memory_committed_bytes\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"communication-api-sender-dv\" metric.label.\"area\"=\"heap\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "resource.label.\"pod_name\""
+                        ]
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "legendTemplate": "committed - ${resource.labels.pod_name}",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "CommAPI Retrieval - Heap",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/jvm_memory_used_bytes\" resource.type=\"k8s_container\" metric.label.\"area\"=\"heap\" resource.label.\"container_name\"=\"communication-api-retrieval-dv\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "resource.label.\"pod_name\""
+                        ]
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "legendTemplate": "used - ${resource.labels.pod_name}",
+                  "minAlignmentPeriod": "60s"
+                },
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/jvm_memory_committed_bytes\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"communication-api-retrieval-dv\" metric.label.\"area\"=\"heap\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "resource.label.\"pod_name\""
+                        ]
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "legendTemplate": "committed - ${resource.labels.pod_name}",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "DataBase Connection",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"cloudsql.googleapis.com/database/postgresql/num_backends\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"cio-notification-np-93822f\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "metric.label.\"database\""
+                        ]
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Communication Message Database Utilization",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"cloudsql.googleapis.com/database/memory/utilization\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"cio-notification-np-93822f\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      },
+                      "secondaryAggregation": {}
+                    }
+                  },
+                  "plotType": "LINE",
+                  "legendTemplate": "${resource.labels.database_id} - Memory",
+                  "minAlignmentPeriod": "60s"
+                },
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"cloudsql.googleapis.com/database/cpu/utilization\" resource.type=\"cloudsql_database\" resource.label.\"database_id\"=\"cio-notification-np-93822f:communication-message-np\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      },
+                      "secondaryAggregation": {}
+                    }
+                  },
+                  "plotType": "LINE",
+                  "legendTemplate": "${resource.labels.database_id} - CPU",
+                  "minAlignmentPeriod": "60s"
+                },
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"cloudsql.googleapis.com/database/disk/utilization\" resource.type=\"cloudsql_database\" resource.label.\"database_id\"=\"cio-notification-np-93822f:communication-message-np\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      },
+                      "secondaryAggregation": {}
+                    }
+                  },
+                  "plotType": "LINE",
+                  "legendTemplate": "${resource.labels.database_id} - Disk",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "CircuitBreaker Slow/Failure Rate",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/resilience4j_circuitbreaker_failure_rate\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"notify-communication\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "resource.label.\"container_name\""
+                        ]
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                },
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/resilience4j_circuitbreaker_slow_call_rate\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"notify-communication\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN",
+                        "crossSeriesReducer": "REDUCE_MEAN",
+                        "groupByFields": [
+                          "metric.label.\"name\"",
+                          "resource.label.\"container_name\""
+                        ]
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "CircuitBreaker State",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/resilience4j_circuitbreaker_state\" resource.type=\"k8s_container\" metric.label.\"state\"=\"closed\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Template Cache Bytes",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/redis_memory_used_dataset_bytes\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"template-transformation-redis-exporter-dv\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Template Cached Keys",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/redis_db_keys\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"template-transformation-redis-exporter-dv\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN",
+                        "crossSeriesReducer": "REDUCE_SUM"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "WNP Cached Bytes",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/redis_memory_used_dataset_bytes\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"notify-wnp-processor-redis-exporter-dv\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "WNP Cached Keys",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/redis_db_keys\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"notify-wnp-processor-redis-exporter-dv\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN",
+                        "crossSeriesReducer": "REDUCE_SUM"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "HikariCP Connection",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/hikaricp_connections_active\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"message-persistence-cloudsqlproxy-dv\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "legendTemplate": "active - ${resource.labels.pod_name}",
+                  "minAlignmentPeriod": "60s"
+                },
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/hikaricp_connections_idle\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"message-persistence-cloudsqlproxy-dv\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "legendTemplate": "idle - ${resource.labels.pod_name}",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "MsgPersistence Acquire Time",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/hikaricp_connections_acquire_seconds_sum\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"message-persistence-cloudsqlproxy-dv\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_DELTA",
+                        "crossSeriesReducer": "REDUCE_MEAN",
+                        "groupByFields": [
+                          "resource.label.\"pod_name\""
+                        ]
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "legendTemplate": "sum - ${resource.labels.pod_name}",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "HikariCP Usage Per Seconds",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/hikaricp_connections_usage_seconds_count\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"message-persistence-cloudsqlproxy-dv\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "legendTemplate": "count - ${resource.labels.pod_name}",
+                  "minAlignmentPeriod": "60s"
+                },
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/hikaricp_connections_usage_seconds_max\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"message-persistence-cloudsqlproxy-dv\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "legendTemplate": "Max - ${resource.labels.pod_name}",
+                  "minAlignmentPeriod": "60s"
+                },
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/hikaricp_connections_usage_seconds_sum\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"message-persistence-cloudsqlproxy-dv\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "legendTemplate": "Sum - ${resource.labels.pod_name}",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Kubernetes Container - Memory usage for notify-communication",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"notify-communication\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "resource.label.\"pod_name\""
+                        ]
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "By"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "K8S Container - CPU Usage",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/cpu/limit_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"notify-communication\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "percent"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Adobe SMS Batch - Redis Cache Key",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"redis.googleapis.com/keyspace/keys\" resource.type=\"redis_instance\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Adobe SMS Batch - PubSub Message Consumption",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"pubsub.googleapis.com/subscription/num_undelivered_messages\" resource.type=\"pubsub_subscription\" resource.label.\"subscription_id\"=starts_with(\"adobe-sms\")",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Adobe SMS Batch - Heap Usage",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/jvm_memory_used_bytes\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"adobe-sms-batch-dv\" metric.label.\"area\"=\"heap\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN",
+                        "crossSeriesReducer": "REDUCE_SUM"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                },
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/jvm_memory_max_bytes\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"adobe-sms-batch-dv\" metric.label.\"area\"=\"heap\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN",
+                        "crossSeriesReducer": "REDUCE_SUM"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                },
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/jvm_memory_committed_bytes\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"adobe-sms-batch-dv\" metric.label.\"area\"=\"heap\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN",
+                        "crossSeriesReducer": "REDUCE_SUM"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Adobe SMS Batch - Max GC Pause Duration",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/jvm_gc_pause_seconds_max\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"adobe-sms-batch-dv\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "external/prometheus/send_request_total (grouped) [SUM]",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/send_request_total\" resource.type=\"k8s_container\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_DELTA",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "metric.label.\"user_agent\"",
+                          "metric.label.\"application\""
+                        ]
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "projects/379308499179/dashboards/12024473077556753782",
+      "displayName": "cio-notification-np dashboard",
+      "etag": "585fd012ed781289824675cc4eb48a86",
+      "gridLayout": {
+        "columns": "2"
+      }
+    },
+    {
+      "name": "projects/379308499179/dashboards/15621372584735490801",
+      "displayName": "Techhub Demo Dashboard ",
+      "etag": "dcc89a620c2afe352a68f0501e86236c",
+      "gridLayout": {
+        "columns": "2",
+        "widgets": [
+          {
+            "title": "Techhub pods  - Memory usage ",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" resource.type=\"k8s_container\" resource.label.\"project_id\"=\"cio-gke-private-yul-001-9ed5d0\" resource.label.\"namespace_name\"=\"wfm-techhub-api\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "By"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "CPU utilization for techhub-api pods ",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/cpu/limit_utilization\" resource.type=\"k8s_container\" resource.label.\"project_id\"=\"cio-gke-private-yul-001-9ed5d0\" resource.label.\"namespace_name\"=\"wfm-techhub-api\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Restart count",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/restart_count\" resource.type=\"k8s_container\" resource.label.\"project_id\"=\"cio-gke-private-yul-001-9ed5d0\" resource.label.\"namespace_name\"=\"wfm-techhub-api\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "resource.label.\"pod_name\""
+                        ]
+                      },
+                      "secondaryAggregation": {}
+                    }
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "300s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Kubernetes Pod - Bytes received for wfm-techhub-api [SUM]",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/pod/network/received_bytes_count\" resource.type=\"k8s_pod\" resource.label.\"namespace_name\"=\"wfm-techhub-api\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE",
+                        "crossSeriesReducer": "REDUCE_SUM"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "By"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Kubernetes Pod - Bytes transmitted for wfm-techhub-api [SUM]",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/pod/network/sent_bytes_count\" resource.type=\"k8s_pod\" resource.label.\"namespace_name\"=\"wfm-techhub-api\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE",
+                        "crossSeriesReducer": "REDUCE_SUM"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "By"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "external/prometheus/prometheus_http_requests_total [SUM]",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/prometheus_http_requests_total\" resource.type=\"gke_container\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE",
+                        "crossSeriesReducer": "REDUCE_COUNT"
+                      },
+                      "secondaryAggregation": {}
+                    }
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "external/prometheus/http_request_size_bytes",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/http_request_size_bytes\" resource.type=\"k8s_container\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN",
+                        "crossSeriesReducer": "REDUCE_COUNT"
+                      },
+                      "secondaryAggregation": {}
+                    }
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "OpenCensus/opencensus.io/http/server/response_count_by_status_code (filtered)...",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"custom.googleapis.com/opencensus/opencensus.io/http/server/response_count_by_status_code\" resource.type=\"k8s_container\" resource.label.\"cluster_name\"=\"wfm-techhub-api\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE",
+                        "crossSeriesReducer": "REDUCE_SUM"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "external/prometheus/http_request_duration_microseconds_count [SUM]",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/http_request_duration_microseconds_count\" resource.type=\"k8s_container\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE",
+                        "crossSeriesReducer": "REDUCE_COUNT"
+                      },
+                      "secondaryAggregation": {}
+                    }
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "GCP Service Consumed API – Request Count (filtered)",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesQueryLanguage": "fetch consumed_api\n| metric 'serviceruntime.googleapis.com/api/request_count'\n| filter\n    resource.project_id == '879579618750' && (metric.response_code != '200')\n| align rate(1m)\n| every 1m\n| group_by [], [value_request_count_aggregate: aggregate(value.request_count)]"
+                  },
+                  "plotType": "LINE"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "GCP Service Consumed API request sizes [COUNT]",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesQueryLanguage": "fetch consumed_api\n| metric 'serviceruntime.googleapis.com/api/request_sizes'\n| align delta(1m)\n| every 1m\n| group_by [], [row_count: row_count()]"
+                  },
+                  "plotType": "LINE"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "GCP Service Consumed API – Request Latencies ",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesQueryLanguage": "fetch consumed_api\n| metric 'serviceruntime.googleapis.com/api/request_latencies'\n| filter resource.project_id == '879579618750'\n| align delta(1m)\n| every 1m\n| group_by [], [row_count: row_count()]"
+                  },
+                  "plotType": "LINE"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "FireStore Request Status",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesQueryLanguage": "fetch datastore_request\n| metric 'firestore.googleapis.com/api/request_count'\n| filter resource.project_id == '879579618750'\n| align rate(1m)\n| every 1m"
+                  },
+                  "plotType": "LINE"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Firestore request Error",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesQueryLanguage": "fetch datastore_request\n| metric 'firestore.googleapis.com/api/request_count'\n| filter\n    resource.project_id == '879579618750'\n    && (metric.api_method == 'RunQuery' && metric.response_code != 'OK')\n| align rate(1m)\n| every 1m\n| group_by [], [row_count: row_count()]"
+                  },
+                  "plotType": "LINE"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "firestore instance – connected clients",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesQueryLanguage": "fetch firestore_instance\n| metric 'firestore.googleapis.com/network/active_connections'\n| filter resource.project_id == '879579618750'\n| group_by 1m, [value_active_connections_mean: mean(value.active_connections)]\n| every 1m"
+                  },
+                  "plotType": "LINE"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "TechHub pub/sub retained acked messages ",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesQueryLanguage": "fetch pubsub_subscription\n| metric 'pubsub.googleapis.com/subscription/num_retained_acked_messages'\n| filter\n    resource.project_id == '879579618750'\n    && (metadata.system_labels.topic_id == '')\n| group_by 1m,\n    [value_num_retained_acked_messages_mean:\n       mean(value.num_retained_acked_messages)]\n| every 1m\n| group_by [],\n    [value_num_retained_acked_messages_mean_aggregate:\n       aggregate(value_num_retained_acked_messages_mean)]"
+                  },
+                  "plotType": "LINE"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Restart count (filtered) (grouped) [COUNT]",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/restart_count\" resource.type=\"k8s_container\" resource.label.\"project_id\"=\"cio-gke-private-yul-001-9ed5d0\" resource.label.\"namespace_name\"=\"wfm-techhub-api\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE",
+                        "crossSeriesReducer": "REDUCE_COUNT",
+                        "groupByFields": [
+                          "resource.label.\"pod_name\""
+                        ]
+                      },
+                      "secondaryAggregation": {}
+                    }
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "private-yul-np-001/techhub_api_error [COUNT]",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"logging.googleapis.com/user/private-yul-np-001/techhub_api_error\" resource.type=\"k8s_container\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE",
+                        "crossSeriesReducer": "REDUCE_COUNT",
+                        "groupByFields": [
+                          "metric.label.\"UnhandledPromiseRejectionWarningError101\"",
+                          "metric.label.\"UnhandledPromiseRejectionWarningError103\"",
+                          "metric.label.\"UnhandledPromiseRejectionWarningError100\"",
+                          "metric.label.\"UnhandledPromiseRejectionWarningError102\""
+                        ]
+                      },
+                      "secondaryAggregation": {}
+                    }
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "300s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "private-yul-np-001/techhub_api_os_message_error_excessive_count ...",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"logging.googleapis.com/user/private-yul-np-001/techhub_api_os_message_error_excessive_count\" resource.type=\"k8s_container\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_COUNT",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "metric.label.\"AssignmentManagerEvent\""
+                        ]
+                      },
+                      "secondaryAggregation": {}
+                    }
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "private-yul-np-001/techhub_api_os_message_error_count (grouped) ...",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"logging.googleapis.com/user/private-yul-np-001/techhub_api_os_message_error_count\" resource.type=\"k8s_container\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE",
+                        "crossSeriesReducer": "REDUCE_COUNT",
+                        "groupByFields": [
+                          "metric.label.\"AssignmentManagerAssignmentId\""
+                        ]
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "300s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "projects/379308499179/dashboards/17072497225439659988",
+      "displayName": "Kong Ops",
+      "etag": "e98a864f1070d9f961393ddc0cde3646",
+      "gridLayout": {
+        "columns": "2",
+        "widgets": [
+          {
+            "title": "CPU limit utilization for kong-ee",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/cpu/limit_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"kong-ee\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "projects/379308499179/dashboards/17391661647213856290",
+      "displayName": "CMI Mediation",
+      "etag": "ea10694a79d51f0841544a7e08f6b8d4",
+      "gridLayout": {
+        "columns": "2",
+        "widgets": [
+          {
+            "title": "CMI  - CPU usage time all services",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/cpu/core_usage_time\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"mediation-data\" resource.label.\"container_name\"!=\"mediation-data-ms-poc-dv\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_DELTA",
+                        "crossSeriesReducer": "REDUCE_MEAN",
+                        "groupByFields": [
+                          "resource.label.\"container_name\""
+                        ]
+                      }
+                    },
+                    "unitOverride": "s"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                },
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/cpu/request_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"mediation-data\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "resource.label.\"container_name\""
+                        ]
+                      }
+                    },
+                    "unitOverride": "percent"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                },
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/cpu/limit_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"mediation-data\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "resource.label.\"container_name\""
+                        ]
+                      }
+                    },
+                    "unitOverride": "percent"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "CMI - Memory usage all replicas",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"mediation-data\" resource.label.\"container_name\"!=\"mediation-data-ms-poc-dv\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "resource.label.\"container_name\""
+                        ]
+                      }
+                    },
+                    "unitOverride": "By"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "CMI Store Service - CPU time",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/cpu/core_usage_time\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"mediation-data\" resource.label.\"container_name\"=monitoring.regex.full_match(\"mediation-cmi-store-ms-dv\")",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "resource.label.\"container_name\""
+                        ]
+                      }
+                    },
+                    "unitOverride": "s"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                },
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/cpu/request_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"mediation-data\" resource.label.\"container_name\"=\"mediation-cmi-store-ms-dv\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "resource.label.\"container_name\""
+                        ]
+                      }
+                    },
+                    "unitOverride": "percent"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                },
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/cpu/limit_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"mediation-data\" resource.label.\"container_name\"=\"mediation-cmi-store-ms-dv\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "resource.label.\"container_name\""
+                        ]
+                      }
+                    },
+                    "unitOverride": "percent"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Volume usage for mediation-data, Volume utilization for mediation-data",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/pod/volume/used_bytes\" resource.type=\"k8s_pod\" resource.label.\"namespace_name\"=\"mediation-data\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      }
+                    },
+                    "unitOverride": "By"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                },
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/pod/volume/utilization\" resource.type=\"k8s_pod\" resource.label.\"namespace_name\"=\"mediation-data\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      }
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Service Restarts",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/restart_count\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"mediation-data\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_DELTA",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "resource.label.\"container_name\""
+                        ]
+                      }
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                },
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/anthos/kubelet_running_pod_count\" resource.type=\"k8s_node\" resource.label.\"namespace_name\"=\"mediation-data\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      }
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "CMI Audit Service - CPU usage time",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/cpu/core_usage_time\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"mediation-data\" resource.label.\"container_name\"=\"mediation-cmi-audit-ms-dv\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "resource.label.\"container_name\""
+                        ]
+                      }
+                    },
+                    "unitOverride": "s"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "CMI Collection Service - CPU time",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/cpu/core_usage_time\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"mediation-data\" resource.label.\"container_name\"=\"mediation-cmi-collection-ms-dv\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "resource.label.\"container_name\""
+                        ]
+                      }
+                    },
+                    "unitOverride": "s"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "projects/379308499179/dashboards/18420227487629563934",
+      "displayName": "WNP-Portout",
+      "etag": "3e62a280831afee41e459e8e9e6e17cf",
+      "mosaicLayout": {
+        "columns": 6,
+        "tiles": [
+          {
+            "width": 2,
+            "height": 1,
+            "widget": {
+              "title": "Dashboard Notes",
+              "text": {
+                "content": "This dashboard is for monitoring wnp portout",
+                "format": "MARKDOWN"
+              }
+            }
+          },
+          {
+            "xPos": 2,
+            "width": 1,
+            "height": 1,
+            "widget": {
+              "title": "Pending Porout Request",
+              "scorecard": {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/portout_pending\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"notify-wnp-processor.*\")",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_MEAN"
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "sparkChartView": {
+                  "sparkChartType": "SPARK_LINE"
+                }
+              }
+            }
+          },
+          {
+            "xPos": 3,
+            "width": 1,
+            "height": 1,
+            "widget": {
+              "title": "Num of request per 30 mins",
+              "scorecard": {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/portoutRequest_count_total\" resource.type=\"k8s_container\" metric.label.\"type\"=\"total\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"notify-wnp-processor.*\")",
+                    "aggregation": {
+                      "alignmentPeriod": "1800s",
+                      "perSeriesAligner": "ALIGN_DELTA",
+                      "crossSeriesReducer": "REDUCE_SUM"
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "sparkChartView": {
+                  "sparkChartType": "SPARK_LINE"
+                }
+              }
+            }
+          },
+          {
+            "xPos": 4,
+            "width": 1,
+            "height": 1,
+            "widget": {
+              "title": "Errors per 30 mins",
+              "scorecard": {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"logging.googleapis.com/user/notification_wnp_processor/error_count\" resource.type=\"k8s_container\"",
+                    "aggregation": {
+                      "alignmentPeriod": "1800s",
+                      "perSeriesAligner": "ALIGN_DELTA",
+                      "crossSeriesReducer": "REDUCE_SUM"
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "sparkChartView": {
+                  "sparkChartType": "SPARK_LINE"
+                },
+                "thresholds": [
+                  {
+                    "label": "Danger",
+                    "color": "RED",
+                    "direction": "ABOVE"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "xPos": 5,
+            "width": 1,
+            "height": 1,
+            "widget": {
+              "title": "Expired Request",
+              "scorecard": {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/portout_expired\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"notify-wnp-processor.*\")",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_SUM"
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "sparkChartView": {
+                  "sparkChartType": "SPARK_LINE"
+                }
+              }
+            }
+          },
+          {
+            "xPos": 1,
+            "yPos": 1,
+            "width": 1,
+            "height": 1,
+            "widget": {
+              "title": "WNP Processor",
+              "scorecard": {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/up\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"notify-wnp-processor.*\")",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_SUM"
+                    }
+                  },
+                  "unitOverride": "1"
+                },
+                "sparkChartView": {
+                  "sparkChartType": "SPARK_BAR"
+                },
+                "thresholds": [
+                  {
+                    "label": "Danger",
+                    "value": 1.999,
+                    "color": "RED",
+                    "direction": "BELOW"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "yPos": 1,
+            "width": 1,
+            "height": 1,
+            "widget": {
+              "title": "Redis Cached Bytes",
+              "scorecard": {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"external.googleapis.com/prometheus/redis_memory_used_bytes\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\"notify-wnp-processor-redis.*\")",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_SUM"
+                    }
+                  },
+                  "unitOverride": "By"
+                },
+                "thresholds": [
+                  {
+                    "label": "Danger",
+                    "value": 209715200,
+                    "color": "RED",
+                    "direction": "ABOVE"
+                  },
+                  {
+                    "label": "Warning",
+                    "value": 131072000,
+                    "color": "YELLOW",
+                    "direction": "ABOVE"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "yPos": 2,
+            "width": 3,
+            "height": 2,
+            "widget": {
+              "title": "Account Owner Fallout",
+              "xyChart": {
+                "dataSets": [
+                  {
+                    "timeSeriesQuery": {
+                      "timeSeriesFilter": {
+                        "filter": "metric.type=\"external.googleapis.com/prometheus/portoutRequest_count_total\" resource.type=\"k8s_container\"",
+                        "aggregation": {
+                          "perSeriesAligner": "ALIGN_DELTA",
+                          "crossSeriesReducer": "REDUCE_SUM",
+                          "groupByFields": [
+                            "metric.label.\"type\""
+                          ]
+                        },
+                        "secondaryAggregation": {}
+                      }
+                    },
+                    "plotType": "LINE",
+                    "minAlignmentPeriod": "60s"
+                  }
+                ],
+                "timeshiftDuration": "0s",
+                "yAxis": {
+                  "label": "y1Axis",
+                  "scale": "LINEAR"
+                },
+                "chartOptions": {
+                  "mode": "COLOR"
+                }
+              }
+            }
+          },
+          {
+            "xPos": 3,
+            "yPos": 2,
+            "width": 3,
+            "height": 2,
+            "widget": {
+              "title": "Pending Request",
+              "xyChart": {
+                "dataSets": [
+                  {
+                    "timeSeriesQuery": {
+                      "timeSeriesFilter": {
+                        "filter": "metric.type=\"external.googleapis.com/prometheus/portout_pending\" resource.type=\"k8s_container\"",
+                        "aggregation": {
+                          "perSeriesAligner": "ALIGN_MEAN",
+                          "crossSeriesReducer": "REDUCE_MEAN"
+                        },
+                        "secondaryAggregation": {}
+                      }
+                    },
+                    "plotType": "LINE",
+                    "minAlignmentPeriod": "60s"
+                  }
+                ],
+                "timeshiftDuration": "0s",
+                "yAxis": {
+                  "label": "y1Axis",
+                  "scale": "LINEAR"
+                },
+                "chartOptions": {
+                  "mode": "COLOR"
+                }
+              }
+            }
+          },
+          {
+            "yPos": 4,
+            "width": 3,
+            "height": 2,
+            "widget": {
+              "title": "Memory",
+              "xyChart": {
+                "dataSets": [
+                  {
+                    "timeSeriesQuery": {
+                      "timeSeriesFilter": {
+                        "filter": "metric.type=\"external.googleapis.com/prometheus/jvm_memory_used_bytes\" resource.type=\"k8s_container\" resource.label.\"container_name\"=monitoring.regex.full_match(\"notify-wnp-processor.*\")",
+                        "aggregation": {
+                          "perSeriesAligner": "ALIGN_MEAN",
+                          "crossSeriesReducer": "REDUCE_SUM",
+                          "groupByFields": [
+                            "metric.label.\"area\""
+                          ]
+                        },
+                        "secondaryAggregation": {}
+                      }
+                    },
+                    "plotType": "LINE",
+                    "minAlignmentPeriod": "60s"
+                  }
+                ],
+                "timeshiftDuration": "0s",
+                "yAxis": {
+                  "label": "y1Axis",
+                  "scale": "LINEAR"
+                },
+                "chartOptions": {
+                  "mode": "COLOR"
+                }
+              }
+            }
+          },
+          {
+            "xPos": 3,
+            "yPos": 4,
+            "width": 3,
+            "height": 2,
+            "widget": {
+              "title": "CPU",
+              "xyChart": {
+                "dataSets": [
+                  {
+                    "timeSeriesQuery": {
+                      "timeSeriesFilter": {
+                        "filter": "metric.type=\"kubernetes.io/container/cpu/request_utilization\" resource.type=\"k8s_container\" resource.label.\"container_name\"=monitoring.regex.full_match(\"notify-wnp-processor.*\")",
+                        "aggregation": {
+                          "perSeriesAligner": "ALIGN_MEAN"
+                        },
+                        "secondaryAggregation": {}
+                      }
+                    },
+                    "plotType": "LINE",
+                    "minAlignmentPeriod": "60s"
+                  }
+                ],
+                "timeshiftDuration": "0s",
+                "yAxis": {
+                  "label": "y1Axis",
+                  "scale": "LINEAR"
+                },
+                "chartOptions": {
+                  "mode": "COLOR"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "projects/379308499179/dashboards/1920866203232317903",
+      "displayName": "Kong Private NP Dashboard",
+      "etag": "1b82754ecbe47fc256320ff51f8d60d7",
+      "gridLayout": {
+        "columns": "2",
+        "widgets": [
+          {
+            "title": "Memory Usage - Kong Proxy",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"kong-ee\" resource.label.\"container_name\"=\"proxy\" metadata.system_labels.\"state\"=\"ACTIVE\" metric.label.\"memory_type\"=\"non-evictable\" resource.label.\"cluster_name\"=\"private-yul-np-001\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "By"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "600s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "CPU Usage - Kong Proxy",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/cpu/core_usage_time\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"kong-ee\" resource.label.\"container_name\"=\"proxy\" metadata.system_labels.\"state\"=\"ACTIVE\" resource.label.\"cluster_name\"=\"private-yul-np-001\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "s"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "4xx Error Count",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"logging.googleapis.com/user/private-yul-np-001/kong_lb/40x_error_count\" resource.type=\"l7_lb_rule\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "legendTemplate": "${metric.labels.requestUrl}",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "5xx Error Count",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"logging.googleapis.com/user/private-yul-np-001/kong_lb/50x_error_count\" resource.type=\"l7_lb_rule\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "legendTemplate": "${metric.labels.requestUrl}",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Request Rate",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"network.googleapis.com/loadbalancer/max_rate\" resource.type=\"http_load_balancer_backend\" resource.label.\"backend_service_name\"=\"k8s1-53c425a0-kong-ee-kong-ingress-protected-kong-p-44-82a775ea\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_SUM",
+                        "crossSeriesReducer": "REDUCE_SUM"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "300s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "kong_bandwidth by service",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/kong_bandwidth\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_DELTA",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "metric.label.\"service\""
+                        ]
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "300s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "kong errors",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"external.googleapis.com/prometheus/kong_nginx_metric_errors_total\" resource.type=\"k8s_container\" resource.label.\"cluster_name\"=\"private-yul-np-001\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE",
+                        "crossSeriesReducer": "REDUCE_COUNT",
+                        "groupByFields": [
+                          "resource.label.\"container_name\""
+                        ]
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "300s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "projects/379308499179/dashboards/2255412523154810064",
+      "displayName": "Cloud Migrator - NONPROD",
+      "etag": "921aff69d86322100c074353466e0ed3",
+      "gridLayout": {
+        "columns": "2",
+        "widgets": [
+          {
+            "title": "Primary CPU Utilization",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "resource.type = \"gce_instance\" AND metric.type = \"agent.googleapis.com/cpu/utilization\" AND metric.labels.cpu_state != \"idle\" AND metadata.system_labels.name = starts_with(\"cm-primary\")",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      }
+                    },
+                    "unitOverride": "%"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Secondary CPU Utilization",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "resource.type = \"gce_instance\" AND metric.type = \"agent.googleapis.com/cpu/utilization\" AND metric.labels.cpu_state != \"idle\" AND (metadata.system_labels.name = starts_with(\"cm-\") AND metadata.system_labels.name != starts_with(\"cm-primary\"))",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      }
+                    },
+                    "unitOverride": "%"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Primary Memory Utilization",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "resource.type = \"gce_instance\" AND metric.type = \"agent.googleapis.com/memory/percent_used\" AND metric.labels.state = \"used\" AND metadata.system_labels.name = starts_with(\"cm-primary\")",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      }
+                    },
+                    "unitOverride": "%"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Secondary Memory Utilization",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "resource.type = \"gce_instance\" AND metric.type = \"agent.googleapis.com/memory/percent_used\" AND metric.labels.state = \"used\" AND (metadata.system_labels.name = starts_with(\"cm-\") AND metadata.system_labels.name != starts_with(\"cm-primary\"))",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      }
+                    },
+                    "unitOverride": "%"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Remote Egress Rate (VMs)",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"networking.googleapis.com/vm_flow/egress_bytes_count\" resource.type=\"gce_instance\" resource.label.\"project_id\"=\"cio-cloud-migrator-np-eabe5c\" metric.label.\"remote_zone\"=starts_with(\"REMOTE\")",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE"
+                      }
+                    },
+                    "unitOverride": "By"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Remote Egress Rate (Project)",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"networking.googleapis.com/vm_flow/egress_bytes_count\" resource.type=\"gce_instance\" resource.label.\"project_id\"=\"cio-cloud-migrator-np-eabe5c\" metric.label.\"remote_zone\"=starts_with(\"REMOTE\")",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE",
+                        "crossSeriesReducer": "REDUCE_SUM"
+                      }
+                    },
+                    "unitOverride": "By"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Kubernetes Container - CPU usage time for mediation-data, ...",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/cpu/core_usage_time\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"mediation-data\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE"
+                      }
+                    },
+                    "unitOverride": "s"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                },
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/cpu/request_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"mediation-data\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      }
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                },
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/cpu/limit_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"mediation-data\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      }
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "projects/379308499179/dashboards/2801794210140453793",
+      "displayName": "TechHub - Performance Testing ",
+      "etag": "05e29b4a960ce9695a8261fa48288ca5",
+      "gridLayout": {
+        "columns": "2",
+        "widgets": [
+          {
+            "title": "CPU limit utilization for wfm-techhub-api",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/cpu/limit_utilization\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"wfm-techhub-api\" resource.label.\"container_name\"=\"techhub-api-dv\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      },
+                      "secondaryAggregation": {}
+                    }
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Memory usage for wfm-techhub-api",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"wfm-techhub-api\" resource.label.\"container_name\"=\"techhub-api-dv\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      },
+                      "secondaryAggregation": {}
+                    }
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "techub-api-dv - Restart Count",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/restart_count\" resource.type=\"k8s_container\" resource.label.\"container_name\"=\"techhub-api-dv\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Sent Bytes - techhub-api-dv (SUM)",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/pod/network/sent_bytes_count\" resource.type=\"k8s_pod\" resource.label.\"namespace_name\"=\"wfm-techhub-api\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE",
+                        "crossSeriesReducer": "REDUCE_SUM"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "By"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "techhub-api-dv - received bytes  (SUM)",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/pod/network/received_bytes_count\" resource.type=\"k8s_pod\" resource.label.\"namespace_name\"=\"wfm-techhub-api\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE",
+                        "crossSeriesReducer": "REDUCE_SUM"
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "By"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "TechHUb_API Error (Count)",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"logging.googleapis.com/user/private-yul-np-001/techhub_api_error\" resource.type=\"k8s_container\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE",
+                        "crossSeriesReducer": "REDUCE_COUNT",
+                        "groupByFields": [
+                          "metric.label.\"UnhandledPromiseRejectionWarningError101\"",
+                          "metric.label.\"UnhandledPromiseRejectionWarningError103\"",
+                          "metric.label.\"UnhandledPromiseRejectionWarningError100\"",
+                          "metric.label.\"UnhandledPromiseRejectionWarningError102\""
+                        ]
+                      },
+                      "secondaryAggregation": {}
+                    }
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "300s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "logging/user/private-yul-np-001/techhub_api_os_message_error_excessive_count ...",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"logging.googleapis.com/user/private-yul-np-001/techhub_api_os_message_error_excessive_count\" resource.type=\"k8s_container\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_COUNT",
+                        "crossSeriesReducer": "REDUCE_SUM",
+                        "groupByFields": [
+                          "metric.label.\"AssignmentManagerEvent\""
+                        ]
+                      },
+                      "secondaryAggregation": {}
+                    }
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "logging/user/private-yul-np-001/techhub_api_os_message_error_count (grouped) ...",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"logging.googleapis.com/user/private-yul-np-001/techhub_api_os_message_error_count\" resource.type=\"k8s_container\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE",
+                        "crossSeriesReducer": "REDUCE_COUNT",
+                        "groupByFields": [
+                          "metric.label.\"AssignmentManagerAssignmentId\""
+                        ]
+                      },
+                      "secondaryAggregation": {}
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "300s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "projects/379308499179/dashboards/4959942050194283285",
+      "displayName": "cio-equipment-drs-np dashboard",
+      "etag": "02dcd7bbd0e1520f73cc54c5961bf54f",
+      "gridLayout": {
+        "columns": "2"
+      }
+    },
+    {
+      "name": "projects/379308499179/dashboards/7791952215089136335",
+      "displayName": "RTP Dashboard",
+      "etag": "1bbf0587e3c18bf884d336ae4062a3f8",
+      "gridLayout": {
+        "columns": "2",
+        "widgets": [
+          {
+            "title": "Memory Usage - BillingCustomerManagementAPI",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billstd-ebsf-custbillmgmt\" resource.label.\"container_name\"=\"billstd-ebsf-custbillmgmt-svc-dv\" metadata.system_labels.\"state\"=\"ACTIVE\" metric.label.\"memory_type\"=\"non-evictable\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      }
+                    },
+                    "unitOverride": "By"
+                  },
+                  "plotType": "STACKED_BAR",
+                  "legendTemplate": "${resource.labels.pod_name}${metadata.user_labels\\.release}",
+                  "minAlignmentPeriod": "300s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Cpu - BillingCustomerManagementAPI",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/cpu/core_usage_time\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billstd-ebsf-custbillmgmt\" resource.label.\"container_name\"=\"billstd-ebsf-custbillmgmt-svc-dv\" metadata.system_labels.\"state\"=\"ACTIVE\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE",
+                        "crossSeriesReducer": "REDUCE_SUM"
+                      }
+                    },
+                    "unitOverride": "s"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Ebsf Customer Bill Management Transactions",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"cloudsql.googleapis.com/database/postgresql/transaction_count\" resource.type=\"cloudsql_database\" resource.label.\"database_id\"=\"billingrtp-np\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE"
+                      }
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "RTP Disk Read/Write",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"cloudsql.googleapis.com/database/disk/write_ops_count\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"cio-billing-rtp-np-156462\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE"
+                      }
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                },
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"cloudsql.googleapis.com/database/disk/read_ops_count\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"cio-billing-rtp-np-156462\" resource.label.\"database_id\"=\" billingrtp-np\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE"
+                      }
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "EBSF Memory- CustomerBillManaAPI",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billstd-ebsf-custbillmgmt\" resource.label.\"container_name\"=\"billstd-ebsf-custbillmgmt-svc-dv\" metric.label.\"memory_type\"=\"non-evictable\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      }
+                    },
+                    "unitOverride": "By"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "300s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "EBSF Proxy CPU- CustomerBillMGMTAPI",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/cpu/core_usage_time\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billstd-ebsf-custbillmgmt\" resource.label.\"container_name\"=\"billstd-ebsf-custbillmgmt-svc-dv\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE"
+                      }
+                    },
+                    "unitOverride": "s"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "EBSF Connections",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"cloudsql.googleapis.com/database/postgresql/num_backends\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"cio-billing-rtp-np-156462\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      }
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "EBSF Health",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"cloudsql.googleapis.com/database/up\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"cio-billing-rtp-np-156462\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      }
+                    },
+                    "unitOverride": "1"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Memory Usage - PaymentManagementAPI",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billstd-ebsf-paymentmgmt\" resource.label.\"container_name\"=\"billstd-ebsf-paymentmgmt-svc-dv\" metadata.system_labels.\"state\"=\"ACTIVE\" metric.label.\"memory_type\"=\"non-evictable\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      }
+                    },
+                    "unitOverride": "By"
+                  },
+                  "plotType": "STACKED_BAR",
+                  "legendTemplate": "${resource.labels.pod_name}${metadata.user_labels\\.release}",
+                  "minAlignmentPeriod": "300s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Memory Usage - PaymentManagementAPI",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/cpu/core_usage_time\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billstd-ebsf-paymentmgmt\" resource.label.\"container_name\"=\"billstd-ebsf-paymentmgmt-svc-dv\" metadata.system_labels.\"state\"=\"ACTIVE\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE"
+                      }
+                    },
+                    "unitOverride": "s"
+                  },
+                  "plotType": "LINE",
+                  "legendTemplate": "${resource.labels.pod_name}${metadata.user_labels\\.release}",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "Memory Usage - PaymentManagementAPI",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billstd-ebsf-paymentmgmt\" resource.label.\"container_name\"=\"billstd-ebsf-paymentmgmt-svc-dv\" metadata.system_labels.\"state\"=\"ACTIVE\" metric.label.\"memory_type\"=\"non-evictable\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      }
+                    },
+                    "unitOverride": "By"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "EBSF Memory- PaymentManagementAPI",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billstd-ebsf-paymentmgmt\" resource.label.\"container_name\"=\"billstd-ebsf-paymentmgmt-svc-dv\" metric.label.\"memory_type\"=\"non-evictable\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_MEAN"
+                      }
+                    },
+                    "unitOverride": "By"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "300s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          },
+          {
+            "title": "EBSF Proxy CPU- PaymentMGMTAPI",
+            "xyChart": {
+              "dataSets": [
+                {
+                  "timeSeriesQuery": {
+                    "timeSeriesFilter": {
+                      "filter": "metric.type=\"kubernetes.io/container/cpu/core_usage_time\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"billstd-ebsf-paymentmgmt\" resource.label.\"container_name\"=\"billstd-ebsf-paymentmgmt-svc-dv\"",
+                      "aggregation": {
+                        "perSeriesAligner": "ALIGN_RATE"
+                      }
+                    },
+                    "unitOverride": "s"
+                  },
+                  "plotType": "LINE",
+                  "minAlignmentPeriod": "60s"
+                }
+              ],
+              "timeshiftDuration": "0s",
+              "yAxis": {
+                "label": "y1Axis",
+                "scale": "LINEAR"
+              },
+              "chartOptions": {
+                "mode": "COLOR"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "projects/379308499179/dashboards/8653236217441439590",
+      "displayName": "Kong Stats",
+      "etag": "f83ebd77bb7de836fc2ef2139e107516",
+      "gridLayout": {
+        "columns": "2"
+      }
+    }
+  ]
+}

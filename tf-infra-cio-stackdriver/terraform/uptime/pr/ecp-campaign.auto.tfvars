@@ -1,0 +1,1 @@
+adobecampaign_uptime_host = "ecp-campaign.cloudapps.telus.com"

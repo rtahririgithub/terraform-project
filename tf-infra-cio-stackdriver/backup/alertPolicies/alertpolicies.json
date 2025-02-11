@@ -1,0 +1,4088 @@
+{
+  "alertPolicies": [
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10003665115345144214",
+      "displayName": "[Route Change]: cio-insights-covid-ds1-np-f131",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-25T21:20:47.959395985Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-25T21:20:47.959395985Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-ds1-np-f131-route-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[Route Change]: cio-insights-covid-ds1-np-f131",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10003665115345144214/conditions/10003665115345145625"
+        }
+      ],
+      "documentation": {
+        "content": "GCP routes are a series of destinations and hops that define the path that network traffic takes from a VM instance to a destination IP. Monitoring changes to route tables can help ensure that all VPC traffic flows through an expected path.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": false,
+      "validity": {
+        "code": 5,
+        "message": "conditions[0] is invalid: The metric referenced by the provided filter is unknown. Check the metric name and labels. (ID: 10003665115345145625)"
+      }
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10010140404847558831",
+      "displayName": "[Bucket Processing Monitor]: cio-insights-covid-np-ff0bef",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-05-06T01:59:04.130887600Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-05-06T01:59:04.130887600Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-np-ff0bef/gcs_bucket/error_count\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 1,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "[Bucket Processing Monitor]: cio-insights-covid-np-ff0bef",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10010140404847558831/conditions/10010140404847562182"
+        }
+      ],
+      "documentation": {
+        "content": "condition=${condition.name}\n\ncondition_name=${condition.display_name}\n\nmetric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nresource_type=${resource.type}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/12553292335702036562"
+      ],
+      "enabled": false,
+      "validity": {
+        "code": 3,
+        "message": "conditions[0] is invalid: The supplied filter does not specify a valid combination of metric and monitored resource descriptors. The query will not return any time series. (ID: 10010140404847562182)"
+      }
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10087893868861643016",
+      "displayName": "(cio-insights) Dataflow PDC-Untar CPU utilization is above 90% for 10 minutes",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-09-18T21:24:38.381653512Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-05T13:22:33.148269543Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"compute.googleapis.com/instance/cpu/utilization\" resource.type=\"gce_instance\" resource.label.\"project_id\"=cio-insights-etl-7928aa91 metadata.user_labels.\"dataflow_job_name\"=starts_with(\"streaming-pdc-untar-ingestion\")",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.9,
+            "duration": "600s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_MAX",
+                "groupByFields": [
+                  "metric.label.principal_email"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-insights-etl-qa) Dataflow PDC-Untar CPU utilization is above 90% for 10 minutes",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10087893868861643016/conditions/10087893868861644109"
+        }
+      ],
+      "documentation": {
+        "content": "Dataflow PDC-Untar CPU utilization is above 90% for 10 minutes",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10135555241027484372",
+      "displayName": "[notify-roaming-sms-processor] Roaming SMS Processor Error",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-09-23T23:29:15.346704995Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-19T19:03:06.624722754Z",
+        "mutatedBy": "chi.ding@telus.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/notify-roaming-sms-processor/error_count\" AND resource.type=\"k8s_container\"",
+            "comparison": "COMPARISON_GT",
+            "duration": "0s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_DELTA",
+                "crossSeriesReducer": "REDUCE_SUM",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "[notify-roaming-sms-processor] Roaming SMS Processor Error",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10135555241027484372/conditions/10135555241027485067"
+        }
+      ],
+      "documentation": {
+        "content": "Roaming SMS Processor (${resource.labels.container_name}) has encountered error.\n\nPlease address these issues.\n\nCheck the log here: https://console.cloud.google.com/logs/viewer?interval=NO_LIMIT&orgonly=true&project=cio-gke-private-yul-001-9ed5d0&supportedpurview=organizationId&minLogLevel=0&expandAll=false&timestamp=2020-09-23T00:20:33.194000000Z&customFacets=&limitCustomFacetWidth=true&scrollTimestamp=2020-09-22T18:14:06.643063088Z&advancedFilter=resource.type%3D%22k8s_container%22%0Aresource.labels.project_id%3D%22cio-gke-private-yul-001-9ed5d0%22%0Aresource.labels.location%3D%22northamerica-northeast1%22%0Aresource.labels.cluster_name%3D%22private-yul-np-001%22%0Aresource.labels.namespace_name%3D%22notify-communication%22%0Alabels.k8s-pod%2Fapp%3D%22roaming-sms-processor-dv%22%0Aseverity%3D%22ERROR%22 \n\n metric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nService name=${resource.labels.container_name}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/12862842975222603104"
+      ],
+      "enabled": false
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10162276455085082846",
+      "displayName": "(cio-notification-wnp) Dataflow message.recorder is down",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-07-22T19:18:39.809948612Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-11-03T20:09:26.332666209Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"dataflow.googleapis.com/job/is_failed\" resource.type=\"dataflow_job\" resource.label.\"project_id\"=\"cio-notification-np-93822f\" resource.label.\"job_name\"=\"message-recorder-ps-bq-job\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 1,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-notification-wnp) Dataflow job message-recorder-ps-bq-job has been down in the last minute",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10162276455085082846/conditions/10162276455085084403"
+        }
+      ],
+      "documentation": {
+        "content": "message-recorder-ps-bq-job has been down in the last minute.  Check Dataflow job message-recorder-ps-bq-job to see if Status is in running state.\n\nIf not running, rebuild through Terraform with label data-analytics.np.vx.x.x then determine cause of failure.\n\nSubscription has 1 day retention for Dataflow job restoration.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/11289356274282837934"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10206818769755368316",
+      "displayName": "[SQL Change]: cio-insights-covid-ds2-np-f281",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-25T20:54:09.257608002Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-25T20:54:09.257608002Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-ds2-np-f281-sql-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[SQL Change]: cio-insights-covid-ds2-np-f281",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10206818769755368316/conditions/10206818769755365405"
+        }
+      ],
+      "documentation": {
+        "content": "Misconfiguration of SQL instance options can cause security risks, like adverse impact on business continuity with the \"Enable auto backups and high availability\" options, or increased exposure to untrusted networks with the \"Authorized networks\" options. By monitoring changes to SQL instance configuration, you can help reduce the time to detect and correct misconfigurations.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": false,
+      "validity": {
+        "code": 5,
+        "message": "conditions[0] is invalid: The metric referenced by the provided filter is unknown. Check the metric name and labels. (ID: 10206818769755365405)"
+      }
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10265466862642760093",
+      "displayName": "[Audit Config Change]: cio-insights-covid-ds2-np-f281",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-25T20:54:10.738739734Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-25T20:54:10.738739734Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-ds2-np-f281-audit-config-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[Audit Config Change]: cio-insights-covid-ds2-np-f281",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10265466862642760093/conditions/10265466862642760226"
+        }
+      ],
+      "documentation": {
+        "content": "Monitoring audit configuration changes ensures that all activities in your project can be audited.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": false,
+      "validity": {
+        "code": 5,
+        "message": "conditions[0] is invalid: The metric referenced by the provided filter is unknown. Check the metric name and labels. (ID: 10265466862642760226)"
+      }
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10363006415524546452",
+      "displayName": "[Kong] Alert policy - 40x error count",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-05-26T21:00:27.669122989Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-05-26T21:00:27.669122989Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/private-yul-np-001/kong_lb/50x_error_count\" resource.type=\"l7_lb_rule\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 1,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "300s",
+                "perSeriesAligner": "ALIGN_COUNT",
+                "crossSeriesReducer": "REDUCE_COUNT",
+                "groupByFields": [
+                  "resource.label.forwarding_rule_name",
+                  "metric.label.status"
+                ]
+              }
+            ]
+          },
+          "displayName": "[Kong] Alert policy - 40x error count",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10363006415524546452/conditions/10363006415524548053"
+        }
+      ],
+      "documentation": {
+        "content": "condition=${condition.name}\n\ncondition_name=${condition.display_name}\n\nmetric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nresource_type=${resource.type}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9040241098369517639"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10428158992652643959",
+      "displayName": "[Audit Config Change]: cio-insights-covid-ds1-np-f131",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-25T21:20:47.230650373Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-25T21:20:47.230650373Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-ds1-np-f131-audit-config-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[Audit Config Change]: cio-insights-covid-ds1-np-f131",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10428158992652643959/conditions/10428158992652642316"
+        }
+      ],
+      "documentation": {
+        "content": "Monitoring audit configuration changes ensures that all activities in your project can be audited.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": false,
+      "validity": {
+        "code": 5,
+        "message": "conditions[0] is invalid: The metric referenced by the provided filter is unknown. Check the metric name and labels. (ID: 10428158992652642316)"
+      }
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10533935801754630775",
+      "displayName": "(cio-notification) Uptime checks for all components test",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-07-13T19:45:49.460555783Z",
+        "mutatedBy": "irene.li@telus.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-07-14T18:19:03.486129939Z",
+        "mutatedBy": "irene.li@telus.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"kubernetes.io/container/uptime\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"notify-communication\" resource.label.\"container_name\"=\"communication-api-retrieval-dv\"",
+            "comparison": "COMPARISON_LT",
+            "thresholdValue": -1,
+            "duration": "0s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_SUM",
+                "groupByFields": [
+                  "resource.label.container_name"
+                ]
+              },
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_PERCENT_CHANGE"
+              }
+            ]
+          },
+          "displayName": "Kubernetes Container - Uptime - communication-api-retrieval-dv",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10533935801754630775/conditions/10533935801754630470"
+        },
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"kubernetes.io/container/uptime\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"notify-communication\" resource.label.\"container_name\"=\"communication-api-sender-dv\"",
+            "comparison": "COMPARISON_LT",
+            "thresholdValue": -1,
+            "duration": "0s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_SUM",
+                "groupByFields": [
+                  "resource.label.container_name"
+                ]
+              },
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_PERCENT_CHANGE"
+              }
+            ]
+          },
+          "displayName": "Kubernetes Container - Uptime - communication-api-sender-dv",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10533935801754630775/conditions/8220657215318499176"
+        },
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"kubernetes.io/container/uptime\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"notify-communication\" resource.label.\"container_name\"=\"message-persistence-dv\"",
+            "comparison": "COMPARISON_LT",
+            "thresholdValue": -1,
+            "duration": "0s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_SUM",
+                "groupByFields": [
+                  "resource.label.container_name"
+                ]
+              },
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_PERCENT_CHANGE"
+              }
+            ]
+          },
+          "displayName": "Kubernetes Container - Uptime - message-persistence-dv",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10533935801754630775/conditions/6495453021161387860"
+        },
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"kubernetes.io/container/uptime\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"notify-communication\" resource.label.\"container_name\"=\"message-publisher-dv\"",
+            "comparison": "COMPARISON_LT",
+            "thresholdValue": -1,
+            "duration": "0s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_SUM",
+                "groupByFields": [
+                  "resource.label.container_name"
+                ]
+              },
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_PERCENT_CHANGE"
+              }
+            ]
+          },
+          "displayName": "Kubernetes Container - Uptime - message-publisher-dv",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10533935801754630775/conditions/2400996580426456161"
+        },
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"kubernetes.io/container/uptime\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"notify-communication\" resource.label.\"container_name\"=\"message-subscriber-dv\"",
+            "comparison": "COMPARISON_LT",
+            "thresholdValue": -1,
+            "duration": "0s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_SUM",
+                "groupByFields": [
+                  "resource.label.container_name"
+                ]
+              },
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_PERCENT_CHANGE"
+              }
+            ]
+          },
+          "displayName": "Kubernetes Container - Uptime for message-subscriber-dv",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10533935801754630775/conditions/6191481170365398698"
+        },
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"kubernetes.io/container/uptime\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"notify-communication\" resource.label.\"container_name\"=\"notify-wnp-processor-dv\"",
+            "comparison": "COMPARISON_LT",
+            "thresholdValue": -1,
+            "duration": "0s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_SUM",
+                "groupByFields": [
+                  "resource.label.container_name"
+                ]
+              },
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_PERCENT_CHANGE"
+              }
+            ]
+          },
+          "displayName": "Kubernetes Container - Uptime - notify-wnp-processor-dv",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10533935801754630775/conditions/4804216864489511628"
+        }
+      ],
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/5525280448620549061"
+      ],
+      "enabled": false
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10818649829280032162",
+      "displayName": "https: public-public-yul-002 alert policy",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-08-26T18:18:55.521924810Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-08-26T18:18:55.521924810Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"monitoring.googleapis.com/uptime_check/check_passed\" resource.type=\"uptime_url\" metric.label.\"check_id\"=\"https-public-public-yul-002-uptime-check\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 1,
+            "duration": "300s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "1200s",
+                "perSeriesAligner": "ALIGN_NEXT_OLDER",
+                "crossSeriesReducer": "REDUCE_COUNT_FALSE",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "https: public-public-yul-002 alert policy",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10818649829280032162/conditions/10818649829280031119"
+        }
+      ],
+      "documentation": {
+        "content": "condition=${condition.name}\n\ncondition_name=${condition.display_name}\n\nmetric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nresource_type=${resource.type}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10838613150306677847",
+      "displayName": "[Bucket IAM Change]: cio-insights-covid-np-ff0bef",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-16T00:34:53.581194769Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-16T01:17:59.775430433Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-np-ff0bef-bucket-iam-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[Bucket IAM Change]: cio-insights-covid-np-ff0bef",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/10838613150306677847/conditions/10838613150306680458"
+        }
+      ],
+      "documentation": {
+        "content": "Monitoring changes to Cloud Storage bucket permissions identifies over-privileged users or suspicious activity.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": false,
+      "validity": {
+        "code": 3,
+        "message": "conditions[0] is invalid: The supplied filter does not specify a valid combination of metric and monitored resource descriptors. The query will not return any time series. (ID: 10838613150306680458)"
+      }
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/11189630605802994238",
+      "displayName": "https: Go NP URL Alert policy",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-03-30T19:52:18.264147899Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-03-30T19:52:18.264147899Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"monitoring.googleapis.com/uptime_check/check_passed\" resource.type=\"uptime_url\" metric.label.\"check_id\"=\"https-go-dv-uptime-checkk\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 1,
+            "duration": "300s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "1200s",
+                "perSeriesAligner": "ALIGN_NEXT_OLDER",
+                "crossSeriesReducer": "REDUCE_COUNT_FALSE",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "https: Go NP URL Alert policy",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/11189630605802994238/conditions/11189630605802992033"
+        }
+      ],
+      "documentation": {
+        "content": "condition=${condition.name}\n\ncondition_name=${condition.display_name}\n\nmetric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nresource_type=${resource.type}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9154540090238091728"
+      ],
+      "enabled": false
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/11717805733286920195",
+      "displayName": "[TechHub API] Alert policy - techhub api os message excessive error: warning",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-08-12T21:04:06.367624020Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-05T14:52:54.822027809Z",
+        "mutatedBy": "ken.duffy@telus.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/private-yul-np-001/techhub_api_os_message_error_excessive_count\" resource.type=\"k8s_container\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 50,
+            "duration": "0s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_COUNT",
+                "crossSeriesReducer": "REDUCE_MEAN",
+                "groupByFields": [
+                  "metric.label.AssignmentManagerEvent"
+                ]
+              }
+            ]
+          },
+          "displayName": "[TechHub API] Alert policy - techhub api os message excessive error",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/11717805733286920195/conditions/11717805733286924068"
+        }
+      ],
+      "documentation": {
+        "content": "condition=${condition.name}\n\ncondition_name=${condition.display_name}\n\nmetric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nresource_type=${resource.type}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/17157596731081059161",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8511163186278161829"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/11831347277706989874",
+      "displayName": "(cio-insights) File was last dropped in drop-pdc-tars folder more than 15 minutes ago",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-09-22T20:23:36.468947405Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-08T22:47:44.542215613Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "resource.type=\"gcs_bucket\" AND metric.type=\"logging.googleapis.com/user/(cio-insights-etl-qa)-drop-PDC-tars-bucket-file-detector\"",
+            "comparison": "COMPARISON_LT",
+            "thresholdValue": 1,
+            "duration": "1500s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "1500s",
+                "perSeriesAligner": "ALIGN_SUM",
+                "crossSeriesReducer": "REDUCE_SUM",
+                "groupByFields": [
+                  "metric.label.principal_email"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-insights-etl-qa) File was last dropped in drop-pdc-tars folder more than 15 minutes ago",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/11831347277706989874/conditions/11831347277706993633"
+        }
+      ],
+      "documentation": {
+        "content": "File was last dropped in drop-pdc-tars folder more than 15 minutes ago",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/11895396478475131035",
+      "displayName": "[Owner Config Change]: cio-insights-covid-np-ff0bef",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-16T00:34:48.605649132Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-16T01:18:00.934364994Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-np-ff0bef-owner-config-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[Owner Config Change]: cio-insights-covid-np-ff0bef",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/11895396478475131035/conditions/11895396478475129920"
+        }
+      ],
+      "documentation": {
+        "content": "Project Ownership Having highest level of privileges on a project, to avoid misuse of project resources project ownership assignment/change actions mentioned should be monitored and alerted to concerned recipients.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/12114039153861526062",
+      "displayName": "[SQL Change]: cio-insights-covid-np-ff0bef",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-16T00:34:46.976627325Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-16T01:17:55.651685572Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-np-ff0bef-sql-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[SQL Change]: cio-insights-covid-np-ff0bef",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/12114039153861526062/conditions/12114039153861526099"
+        }
+      ],
+      "documentation": {
+        "content": "Misconfiguration of SQL instance options can cause security risks, like adverse impact on business continuity with the \"Enable auto backups and high availability\" options, or increased exposure to untrusted networks with the \"Authorized networks\" options. By monitoring changes to SQL instance configuration, you can help reduce the time to detect and correct misconfigurations.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/12417680988721041067",
+      "displayName": "[TechHub API] Alert policy - techhub api error count",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-08-12T21:08:42.593147665Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-08-12T21:08:42.593147665Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/private-yul-np-001/techhub_api_error\" resource.type=\"k8s_container\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 3,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "300s",
+                "perSeriesAligner": "ALIGN_COUNT",
+                "crossSeriesReducer": "REDUCE_COUNT",
+                "groupByFields": [
+                  "metric.label.UnhandledPromiseRejectionWarningError100",
+                  "metric.label.UnhandledPromiseRejectionWarningError101",
+                  "metric.label.UnhandledPromiseRejectionWarningError102",
+                  "metric.label.UnhandledPromiseRejectionWarningError103"
+                ]
+              }
+            ]
+          },
+          "displayName": "[TechHub API] Alert policy - techhub api error count",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/12417680988721041067/conditions/12417680988721041210"
+        }
+      ],
+      "documentation": {
+        "content": "condition=${condition.name}\n\ncondition_name=${condition.display_name}\n\nmetric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nresource_type=${resource.type}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8479147885793844805"
+      ],
+      "enabled": false
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/1265458418099658999",
+      "displayName": "[TechHub API] Alert policy - techhub api os message error",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-08-12T21:04:03.332463710Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-05T14:52:03.733514335Z",
+        "mutatedBy": "ken.duffy@telus.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/private-yul-np-001/techhub_api_os_message_error_count\" resource.type=\"k8s_container\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 2,
+            "duration": "0s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_RATE",
+                "crossSeriesReducer": "REDUCE_COUNT",
+                "groupByFields": [
+                  "metric.label.AssignmentManagerAssignmentId"
+                ]
+              }
+            ]
+          },
+          "displayName": "[TechHub API] Alert policy - techhub api os message error",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/1265458418099658999/conditions/1265458418099658758"
+        }
+      ],
+      "documentation": {
+        "content": "condition=${condition.name}\n\ncondition_name=${condition.display_name}\n\nmetric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nresource_type=${resource.type}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/17157596731081059161",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8511163186278161829"
+      ],
+      "enabled": false
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/12875428973391505888",
+      "displayName": "[techhub-api] techhub CPU usage alert: warning",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-08-21T15:37:05.808400190Z"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-09-05T02:55:07.695319364Z",
+        "mutatedBy": "jianqin.chen@telus.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"kubernetes.io/container/cpu/limit_utilization\" resource.type=\"k8s_container\" resource.label.\"project_id\"=\"cio-gke-private-yul-001-9ed5d0\" resource.label.\"namespace_name\"=\"wfm-techhub-api\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.8,
+            "duration": "0s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_MEAN"
+              }
+            ]
+          },
+          "displayName": "CPU limit utilization for cio-gke-private-yul-001-9ed5d0, wfm-techhub-api",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/12875428973391505888/conditions/12875428973391505069"
+        }
+      ],
+      "documentation": {
+        "content": "Insert documentation here",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/14551348652646062432",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/17157596731081059161",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8511163186278161829",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9131075018171132453"
+      ],
+      "enabled": false
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/12928504789870357358",
+      "displayName": "[Custom Role Change]: cio-insights-covid-ds1-np-f131",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-25T21:20:47.458974641Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-25T21:20:47.458974641Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-ds1-np-f131-custom-role-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[Custom Role Change]: cio-insights-covid-ds1-np-f131",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/12928504789870357358/conditions/12928504789870355085"
+        }
+      ],
+      "documentation": {
+        "content": "Monitoring role creation, deletion, and update activities can identify over-privileged roles.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": false,
+      "validity": {
+        "code": 5,
+        "message": "conditions[0] is invalid: The metric referenced by the provided filter is unknown. Check the metric name and labels. (ID: 12928504789870355085)"
+      }
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/12962035195633428984",
+      "displayName": "(cio-insights) File was last dropped in drop-pdc folder more than 15 minutes ago",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-09-29T18:03:57.085046318Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-08T22:47:36.917085595Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "resource.type=\"gcs_bucket\" AND metric.type=\"logging.googleapis.com/user/(cio-insights-etl-qa)-drop-PDC-bucket-file-detector\"",
+            "comparison": "COMPARISON_LT",
+            "thresholdValue": 1,
+            "duration": "1500s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "1500s",
+                "perSeriesAligner": "ALIGN_SUM",
+                "crossSeriesReducer": "REDUCE_SUM",
+                "groupByFields": [
+                  "metric.label.principal_email"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-insights-etl-qa) File was last dropped in drop-pdc folder more than 15 minutes ago",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/12962035195633428984/conditions/12962035195633430051"
+        }
+      ],
+      "documentation": {
+        "content": "File was last dropped in drop-pdc folder more than 15 minutes ago",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/12963505681522970054",
+      "displayName": "[Bucket IAM Change]: cio-insights-covid-ds2-np-f281",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-25T20:54:11.862472989Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-25T20:54:11.862472989Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-ds2-np-f281-bucket-iam-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[Bucket IAM Change]: cio-insights-covid-ds2-np-f281",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/12963505681522970054/conditions/12963505681522968715"
+        }
+      ],
+      "documentation": {
+        "content": "Monitoring changes to Cloud Storage bucket permissions identifies over-privileged users or suspicious activity.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": false,
+      "validity": {
+        "code": 5,
+        "message": "conditions[0] is invalid: The metric referenced by the provided filter is unknown. Check the metric name and labels. (ID: 12963505681522968715)"
+      }
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/13177212820996695418",
+      "displayName": "([cio-insights-etl-qa) BigQuery slot usage is above 1500 for 10 mins",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-10-07T23:48:24.131706428Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-09T19:12:20.962031730Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"bigquery.googleapis.com/slots/allocated_for_project\" resource.type=\"global\" resource.label.\"project_id\"=cio-insights-covid-np-ff0bef",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 2,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "groupByFields": [
+                  "metric.label.principal_email"
+                ]
+              }
+            ]
+          },
+          "displayName": "([cio-insights-etl-qa) BigQuery slot usage is above 1500 for 10 mins",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/13177212820996695418/conditions/13177212820996697517"
+        }
+      ],
+      "documentation": {
+        "content": "cio-insights-etl-7928aa91 BigQuery slot usage is above 1500 for 10 mins",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/13186383479937630768",
+      "displayName": "https: api-protected-public-yul-np alert policy",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-03-30T19:52:08.041875591Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-03-30T19:52:08.041875591Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"monitoring.googleapis.com/uptime_check/check_passed\" resource.type=\"uptime_url\" metric.label.\"check_id\"=\"https-api-protected-public-yul-np-uptime-check-1583349700\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 1,
+            "duration": "300s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "1200s",
+                "perSeriesAligner": "ALIGN_NEXT_OLDER",
+                "crossSeriesReducer": "REDUCE_COUNT_FALSE",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "https: api-protected-public-yul-np alert policy",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/13186383479937630768/conditions/13186383479937630911"
+        }
+      ],
+      "documentation": {
+        "content": "condition=${condition.name}\n\ncondition_name=${condition.display_name}\n\nmetric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nresource_type=${resource.type}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547"
+      ],
+      "enabled": false
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/13918746445805860149",
+      "displayName": "(cio-insights-etl-qa) PDC pipeline lag above 500s for a period of 5 mins",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-10-02T19:59:42.555163762Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-09T19:12:22.267503648Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"dataflow.googleapis.com/job/system_lag\" resource.type=\"dataflow_job\" resource.label.\"project_id\"=cio-insights-etl-7928aa91 resource.label.\"job_name\"=starts_with(\"streaming-pdc-ingestion\")",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 500,
+            "duration": "300s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "groupByFields": [
+                  "metric.label.principal_email"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-insights-etl-qa) PDC pipeline lag above 500s for a period of 5 mins",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/13918746445805860149/conditions/13918746445805859066"
+        }
+      ],
+      "documentation": {
+        "content": "cio-insights-etl-7928aa91 PDC pipeline lag above 500s for a period of 5 mins",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/14158066495344887123",
+      "displayName": "[Network Config Change]: cio-insights-covid-ds2-np-f281",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-25T20:54:14.144039096Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-25T20:54:14.144039096Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-ds2-np-f281-network-config-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[Network Config Change]: cio-insights-covid-ds2-np-f281",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/14158066495344887123/conditions/14158066495344888384"
+        }
+      ],
+      "documentation": {
+        "content": "Detect incorrect or unauthorized changes to the network setup.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": false,
+      "validity": {
+        "code": 5,
+        "message": "conditions[0] is invalid: The metric referenced by the provided filter is unknown. Check the metric name and labels. (ID: 14158066495344888384)"
+      }
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/14277085926370386832",
+      "displayName": "(cio-insights) mozilla-mls dag failure detect",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-09-29T18:56:27.957704024Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-09T19:12:29.943411511Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "resource.type=\"cloud_composer_environment\" AND metric.type=\"logging.googleapis.com/user/(cio-insights-etl-qa)-ingest-mls-dag-failure-detect\"",
+            "comparison": "COMPARISON_GT",
+            "duration": "0s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "300s",
+                "perSeriesAligner": "ALIGN_SUM",
+                "groupByFields": [
+                  "metric.label.principal_email"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-insights-etl-qa) mozilla-mls dag failure detect",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/14277085926370386832/conditions/14277085926370386509"
+        }
+      ],
+      "documentation": {
+        "content": "mozilla-mls dag failure detect",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/14321259253522695070",
+      "displayName": "[techhub-ui] openshift url uptime check failure: critical",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-09-02T18:19:05.449505113Z",
+        "mutatedBy": "jianqin.chen@telus.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-09-03T00:06:58.460087214Z",
+        "mutatedBy": "jianqin.chen@telus.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"monitoring.googleapis.com/uptime_check/check_passed\" AND metric.label.check_id=\"techhub-ui-openshift-url-uptime-check\" AND resource.type=\"uptime_url\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 1,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "1200s",
+                "perSeriesAligner": "ALIGN_NEXT_OLDER",
+                "crossSeriesReducer": "REDUCE_COUNT_FALSE",
+                "groupByFields": [
+                  "resource.label.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "Failure of uptime check_id techhub-ui-openshift-url-uptime-check",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/14321259253522695070/conditions/14321259253522696939"
+        }
+      ],
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/17157596731081059161",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8511163186278161829"
+      ],
+      "enabled": false
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/14379550155198606553",
+      "displayName": "[Audit Config Change]: cio-insights-covid-np-ff0bef",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-16T00:34:44.140188424Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-16T01:17:54.116176554Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-np-ff0bef-audit-config-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[Audit Config Change]: cio-insights-covid-np-ff0bef",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/14379550155198606553/conditions/14379550155198606154"
+        }
+      ],
+      "documentation": {
+        "content": "Monitoring audit configuration changes ensures that all activities in your project can be audited.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/14921262612324166707",
+      "displayName": "(cio-insights-etl-qa)-drop-pdc-tars storage bucket bytes received below threshold",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-10-01T14:09:51.665837594Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-09T19:12:30.769704957Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"storage.googleapis.com/network/received_bytes_count\" resource.type=\"gcs_bucket\" resource.label.\"project_id\"=cio-insights-etl-7928aa91 resource.label.\"bucket_name\"=\"cio-insights-etl-7928aa91-drop-pdc-tar-folders\" metric.label.\"response_code\"=\"OK\" metric.label.\"method\"=\"WriteObject\"",
+            "comparison": "COMPARISON_LT",
+            "thresholdValue": 16000000000,
+            "duration": "21600s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "21600s",
+                "perSeriesAligner": "ALIGN_SUM",
+                "groupByFields": [
+                  "metric.label.principal_email"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-insights-etl-qa)-drop-pdc-tars bytes received below Threshold",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/14921262612324166707/conditions/14921262612324166746"
+        }
+      ],
+      "documentation": {
+        "content": "(cio-insights-etl-qa)-drop-pdc-tars received_bytes_count stream is below a threshold of 10000000000 - 9.3G in 6 hours",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/15035826402660309827",
+      "displayName": "[Kong] Alert policy - 40x error count",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-05-26T21:00:26.568694871Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-05-26T21:00:26.568694871Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/private-yul-np-001/kong_lb/40x_error_count\" resource.type=\"l7_lb_rule\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 1,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "300s",
+                "perSeriesAligner": "ALIGN_COUNT",
+                "crossSeriesReducer": "REDUCE_COUNT",
+                "groupByFields": [
+                  "resource.label.forwarding_rule_name",
+                  "metric.label.status"
+                ]
+              }
+            ]
+          },
+          "displayName": "[Kong] Alert policy - 40x error count",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/15035826402660309827/conditions/15035826402660310272"
+        }
+      ],
+      "documentation": {
+        "content": "condition=${condition.name}\n\ncondition_name=${condition.display_name}\n\nmetric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nresource_type=${resource.type}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9040241098369517639"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/15203819690989582260",
+      "displayName": "[Owner Config Change]: cio-insights-covid-ds1-np-f131",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-25T21:20:47.711140303Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-25T21:20:47.711140303Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-ds1-np-f131-owner-config-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[Owner Config Change]: cio-insights-covid-ds1-np-f131",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/15203819690989582260/conditions/15203819690989582257"
+        }
+      ],
+      "documentation": {
+        "content": "Project Ownership Having highest level of privileges on a project, to avoid misuse of project resources project ownership assignment/change actions mentioned should be monitored and alerted to concerned recipients.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": false,
+      "validity": {
+        "code": 5,
+        "message": "conditions[0] is invalid: The metric referenced by the provided filter is unknown. Check the metric name and labels. (ID: 15203819690989582257)"
+      }
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/15292860883075573647",
+      "displayName": "[TechHub API] Alert policy - techhub api os message exception",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-08-12T21:04:05.053637228Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-08-12T21:08:44.062824929Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/private-yul-np-001/techhub_api_os_message_exception_count\" resource.type=\"k8s_container\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 1,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "300s",
+                "perSeriesAligner": "ALIGN_COUNT",
+                "crossSeriesReducer": "REDUCE_COUNT",
+                "groupByFields": [
+                  "metric.label.AssignmentManagerException"
+                ]
+              }
+            ]
+          },
+          "displayName": "[TechHub API] Alert policy - techhub api os message exception",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/15292860883075573647/conditions/15292860883075572506"
+        }
+      ],
+      "documentation": {
+        "content": "condition=${condition.name}\n\ncondition_name=${condition.display_name}\n\nmetric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nresource_type=${resource.type}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8479147885793844805"
+      ],
+      "enabled": false
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/15396148554725344101",
+      "displayName": "[Firewall Change]: cio-insights-covid-np-ff0bef",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-16T00:34:52.607614795Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-16T01:18:02.266642551Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-np-ff0bef-firewall-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[Firewall Change]: cio-insights-covid-np-ff0bef",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/15396148554725344101/conditions/15396148554725343522"
+        }
+      ],
+      "documentation": {
+        "content": "Monitoring firewall rule creation and update events gives you insight into network access changes to quickly detect suspicious activity.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/15536050596025097934",
+      "displayName": "[Network Config Change]: cio-insights-covid-ds1-np-f131",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-25T21:20:48.280526013Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-25T21:20:48.280526013Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-ds1-np-f131-network-config-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[Network Config Change]: cio-insights-covid-ds1-np-f131",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/15536050596025097934/conditions/15536050596025097961"
+        }
+      ],
+      "documentation": {
+        "content": "Detect incorrect or unauthorized changes to the network setup.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": false,
+      "validity": {
+        "code": 5,
+        "message": "conditions[0] is invalid: The metric referenced by the provided filter is unknown. Check the metric name and labels. (ID: 15536050596025097961)"
+      }
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/15820356434174076118",
+      "displayName": "[Custom Role Change]: cio-insights-covid-np-ff0bef",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-16T00:34:42.343824095Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-16T01:17:57.953816616Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-np-ff0bef-custom-role-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[Custom Role Change]: cio-insights-covid-np-ff0bef",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/15820356434174076118/conditions/15820356434174078397"
+        }
+      ],
+      "documentation": {
+        "content": "Monitoring role creation, deletion, and update activities can identify over-privileged roles.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/1584607201689071762",
+      "displayName": "(cio-notification-wnp) Memory utilization for CloudSQL database: cio-notification-np-93822f:communication-message-np",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-07-15T17:52:06.778735844Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-11-03T20:09:28.119283581Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"cloudsql.googleapis.com/database/memory/utilization\" AND resource.type=\"cloudsql_database\" AND resource.label.database_id=\"cio-notification-np-93822f:communication-message-np\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.5,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-notification-wnp) Memory utilization for CloudSQL database: cio-notification-np-93822f:communication-message-np",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/1584607201689071762/conditions/1584607201689074913"
+        }
+      ],
+      "documentation": {
+        "content": "Memory Utilization for CloudSQL database: cio-notification-np-93822f:communication-message-np is at 50%. Please address these issues.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/11289356274282837934"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/16256617733816122308",
+      "displayName": "[Kong] https: apigw-public-yul-np-002.cloudapps.telus.com Alert policy",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-05-12T15:20:54.173167275Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-05-26T21:00:28.491739718Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"monitoring.googleapis.com/uptime_check/check_passed\" resource.type=\"uptime_url\" metric.label.\"check_id\"=\"https-apigw-public-yul-np-002-cloudapps-telus-com-url-uptime-check-kong\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 1,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "300s",
+                "perSeriesAligner": "ALIGN_COUNT",
+                "crossSeriesReducer": "REDUCE_COUNT",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "[Kong] https: apigw-public-yul-np-002.cloudapps.telus.com Alert policy",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/16256617733816122308/conditions/16256617733816120845"
+        }
+      ],
+      "documentation": {
+        "content": "condition=${condition.name}\n\ncondition_name=${condition.display_name}\n\nmetric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nresource_type=${resource.type}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9040241098369517639"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/16369395438672572242",
+      "displayName": "https: LCA NP URL Alert policy",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-03-30T19:52:26.742378438Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-03-30T19:52:26.742378438Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"monitoring.googleapis.com/uptime_check/check_passed\" resource.type=\"uptime_url\" metric.label.\"check_id\"=\"https-lca-np-uptime-check\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 1,
+            "duration": "300s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "1200s",
+                "perSeriesAligner": "ALIGN_NEXT_OLDER",
+                "crossSeriesReducer": "REDUCE_COUNT_FALSE",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "https: LCA NP URL Alert policy",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/16369395438672572242/conditions/16369395438672571321"
+        }
+      ],
+      "documentation": {
+        "content": "condition=${condition.name}\n\ncondition_name=${condition.display_name}\n\nmetric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nresource_type=${resource.type}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547"
+      ],
+      "enabled": false
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/16396255637691161765",
+      "displayName": "[Kong] https: apigw-private-yul-np-001.cloudapps.telus.com Alert policy",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-05-12T15:20:53.801705433Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-05-26T21:00:29.403179113Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"monitoring.googleapis.com/uptime_check/check_passed\" resource.type=\"uptime_url\" metric.label.\"check_id\"=\"https-apigw-private-yul-np-001-cloudapps-telus-com-url-uptime-check-kong\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 1,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "300s",
+                "perSeriesAligner": "ALIGN_COUNT",
+                "crossSeriesReducer": "REDUCE_COUNT",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "[Kong] https: apigw-private-yul-np-001.cloudapps.telus.com Alert policy",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/16396255637691161765/conditions/16396255637691161262"
+        }
+      ],
+      "documentation": {
+        "content": "condition=${condition.name}\n\ncondition_name=${condition.display_name}\n\nmetric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nresource_type=${resource.type}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9040241098369517639"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/16398113940097345255",
+      "displayName": "https: Devops URL Alert policy",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-03-30T19:51:56.895184714Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-03-30T19:51:56.895184714Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"monitoring.googleapis.com/uptime_check/check_passed\" resource.type=\"uptime_url\" metric.label.\"check_id\"=\"https-devops-url-uptime-check-1584659697\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 1,
+            "duration": "300s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "1200s",
+                "perSeriesAligner": "ALIGN_NEXT_OLDER",
+                "crossSeriesReducer": "REDUCE_COUNT_FALSE",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "https: Devops URL Alert policy",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/16398113940097345255/conditions/16398113940097344492"
+        }
+      ],
+      "documentation": {
+        "content": "condition=${condition.name}\n\ncondition_name=${condition.display_name}\n\nmetric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nresource_type=${resource.type}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547"
+      ],
+      "enabled": false
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/16491447966370850693",
+      "displayName": "Alert Queue Messages Waiting",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-02-28T14:34:29.633971187Z",
+        "mutatedBy": "tom.malaher@telus.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-08-31T20:36:22.513882126Z",
+        "mutatedBy": "tom.malaher@telus.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"pubsub.googleapis.com/subscription/num_undelivered_messages\" resource.type=\"pubsub_subscription\" resource.label.\"project_id\"=\"cio-stackdriver-np-c4636c\" resource.label.\"subscription_id\"=\"truesight-np\"",
+            "comparison": "COMPARISON_GT",
+            "duration": "0s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN"
+              }
+            ]
+          },
+          "displayName": "Unacked messages for cio-stackdriver-np-c4636c, truesight-np",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/16491447966370850693/conditions/16491447966370850284"
+        }
+      ],
+      "documentation": {
+        "content": "Too many outbound messages waiting in alert queue.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/10927433989991188530",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8511163186278161829",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9131075018171132453"
+      ],
+      "enabled": false
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/16592619205275109197",
+      "displayName": "[techhub-api] Memory limit utilization alert: critical",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-09-02T20:13:35.474451480Z",
+        "mutatedBy": "jianqin.chen@telus.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-05T14:47:47.427611612Z",
+        "mutatedBy": "ken.duffy@telus.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"kubernetes.io/container/memory/limit_utilization\" resource.type=\"k8s_container\" resource.label.\"project_id\"=\"cio-gke-private-yul-001-9ed5d0\" resource.label.\"namespace_name\"=\"wfm-techhub-api\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.9,
+            "duration": "0s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_MEAN"
+              }
+            ]
+          },
+          "displayName": "[techhub-api] Memory limit utilization alert: critical",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/16592619205275109197/conditions/16592619205275109872"
+        }
+      ],
+      "documentation": {
+        "content": "alert: critical",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/17157596731081059161",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8511163186278161829"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/16735212528907968777",
+      "displayName": "(cio-notification-wnp) WNP Processor Error",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-08-06T16:57:30.986727607Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-11-03T20:09:28.993309662Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/notification_wnp_processor/error_count\" AND resource.type=\"k8s_container\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 10,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_DELTA",
+                "crossSeriesReducer": "REDUCE_SUM",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-notification-wnp) WNP Processor Error",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/16735212528907968777/conditions/16735212528907971358"
+        }
+      ],
+      "documentation": {
+        "content": "WNP Processor (${resource.labels.container_name}) has encountered error.\n\nPlease address these issues.\n\nCheck the log here: https://console.cloud.google.com/logs/query;query=resource.type%3D%22k8s_container%22%0Aresource.labels.project_id%3D%22cio-gke-private-yul-001-9ed5d0%22%0Aresource.labels.location%3D%22northamerica-northeast1%22%0Aresource.labels.cluster_name%3D%22private-yul-np-001%22%0Aresource.labels.namespace_name%3D%22notify-communication%22%0Alabels.k8s-pod%2Fapp%3D%22notify-wnp-processor-dv%22%0Aseverity%3DERROR?project=cio-gke-private-yul-001-9ed5d0",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/11289356274282837934"
+      ],
+      "enabled": false
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/1676764939122014225",
+      "displayName": "TechHub-UI URL check Failed Message Alert",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-09-02T18:38:12.558503079Z",
+        "mutatedBy": "jianqin.chen@telus.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-09-02T18:38:12.558503079Z",
+        "mutatedBy": "jianqin.chen@telus.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"monitoring.googleapis.com/uptime_check/check_passed\" resource.type=\"uptime_url\" metric.label.\"check_id\"=\"techhub-ui-openshift-url-uptime-check\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 3,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "300s",
+                "perSeriesAligner": "ALIGN_COUNT_TRUE",
+                "crossSeriesReducer": "REDUCE_COUNT",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "Check passed for techhub-ui-openshift-url-uptime-check by * [COUNT]",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/1676764939122014225/conditions/1676764939122012560"
+        }
+      ],
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/17157596731081059161",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8511163186278161829"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/1704223465927905773",
+      "displayName": "(cio-notification-wnp) CloudSQL database: cio-notification-np-93822f:communication-message-np is down",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-07-15T17:52:05.720663070Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-11-03T20:09:31.712411760Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"cloudsql.googleapis.com/database/up\" AND resource.type=\"cloudsql_database\" AND resource.label.database_id=\"cio-notification-np-93822f:communication-message-np\"",
+            "comparison": "COMPARISON_LT",
+            "thresholdValue": 1,
+            "duration": "0s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-notification-wnp) CloudSQL database: cio-notification-np-93822f:communication-message-np is down",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/1704223465927905773/conditions/1704223465927909126"
+        }
+      ],
+      "documentation": {
+        "content": "CloudSQL database: cio-notification-np-93822f:communication-message-np is down. Please address these issues.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/11289356274282837934"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/17623915595337984784",
+      "displayName": "(cio-insights-api-qa) GAE Instance CPU Utilization is above a threshold of 95% for greater than 1 minute",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-10-02T15:02:08.093433078Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-09T19:12:25.122987174Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"compute.googleapis.com/instance/cpu/utilization\" resource.type=\"gce_instance\" resource.label.\"project_id\"=cio-insights-api-cf02bca8",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.95,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "groupByFields": [
+                  "metric.label.principal_email"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-insights-api-qa) GAE Instance CPU Utilization is above a threshold of 95% for greater than 1 minute",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/17623915595337984784/conditions/17623915595337982199"
+        }
+      ],
+      "documentation": {
+        "content": "cio-insights-api-qa GCE Instance CPU Utilization is above a threshold of 95% for greater than 1 minute",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/17709260852513119642",
+      "displayName": "(cio-notification-msg-transformer) Comm API exception",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-07-15T21:12:55.709432078Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-07-15T21:12:55.709432078Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/comm-msg-transformer_comm_api_exception/error_count\" AND resource.type=\"k8s_container\"",
+            "comparison": "COMPARISON_GT",
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_RATE",
+                "crossSeriesReducer": "REDUCE_SUM",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-notification-msg-transformer) Comm API exception",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/17709260852513119642/conditions/17709260852513118311"
+        }
+      ],
+      "documentation": {
+        "content": "Msg Transformer Service (${resource.labels.container_name}) comm_api call has issue.\n\nPlease address these issues.\n\nmetric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nService name=${resource.labels.container_name}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/11425924267400515027"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/1949710170138535081",
+      "displayName": "([cio-insights-etl-qa) BigQuery slot usage is above 1500 for 10 mins",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-10-07T23:48:15.919048822Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-09T19:12:28.792669476Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"bigquery.googleapis.com/slots/allocated_for_project\" resource.type=\"global\" resource.label.\"project_id\"=cio-insights-etl-7928aa91",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 2,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "groupByFields": [
+                  "metric.label.principal_email"
+                ]
+              }
+            ]
+          },
+          "displayName": "([cio-insights-etl-qa) BigQuery slot usage is above 1500 for 10 mins",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/1949710170138535081/conditions/1949710170138537468"
+        }
+      ],
+      "documentation": {
+        "content": "cio-insights-etl-7928aa91 BigQuery slot usage is above 1500 for 10 mins",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/2113088579845531790",
+      "displayName": "[Owner Config Change]: cio-insights-covid-ds2-np-f281",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-25T20:54:08.042869057Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-25T20:54:08.042869057Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-ds2-np-f281-owner-config-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[Owner Config Change]: cio-insights-covid-ds2-np-f281",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/2113088579845531790/conditions/2113088579845531465"
+        }
+      ],
+      "documentation": {
+        "content": "Project Ownership Having highest level of privileges on a project, to avoid misuse of project resources project ownership assignment/change actions mentioned should be monitored and alerted to concerned recipients.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": false,
+      "validity": {
+        "code": 5,
+        "message": "conditions[0] is invalid: The metric referenced by the provided filter is unknown. Check the metric name and labels. (ID: 2113088579845531465)"
+      }
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/2251973234275762123",
+      "displayName": "(cio-notification-wnp) PubSub to BigQuery message.recorder Unacked Messages",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-07-22T19:18:40.988915182Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-11-03T20:09:30.969593484Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"pubsub.googleapis.com/subscription/num_undelivered_messages\" resource.type=\"pubsub_subscription\" resource.label.\"project_id\"=\"cio-notification-np-93822f\" resource.label.\"subscription_id\"=\"message.recorder.bq.subscription\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 10,
+            "duration": "300s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-notification-wnp) PubSub message.recorder topic 10 unacked messages in 5 minutes",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/2251973234275762123/conditions/2251973234275759064"
+        }
+      ],
+      "documentation": {
+        "content": "message.recorder.bq.subscription has not acked messages for 5 minutes.  Check Dataflow job message-recorder-ps-bq-job to see if Status is in running state.\n\nIf not running, rebuild through Terraform with label data-analytics.np.vx.x.x then determine cause of failure.\n\nSubscription has 1 day retention for Dataflow job restoration.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/11289356274282837934"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/2258020732500308459",
+      "displayName": "Adobe SMS Batch Undelivered Message Alert",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-07-15T15:09:34.604281290Z",
+        "mutatedBy": "lawrence.huang@telus.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-07-15T16:28:52.905582164Z",
+        "mutatedBy": "lawrence.huang@telus.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"pubsub.googleapis.com/subscription/num_undelivered_messages\" resource.type=\"pubsub_subscription\" resource.label.\"subscription_id\"=\"adobe-sms-dead-letter-sub\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 5,
+            "duration": "600s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN"
+              }
+            ]
+          },
+          "displayName": "Unacked messages for adobe-sms-dead-letter-sub",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/2258020732500308459/conditions/2258020732500308258"
+        }
+      ],
+      "documentation": {
+        "content": "The undelivered messages exceed the alert threshold.\n${condition.display_name}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/5621835378337156683"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/2316840686719785590",
+      "displayName": "(cio-notification-wnp) CPU utilization for CloudSQL database: cio-notification-np-93822f:communication-message-np",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-07-15T17:52:09.304091047Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-11-03T20:09:27.213973507Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"cloudsql.googleapis.com/database/cpu/utilization\" AND resource.type=\"cloudsql_database\" AND resource.label.database_id=\"cio-notification-np-93822f:communication-message-np\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.2,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-notification-wnp) CPU utilization for CloudSQL database: cio-notification-np-93822f:communication-message-np",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/2316840686719785590/conditions/2316840686719784951"
+        }
+      ],
+      "documentation": {
+        "content": "CPU Utilization for CloudSQL database: cio-notification-np-93822f:communication-message-np is at 20%. Please address these issues.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/11289356274282837934"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/2532487129948874610",
+      "displayName": "[Custom Role Change]: cio-insights-covid-ds2-np-f281",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-25T20:54:12.883834359Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-25T20:54:12.883834359Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-ds2-np-f281-custom-role-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[Custom Role Change]: cio-insights-covid-ds2-np-f281",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/2532487129948874610/conditions/2532487129948874555"
+        }
+      ],
+      "documentation": {
+        "content": "Monitoring role creation, deletion, and update activities can identify over-privileged roles.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": false,
+      "validity": {
+        "code": 5,
+        "message": "conditions[0] is invalid: The metric referenced by the provided filter is unknown. Check the metric name and labels. (ID: 2532487129948874555)"
+      }
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/2742081466387666492",
+      "displayName": "cio-datahub-control-qa-fd868f_bq_load_monitor",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-10-08T15:18:08.142026846Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-08T15:18:08.142026846Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-datahub-control-qa-fd868f_bq_load_monitor\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "duration": "0s",
+            "aggregations": [
+              {
+                "alignmentPeriod": "90000s"
+              }
+            ]
+          },
+          "displayName": "cio-datahub-control-qa-fd868f_bq_load_monitor",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/2742081466387666492/conditions/2742081466387665849"
+        }
+      ],
+      "documentation": {
+        "content": "This table is not loaded from last 24 hours .Please check.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/15517662846978173559"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/2759079457192298830",
+      "displayName": "[techhub-api] firestore api error alert: warning",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-09-02T20:32:32.545121268Z",
+        "mutatedBy": "jianqin.chen@telus.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-05T14:53:29.098913477Z",
+        "mutatedBy": "ken.duffy@telus.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"firestore.googleapis.com/document/read_count\" resource.type=\"firestore_instance\" resource.label.\"project_id\"=\"techhub-ui-2df643b4\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.2,
+            "duration": "0s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_RATE"
+              }
+            ]
+          },
+          "displayName": "[techhub-api] firestore api error: warning",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/2759079457192298830/conditions/2759079457192298099"
+        }
+      ],
+      "documentation": {
+        "content": "alert: warning",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/17157596731081059161",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8511163186278161829"
+      ],
+      "enabled": false
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/2807555937404550060",
+      "displayName": "[Bucket IAM Change]: cio-insights-covid-ds1-np-f131",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-25T21:20:46.502977966Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-25T21:20:46.502977966Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-ds1-np-f131-bucket-iam-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[Bucket IAM Change]: cio-insights-covid-ds1-np-f131",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/2807555937404550060/conditions/2807555937404548113"
+        }
+      ],
+      "documentation": {
+        "content": "Monitoring changes to Cloud Storage bucket permissions identifies over-privileged users or suspicious activity.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": false,
+      "validity": {
+        "code": 5,
+        "message": "conditions[0] is invalid: The metric referenced by the provided filter is unknown. Check the metric name and labels. (ID: 2807555937404548113)"
+      }
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/2836792285442758887",
+      "displayName": "https: public-public-yul-np alert policy",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-03-30T19:52:08.983863200Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-03-30T19:52:08.983863200Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"monitoring.googleapis.com/uptime_check/check_passed\" resource.type=\"uptime_url\" metric.label.\"check_id\"=\"https-public-public-yul-np-uptime-check-1583349700\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 1,
+            "duration": "300s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "1200s",
+                "perSeriesAligner": "ALIGN_NEXT_OLDER",
+                "crossSeriesReducer": "REDUCE_COUNT_FALSE",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "https: public-public-yul-np alert policy",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/2836792285442758887/conditions/2836792285442759614"
+        }
+      ],
+      "documentation": {
+        "content": "condition=${condition.name}\n\ncondition_name=${condition.display_name}\n\nmetric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nresource_type=${resource.type}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547"
+      ],
+      "enabled": false
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/2889046931708608265",
+      "displayName": "Simulated Failure Incident Testing",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-02-20T16:34:03.940250427Z",
+        "mutatedBy": "tom.malaher@telus.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-20T22:28:20.696636741Z",
+        "mutatedBy": "tom.malaher@telus.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"monitoring.googleapis.com/uptime_check/check_passed\" resource.type=\"uptime_url\" metric.label.\"check_id\"=\"simulated-failures\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 1,
+            "duration": "0s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "1200s",
+                "perSeriesAligner": "ALIGN_NEXT_OLDER",
+                "crossSeriesReducer": "REDUCE_COUNT_FALSE",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "Uptime Health Check on Simulated failures",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/2889046931708608265/conditions/2889046931708607608"
+        }
+      ],
+      "documentation": {
+        "content": "# Test Incident\nThis is a test, please ignore.\n\n## TrueSight Monitoring\n```json\n{\n  \"mc_host\":\"btln002704.corp.ads\",\n  \"severity\":\"MAJOR\",\n  \"msg\":\"The Random Failure bot is failing\"\n}\n```",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/14371277619413630317",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9131075018171132453"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/2974318664756324598",
+      "displayName": "private-yul-np-001 Autoscale Threshold",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-09-17T19:58:56.125309041Z",
+        "mutatedBy": "michael.lapish@telus.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-09-17T20:06:11.664351275Z",
+        "mutatedBy": "michael.lapish@telus.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/private-yul-np-001/autoscaledNodesCount\" resource.type=\"k8s_cluster\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 15,
+            "duration": "60s",
+            "trigger": {
+              "percent": 100
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_DELTA",
+                "crossSeriesReducer": "REDUCE_MEAN"
+              }
+            ]
+          },
+          "displayName": "logging/user/private-yul-np-001/autoscaledNodesCount [MEAN]",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/2974318664756324598/conditions/2974318664756325801"
+        }
+      ],
+      "documentation": {
+        "content": "private-yul-np-001 has scaled within a couple nodes of it's maximum.\n\nAction should be taken to ensure the nodepool max size is increased.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/3127317269611207748",
+      "displayName": "(cio-insights) bsa-hspa dag failure detect",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-09-29T18:56:29.529257033Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-09T19:12:27.020205194Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "resource.type=\"cloud_composer_environment\" AND metric.type=\"logging.googleapis.com/user/(cio-insights-etl-qa)-hspa-dag-failure-detect\"",
+            "comparison": "COMPARISON_GT",
+            "duration": "0s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "300s",
+                "perSeriesAligner": "ALIGN_SUM",
+                "groupByFields": [
+                  "metric.label.principal_email"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-insights-etl-qa) bsa-hspa dag failure detect",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/3127317269611207748/conditions/3127317269611205989"
+        }
+      ],
+      "documentation": {
+        "content": "bsa-hspa dag failure detect",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/3669952892365432775",
+      "displayName": "[Route Change]: cio-insights-covid-ds2-np-f281",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-25T20:54:05.125970104Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-25T20:54:05.125970104Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-ds2-np-f281-route-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[Route Change]: cio-insights-covid-ds2-np-f281",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/3669952892365432775/conditions/3669952892365432474"
+        }
+      ],
+      "documentation": {
+        "content": "GCP routes are a series of destinations and hops that define the path that network traffic takes from a VM instance to a destination IP. Monitoring changes to route tables can help ensure that all VPC traffic flows through an expected path.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": false,
+      "validity": {
+        "code": 5,
+        "message": "conditions[0] is invalid: The metric referenced by the provided filter is unknown. Check the metric name and labels. (ID: 3669952892365432474)"
+      }
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/3850101404543710080",
+      "displayName": "(cio-insights) bsa-volte dag failure detect",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-09-29T18:56:30.919515068Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-09T19:12:27.914602820Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "resource.type=\"cloud_composer_environment\" AND metric.type=\"logging.googleapis.com/user/(cio-insights-etl-qa)-volte-dag-failure-detect\"",
+            "comparison": "COMPARISON_GT",
+            "duration": "0s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "300s",
+                "perSeriesAligner": "ALIGN_SUM",
+                "groupByFields": [
+                  "metric.label.principal_email"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-insights-etl-qa) bsa-volte dag failure detect",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/3850101404543710080/conditions/3850101404543711713"
+        }
+      ],
+      "documentation": {
+        "content": "bsa-volte dag failure detect",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/4073042946411609792",
+      "displayName": "cio-datahub-control-qa-fd868f_monitoring_composer_workflow",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-10-08T15:18:09.408701570Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-08T15:18:09.408701570Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-datahub-control-qa-fd868f_monitoring_composer_workflow\" AND resource.type=\"cloud_composer_environment\"",
+            "comparison": "COMPARISON_GT",
+            "duration": "0s",
+            "aggregations": [
+              {
+                "alignmentPeriod": "90000s"
+              }
+            ]
+          },
+          "displayName": "cio-datahub-control-qa-fd868f_monitoring_composer_workflow",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/4073042946411609792/conditions/4073042946411607031"
+        }
+      ],
+      "documentation": {
+        "content": "There is  some problem with  composer workflow and  task.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/15517662846978173559"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/45720005879718696",
+      "displayName": "(cio-notification-msg-transformer) validation error",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-07-15T21:12:51.942006364Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-07-15T21:12:51.942006364Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/comm-msg-transformer_validation_exception/error_count\" AND resource.type=\"k8s_container\"",
+            "comparison": "COMPARISON_GT",
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_RATE",
+                "crossSeriesReducer": "REDUCE_SUM",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-notification-msg-transformer) validation error",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/45720005879718696/conditions/45720005879721657"
+        }
+      ],
+      "documentation": {
+        "content": "Msg Transformer Service (${resource.labels.container_name}) data validation has issue.\n\nPlease address these issues.\n\nmetric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nService name=${resource.labels.container_name}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/11425924267400515027"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/4834957390430755129",
+      "displayName": "(DRS Cache Service) Hyla product load error",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-06-16T21:05:44.950590906Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-11-04T16:50:55.407944478Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/devicereturn_product_load/error_count\" AND resource.type=\"k8s_container\"",
+            "comparison": "COMPARISON_GT",
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_RATE",
+                "crossSeriesReducer": "REDUCE_SUM",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "(DRS Cache Service) Hyla product load error",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/4834957390430755129/conditions/4834957390430756700"
+        }
+      ],
+      "documentation": {
+        "content": "DRS Cache Service (${resource.labels.container_name}) nightly product load has issues.\n\nPlease address these issues.\n\nmetric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nService name=${resource.labels.container_name}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9103937956492360437"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/551073450110138146",
+      "displayName": "[SQL Change]: cio-insights-covid-ds1-np-f131",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-25T21:20:46.981108857Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-25T21:20:46.981108857Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-ds1-np-f131-sql-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[SQL Change]: cio-insights-covid-ds1-np-f131",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/551073450110138146/conditions/551073450110137565"
+        }
+      ],
+      "documentation": {
+        "content": "Misconfiguration of SQL instance options can cause security risks, like adverse impact on business continuity with the \"Enable auto backups and high availability\" options, or increased exposure to untrusted networks with the \"Authorized networks\" options. By monitoring changes to SQL instance configuration, you can help reduce the time to detect and correct misconfigurations.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": false,
+      "validity": {
+        "code": 5,
+        "message": "conditions[0] is invalid: The metric referenced by the provided filter is unknown. Check the metric name and labels. (ID: 551073450110137565)"
+      }
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/6338867809042389158",
+      "displayName": "(cio-notification-msg-transformer) Comm API bad input error",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-07-15T21:12:54.363393268Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-07-15T21:12:54.363393268Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/comm-msg-transformer_comm_api_bad_input/error_count\" AND resource.type=\"k8s_container\"",
+            "comparison": "COMPARISON_GT",
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_RATE",
+                "crossSeriesReducer": "REDUCE_SUM",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-notification-msg-transformer) Comm API bad input error",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/6338867809042389158/conditions/6338867809042388103"
+        }
+      ],
+      "documentation": {
+        "content": "Msg Transformer Service (${resource.labels.container_name}) comm_api had bad input issue.\n\nPlease address these issues.\n\nmetric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nService name=${resource.labels.container_name}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/11425924267400515027"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/6343289821829504212",
+      "displayName": "(cio-insights) PDC_live_opt_in BQ table last modified is greater than 10 minutes",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-10-09T19:12:19.522859993Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-09T19:12:19.522859993Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "resource.type=\"bigquery_dataset\" AND metric.type=\"logging.googleapis.com/user/PDC_live_opt_in_last_modified\"",
+            "comparison": "COMPARISON_LT",
+            "thresholdValue": 1,
+            "duration": "1500s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "1500s",
+                "perSeriesAligner": "ALIGN_SUM",
+                "crossSeriesReducer": "REDUCE_SUM",
+                "groupByFields": [
+                  "metric.label.principal_email"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-insights-etl-qa) PDC_live_opt_in BQ table last modified is greater than 10 minutes",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/6343289821829504212/conditions/6343289821829502415"
+        }
+      ],
+      "documentation": {
+        "content": "PDC_live_opt_in BQ table last modified is greater than 10 minutes",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/6457687686280123510",
+      "displayName": "https: protected-private-yul-001 alert policy",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-08-26T18:18:51.205624905Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-08-26T18:18:51.205624905Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"monitoring.googleapis.com/uptime_check/check_passed\" resource.type=\"uptime_url\" metric.label.\"check_id\"=\"https-protected-private-yul-001-uptime-check\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 1,
+            "duration": "300s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "1200s",
+                "perSeriesAligner": "ALIGN_NEXT_OLDER",
+                "crossSeriesReducer": "REDUCE_COUNT_FALSE",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "https: protected-private-yul-001 alert policy",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/6457687686280123510/conditions/6457687686280123711"
+        }
+      ],
+      "documentation": {
+        "content": "condition=${condition.name}\n\ncondition_name=${condition.display_name}\n\nmetric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nresource_type=${resource.type}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/6693757121679662379",
+      "displayName": "(cio-insights) pdc_uuid dag failure detect",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-09-29T22:18:50.691168035Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-09T19:12:26.136115045Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "resource.type=\"cloud_composer_environment\" AND metric.type=\"logging.googleapis.com/user/(cio-insights-etl-qa)-pdc-filter-uuid-dag-failure-detect\"",
+            "comparison": "COMPARISON_GT",
+            "duration": "0s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "300s",
+                "perSeriesAligner": "ALIGN_SUM",
+                "groupByFields": [
+                  "metric.label.principal_email"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-insights-etl-qa) pdc_uuid dag failure detect",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/6693757121679662379/conditions/6693757121679661224"
+        }
+      ],
+      "documentation": {
+        "content": "pdc_uuid dag failure detect",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/6882594205059813604",
+      "displayName": "(cio-notification-msg-transformer) Comm API system error",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-07-15T21:12:53.230101924Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-07-15T21:12:53.230101924Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/comm-msg-transformer_comm_api_system_error/error_count\" AND resource.type=\"k8s_container\"",
+            "comparison": "COMPARISON_GT",
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_RATE",
+                "crossSeriesReducer": "REDUCE_SUM",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-notification-msg-transformer) Comm API system error",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/6882594205059813604/conditions/6882594205059816281"
+        }
+      ],
+      "documentation": {
+        "content": "Msg Transformer Service (${resource.labels.container_name}) comm_api had system error.\n\nPlease address these issues.\n\nmetric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nService name=${resource.labels.container_name}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/11425924267400515027"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/6949541899265594029",
+      "displayName": "(cio-insights) Unack message count on pdc-landing-pull subscription is above 10 for 5 minutes",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-09-22T20:23:36.896354379Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-02T22:50:37.657597637Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"pubsub.googleapis.com/subscription/num_undelivered_messages\" resource.type=\"pubsub_subscription\" resource.label.\"project_id\"=cio-insights-etl-7928aa91 resource.label.\"subscription_id\"=\"pdc-landing-pull\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 10,
+            "duration": "300s",
+            "trigger": {
+              "count": 1
+            }
+          },
+          "displayName": "(cio-insights-etl-qa) Unack message count on pdc-landing-pull subscription is above 10 for 5 minutes",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/6949541899265594029/conditions/6949541899265594206"
+        }
+      ],
+      "documentation": {
+        "content": "Unack message count on pdc-landing-pull subscription is above 10 for 5 minutes",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/7216278237338080852",
+      "displayName": "[Firewall Change]: cio-insights-covid-ds1-np-f131",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-25T21:20:48.577186506Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-25T21:20:48.577186506Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-ds1-np-f131-firewall-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[Firewall Change]: cio-insights-covid-ds1-np-f131",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/7216278237338080852/conditions/7216278237338080547"
+        }
+      ],
+      "documentation": {
+        "content": "Monitoring firewall rule creation and update events gives you insight into network access changes to quickly detect suspicious activity.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": false,
+      "validity": {
+        "code": 5,
+        "message": "conditions[0] is invalid: The metric referenced by the provided filter is unknown. Check the metric name and labels. (ID: 7216278237338080547)"
+      }
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/7227709580877654333",
+      "displayName": "(cio-notification-wnp) PubSub to BigQuery message.reply Unacked Messages",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-07-22T19:18:38.307385659Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-11-03T20:09:30.203737366Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"pubsub.googleapis.com/subscription/num_undelivered_messages\" resource.type=\"pubsub_subscription\" resource.label.\"project_id\"=\"cio-notification-np-93822f\" resource.label.\"subscription_id\"=\"message.reply.bq.subscription\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 10,
+            "duration": "300s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-notification-wnp) PubSub message.reply topic 10 unacked messages in 5 minutes",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/7227709580877654333/conditions/7227709580877654516"
+        }
+      ],
+      "documentation": {
+        "content": "message.reply.bq.subscription has not acked messages for 5 minutes.  Check Dataflow job message-reply-ps-bq-job to see if Status is in running state.\n\nIf not running, rebuild through Terraform with label data-analytics.np.vx.x.x then determine cause of failure.\n\nSubscription has 1 day retention for Dataflow job restoration.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/11289356274282837934"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/7237849686120075505",
+      "displayName": "[BigQuery Processing Monitor]: cio-insights-covid-np-ff0bef",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-05-06T01:59:03.245750116Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-05-06T01:59:03.245750116Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-np-ff0bef/biqquery/pdc_landing/error_count\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 1,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "[BigQuery Processing Monitor]: cio-insights-covid-np-ff0bef",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/7237849686120075505/conditions/7237849686120077042"
+        }
+      ],
+      "documentation": {
+        "content": "condition=${condition.name}\n\ncondition_name=${condition.display_name}\n\nmetric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nresource_type=${resource.type}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/3660126604223451745"
+      ],
+      "enabled": false,
+      "validity": {
+        "code": 3,
+        "message": "conditions[0] is invalid: The supplied filter does not specify a valid combination of metric and monitored resource descriptors. The query will not return any time series. (ID: 7237849686120077042)"
+      }
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/7485112231950422489",
+      "displayName": "([cio-insights-etl-qa) BigQuery slot usage is above 1500 for 10 mins",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-10-07T23:48:13.913765240Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-09T19:12:24.286271570Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"bigquery.googleapis.com/slots/allocated_for_project\" resource.type=\"global\" resource.label.\"project_id\"=cio-insights-ds-93200fad",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 2,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "groupByFields": [
+                  "metric.label.principal_email"
+                ]
+              }
+            ]
+          },
+          "displayName": "([cio-insights-etl-qa) BigQuery slot usage is above 1500 for 10 mins",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/7485112231950422489/conditions/7485112231950423238"
+        }
+      ],
+      "documentation": {
+        "content": "cio-insights-etl-7928aa91 BigQuery slot usage is above 1500 for 10 mins",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/7885638232996791059",
+      "displayName": "https:techhub-ui url uptime check uptime failure",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-07-31T15:25:21.544540216Z",
+        "mutatedBy": "jianqin.chen@telus.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-09-03T00:07:13.556085589Z",
+        "mutatedBy": "jianqin.chen@telus.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"monitoring.googleapis.com/uptime_check/check_passed\" AND metric.label.check_id=\"https-techhub-ui-url-uptime-check\" AND resource.type=\"uptime_url\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 1,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "1200s",
+                "perSeriesAligner": "ALIGN_NEXT_OLDER",
+                "crossSeriesReducer": "REDUCE_COUNT_FALSE",
+                "groupByFields": [
+                  "resource.label.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "Failure of uptime check_id https-techhub-ui-url-uptime-check",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/7885638232996791059/conditions/7885638232996792068"
+        }
+      ],
+      "enabled": false
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/7906231184595985927",
+      "displayName": "[Route Change]: cio-insights-covid-np-ff0bef",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-16T00:34:45.498516222Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-16T01:17:58.959519357Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-np-ff0bef-route-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[Route Change]: cio-insights-covid-np-ff0bef",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/7906231184595985927/conditions/7906231184595988132"
+        }
+      ],
+      "documentation": {
+        "content": "GCP routes are a series of destinations and hops that define the path that network traffic takes from a VM instance to a destination IP. Monitoring changes to route tables can help ensure that all VPC traffic flows through an expected path.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/7966976337464549376",
+      "displayName": "[Network Config Change]: cio-insights-covid-np-ff0bef",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-16T00:34:54.560179422Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-16T01:17:56.615365886Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-np-ff0bef-network-config-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[Network Config Change]: cio-insights-covid-np-ff0bef",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/7966976337464549376/conditions/7966976337464551743"
+        }
+      ],
+      "documentation": {
+        "content": "Detect incorrect or unauthorized changes to the network setup.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": false,
+      "validity": {
+        "code": 3,
+        "message": "conditions[0] is invalid: The supplied filter does not specify a valid combination of metric and monitored resource descriptors. The query will not return any time series. (ID: 7966976337464551743)"
+      }
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/8060290140539673277",
+      "displayName": "(cio-insights-etl-qa) BQ_swanetl_landing_nonprod_pdc_errors uploaded row detected",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-10-01T14:09:53.469843376Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-09T19:12:18.155350329Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "resource.type=\"bigquery_dataset\" AND metric.type=\"logging.googleapis.com/user/(cio-insights-etl-qa)-pdc_errors-table-row-upload\"",
+            "comparison": "COMPARISON_GT",
+            "duration": "0s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "300s",
+                "perSeriesAligner": "ALIGN_SUM",
+                "groupByFields": [
+                  "metric.label.principal_email"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-insights-etl-qa) BQ_swanetl_landing_nonprod_pdc_errors uploaded row detected",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/8060290140539673277/conditions/8060290140539674526"
+        }
+      ],
+      "documentation": {
+        "content": "swanetl_landing.pdc_errors_uploaded_row_detected, alert is to avoid data issues",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/8365184582719918959",
+      "displayName": "[Firewall Change]: cio-insights-covid-ds2-np-f281",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-04-25T20:54:06.686686774Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-04-25T20:54:06.686686774Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"logging.googleapis.com/user/cio-insights-covid-ds2-np-f281-firewall-change\" AND resource.type=\"global\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.001,
+            "duration": "60s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_COUNT"
+              }
+            ]
+          },
+          "displayName": "[Firewall Change]: cio-insights-covid-ds2-np-f281",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/8365184582719918959/conditions/8365184582719921508"
+        }
+      ],
+      "documentation": {
+        "content": "Monitoring firewall rule creation and update events gives you insight into network access changes to quickly detect suspicious activity.",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": false,
+      "validity": {
+        "code": 5,
+        "message": "conditions[0] is invalid: The metric referenced by the provided filter is unknown. Check the metric name and labels. (ID: 8365184582719921508)"
+      }
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/9002495873266418075",
+      "displayName": "[techhub-api] firestore api error: warning",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-09-02T21:45:01.958041314Z",
+        "mutatedBy": "jianqin.chen@telus.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-05T14:54:37.023758819Z",
+        "mutatedBy": "ken.duffy@telus.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"firestore.googleapis.com/document/read_count\" resource.type=\"firestore_instance\" resource.label.\"project_id\"=\"techhub-ui-2df643b4\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 1,
+            "duration": "0s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_RATE"
+              }
+            ]
+          },
+          "displayName": "[techhub-api] firestore api error",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/9002495873266418075/conditions/9002495873266420158"
+        }
+      ],
+      "documentation": {
+        "content": "alert: warning",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/17157596731081059161",
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8511163186278161829"
+      ],
+      "enabled": false
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/9012283137960182320",
+      "displayName": "https: protected-public-yul-np alert policy",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-03-30T19:52:09.806523795Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-03-30T19:52:09.806523795Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"monitoring.googleapis.com/uptime_check/check_passed\" resource.type=\"uptime_url\" metric.label.\"check_id\"=\"https-protected-public-yul-np-uptime-check-1583349700\"",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 1,
+            "duration": "300s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "1200s",
+                "perSeriesAligner": "ALIGN_NEXT_OLDER",
+                "crossSeriesReducer": "REDUCE_COUNT_FALSE",
+                "groupByFields": [
+                  "resource.*"
+                ]
+              }
+            ]
+          },
+          "displayName": "https: protected-public-yul-np alert policy",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/9012283137960182320/conditions/9012283137960185611"
+        }
+      ],
+      "documentation": {
+        "content": "condition=${condition.name}\n\ncondition_name=${condition.display_name}\n\nmetric_type=${metric.type}\n\nmetric_name=${metric.display_name}\n\npolicy=${policy.name}\n\npolicy_name=${policy.display_name}\n\nproject=${project}\n\nresource_project=${resource.project}\n\nresource_type=${resource.type}",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547"
+      ],
+      "enabled": false
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/9395850023304731117",
+      "displayName": "(cio-insights) Dataflow PDC-Pipeline CPU utilization is above 90% for 10 minutes",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-09-18T21:24:36.522960096Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-05T13:22:38.240710417Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"compute.googleapis.com/instance/cpu/utilization\" resource.type=\"gce_instance\" resource.label.\"project_id\"=cio-insights-etl-7928aa91 metadata.user_labels.\"dataflow_job_name\"=starts_with(\"streaming-pdc-ingestion\")",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 0.9,
+            "duration": "600s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "crossSeriesReducer": "REDUCE_MAX",
+                "groupByFields": [
+                  "metric.label.principal_email"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-insights-etl-qa) Dataflow PDC-Pipeline CPU utilization is above 90% for 10 minutes",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/9395850023304731117/conditions/9395850023304728930"
+        }
+      ],
+      "documentation": {
+        "content": "Dataflow PDC-Pipeline CPU utilization is above 90% for 10 minutes",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    },
+    {
+      "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/9445196703158472160",
+      "displayName": "(cio-insights-etl-qa) PDC untar pipeline lag above 500s for a period of 5 mins",
+      "combiner": "OR",
+      "creationRecord": {
+        "mutateTime": "2020-10-02T19:59:44.607258425Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "mutationRecord": {
+        "mutateTime": "2020-10-09T19:12:23.358811423Z",
+        "mutatedBy": "terraform@terraform-telus-bto-admin.iam.gserviceaccount.com"
+      },
+      "conditions": [
+        {
+          "conditionThreshold": {
+            "filter": "metric.type=\"dataflow.googleapis.com/job/system_lag\" resource.type=\"dataflow_job\" resource.label.\"project_id\"=cio-insights-etl-7928aa91 resource.label.\"job_name\"=starts_with(\"streaming-pdc-untar-ingestion\")",
+            "comparison": "COMPARISON_GT",
+            "thresholdValue": 500,
+            "duration": "300s",
+            "trigger": {
+              "count": 1
+            },
+            "aggregations": [
+              {
+                "alignmentPeriod": "60s",
+                "perSeriesAligner": "ALIGN_MEAN",
+                "groupByFields": [
+                  "metric.label.principal_email"
+                ]
+              }
+            ]
+          },
+          "displayName": "(cio-insights-etl-qa) PDC untar pipeline lag above 500s for a period of 5 mins",
+          "name": "projects/cio-stackdriver-np-c4636c/alertPolicies/9445196703158472160/conditions/9445196703158470339"
+        }
+      ],
+      "documentation": {
+        "content": "cio-insights-etl-7928aa91 PDC untar pipeline lag above 500s for a period of 5 mins",
+        "mimeType": "text/markdown"
+      },
+      "notificationChannels": [
+        "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621"
+      ],
+      "enabled": true
+    }
+  ],
+  "totalSize": 87
+}

@@ -1,0 +1,452 @@
+{
+  "notificationChannels": [
+    {
+      "type": "email",
+      "displayName": "John Huang",
+      "labels": {
+        "email_address": "John.Huang@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/10268638244177790303",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "canh.tran@telus.com",
+      "labels": {
+        "email_address": "canh.tran@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/10773216622782631861",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "Philip.Lee@telus.com",
+      "labels": {
+        "email_address": "Philip.Lee@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/10780225542932877697",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "Tom.Malaher@TELUS.com",
+      "labels": {
+        "email_address": "Tom.Malaher@TELUS.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/10927433989991188530",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "Moussa Ferzoli",
+      "labels": {
+        "email_address": "Moussa.Ferzoli@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/11146566922529942782",
+      "enabled": true
+    },
+    {
+      "type": "pubsub",
+      "displayName": "ECP PubSub Notification Channel",
+      "description": "notification channel default description",
+      "labels": {
+        "topic": "projects/cio-notification-np-93822f/topics/stackdriver.alerts"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/11289356274282837934",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "ECP Msg Transformer NP Notification Channel",
+      "description": "notification channel default description",
+      "labels": {
+        "email_address": "alex.tsui@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/11425924267400515027",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "[Bucket Processing Monitor]: cio-insights-covid-np-ff0bef",
+      "description": "notification channel default description",
+      "labels": {
+        "email_address": "dlTELUSInsightsSupport@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/12553292335702036562",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "chi.ding@telus.com",
+      "labels": {
+        "email_address": "chi.ding@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/12815985522470929483",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "Roaming SMS Processor Notification Channel",
+      "description": "notification channel default description",
+      "labels": {
+        "email_address": "ECP-GCP-IAM-NP-Editor@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/12862842975222603104",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "Datahub Billing Channel",
+      "description": "notification channel default description",
+      "labels": {
+        "email_address": "dldatahubbillingnotification@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/13106181696535076549",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "ECP Monitoring Channel",
+      "description": "notification channel default description",
+      "labels": {
+        "email_address": "ECP-GCP-IAM-NP-Editor@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/13263802009308489039",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "philip.li@telus.com",
+      "labels": {
+        "email_address": "philip.li@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/13937147418079634091",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "Pavel Bondarev",
+      "labels": {
+        "email_address": "PAVEL.BONDAREV@TELUS.COM"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/14013908480796136983",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "Ruxandra Copeland",
+      "labels": {
+        "email_address": "ruxandra.cioraca@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/141493854878877770",
+      "enabled": true
+    },
+    {
+      "type": "pubsub",
+      "displayName": "TrueSight Incident Integration",
+      "labels": {
+        "topic": "projects/cio-stackdriver-np-c4636c/topics/stackdriver-incident-np"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/14371277619413630317",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "Conor Courtenay",
+      "labels": {
+        "email_address": "conor.courtenay@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/14551348652646062432",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "DRS Cache Service Notification Channel",
+      "description": "notification channel default description",
+      "labels": {
+        "email_address": "philip.lee@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/1465570118056031140",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "ken.duffy@telus.com",
+      "labels": {
+        "email_address": "ken.duffy@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/1534527230458189201",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "Datahub Support E-mail",
+      "description": "notification channel default description",
+      "labels": {
+        "email_address": "dlSEA_BigData_GCP_Delivery_pr@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/15517662846978173559",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "Usharani Jerath",
+      "labels": {
+        "email_address": "Usharani.Jerath@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/15865168331428038927",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "Graeme Oliver",
+      "labels": {
+        "email_address": "graeme.oliver@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/15982003856769059421",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "Jianqin Chen",
+      "labels": {
+        "email_address": "Jianqin.chen@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/17157596731081059161",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "Samson.Cheng@telus.com",
+      "labels": {
+        "email_address": "Samson.Cheng@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/17533901975579273191",
+      "enabled": true
+    },
+    {
+      "type": "pubsub",
+      "displayName": "TrueSight Incident Receiver",
+      "description": "notification channel default description",
+      "labels": {
+        "topic": "projects/cio-stackdriver-np-c4636c/topics/stackdriver-incident-np"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/2745247928733761482",
+      "enabled": false
+    },
+    {
+      "type": "email",
+      "displayName": "ECP Notification Channel - NP Editor",
+      "description": "notification channel default description",
+      "labels": {
+        "email_address": "ECP-GCP-IAM-NP-Editor@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/3209687010174605219",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "Datahub TQBIA Workspace Support",
+      "description": "notification channel default description",
+      "labels": {
+        "email_address": "frederic.thibodeau@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/3305898124288601610",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "[BigQuery Processing Monitor]: cio-insights-covid-np-ff0bef",
+      "description": "notification channel default description",
+      "labels": {
+        "email_address": "dlTELUSInsightsSupport@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/3660126604223451745",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "CSE BI Workspace Users",
+      "description": "notification channel default description",
+      "labels": {
+        "email_address": "DLCSEBI-GCPWorkspace@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/3788386485929122075",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "Tom.Malaher@telus.com",
+      "labels": {
+        "email_address": "Tom.Malaher@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/3969008719781085800",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "Msg Transformer Validation Notification Channel",
+      "description": "notification channel default description",
+      "labels": {
+        "email_address": "samuel.zhong@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/4740605008372133438",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "irene.li@telus.com",
+      "labels": {
+        "email_address": "irene.li@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/5525280448620549061",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "lawrence.huang@telus.com",
+      "labels": {
+        "email_address": "lawrence.huang@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/5621835378337156683",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "HSM Data Strategy and Execution",
+      "description": "notification channel default description",
+      "labels": {
+        "email_address": "dlHSMDataStrategyandExecution@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/5743921771605051992",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "Datahub CPO AI Workspace Support",
+      "description": "notification channel default description",
+      "labels": {
+        "email_address": "dlcpo_pace@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/5863900855046824285",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "Hamid.Farhati@telus.com",
+      "labels": {
+        "email_address": "Hamid.Farhati@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/6890477480348156297",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "Datahub WSOC Workspace Support",
+      "description": "notification channel default description",
+      "labels": {
+        "email_address": "dlsoc2@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/740053859594101780",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "Insights Support",
+      "description": "notification channel default description",
+      "labels": {
+        "email_address": "dlTELUSInsightsSupport@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/8343196814570971621",
+      "enabled": false
+    },
+    {
+      "type": "email",
+      "displayName": "TechHub NP Monitoring Channel",
+      "description": "notification channel default description",
+      "labels": {
+        "email_address": "jianqin.chen@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/8479147885793844805",
+      "enabled": false
+    },
+    {
+      "type": "pubsub",
+      "displayName": "techhub-pubsub-notification-channel",
+      "labels": {
+        "topic": "projects/techhub-ui-2df643b4/topics/stackdriver-alert-np.topic"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/8511163186278161829",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "erik.walker@telus.com",
+      "labels": {
+        "email_address": "erik.walker@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/878980262451823648",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "API Gateway Kong Support",
+      "description": "notification channel default description",
+      "labels": {
+        "email_address": "dlEnvMgmt-Kong@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/9040241098369517639",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "DRS Cache Service Notification Channel",
+      "description": "notification channel default description",
+      "labels": {
+        "email_address": "dlDRSSupport@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/9103937956492360437",
+      "enabled": true
+    },
+    {
+      "type": "webhook_tokenauth",
+      "displayName": "Simple Test Webhook",
+      "labels": {
+        "url": "https://merlot.netstart.com/cgi-bin/gcp-webhook"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/9131075018171132453",
+      "enabled": true
+    },
+    {
+      "type": "email",
+      "displayName": "Go Support",
+      "description": "notification channel default description",
+      "labels": {
+        "email_address": "dlgo@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/9154540090238091728",
+      "enabled": false
+    },
+    {
+      "type": "email",
+      "displayName": "Insights Delivery",
+      "description": "notification channel default description",
+      "labels": {
+        "email_address": "dlTELUSInsightsDelivery@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/9185081325760509255",
+      "enabled": false
+    },
+    {
+      "type": "email",
+      "displayName": "Cloud CoE",
+      "description": "notification channel default description",
+      "labels": {
+        "email_address": "dlCIOCloudCoE@telus.com"
+      },
+      "name": "projects/cio-stackdriver-np-c4636c/notificationChannels/9343142745398478547",
+      "enabled": false
+    }
+  ],
+  "totalSize": 47
+}

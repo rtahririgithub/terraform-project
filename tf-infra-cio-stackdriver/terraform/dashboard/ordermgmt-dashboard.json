@@ -1,0 +1,647 @@
+{
+  "category": "CUSTOM",
+  "displayName": "OrderMgmt Dashboard",
+  "mosaicLayout": {
+    "columns": 12,
+    "tiles": [
+      {
+        "height": 1,
+        "widget": {
+          "text": {
+            "content": "",
+            "format": "RAW"
+          },
+          "title": "TMF679 - Offer Qualification Metrics"
+        },
+        "width": 12,
+        "xPos": 0,
+        "yPos": 0
+      },
+      {
+        "height": 4,
+        "widget": {
+          "title": "TMF679 - Offer Qualification - Request Status",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "3600s",
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "3600s",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "metric.label.\"status_code\""
+                      ],
+                      "perSeriesAligner": "ALIGN_SUM"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/ordermgmt/offer_qualification/status_code_count_prod\" resource.type=\"k8s_container\" metric.label.\"service_env\"=monitoring.regex.full_match(\"merlin-tmf679-offerqual-.*\")"
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "xPos": 0,
+        "yPos": 1
+      },
+      {
+        "height": 4,
+        "widget": {
+          "title": "TMF679 - Offer Qualification - Request Status Count",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "86400s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "86400s",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "metric.label.\"status_code\""
+                      ],
+                      "perSeriesAligner": "ALIGN_SUM"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/ordermgmt/offer_qualification/status_code_count_prod\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"cust-om-order-mgmt\" metric.label.\"service_env\"=monitoring.regex.full_match(\"merlin-tmf679-offerqual-.*\")"
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "xPos": 6,
+        "yPos": 1
+      },
+      {
+        "height": 4,
+        "widget": {
+          "title": "TMF679 - Offer Qualification - Request Latency",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_NONE",
+                      "perSeriesAligner": "ALIGN_PERCENTILE_99"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/ordermgmt/offer_qualification/request_latency_prod\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"cust-om-order-mgmt\" resource.label.\"container_name\"=monitoring.regex.full_match(\"merlin-tmf679-offerqual-.*\")",
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_MEAN",
+                      "groupByFields": [
+                        "metric.label.\"status_code\""
+                      ],
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "xPos": 6,
+        "yPos": 5
+      },
+      {
+        "height": 2,
+        "widget": {
+          "scorecard": {
+            "gaugeView": {
+              "upperBound": 10000
+            },
+            "thresholds": [
+              {
+                "color": "RED",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 7000
+              },
+              {
+                "color": "YELLOW",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 6000
+              }
+            ],
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "3600s",
+                  "crossSeriesReducer": "REDUCE_NONE",
+                  "perSeriesAligner": "ALIGN_PERCENTILE_99"
+                },
+                "filter": "metric.type=\"logging.googleapis.com/user/ordermgmt/offer_qualification/request_latency_prod\" resource.type=\"k8s_container\" resource.label.\"container_name\"=monitoring.regex.full_match(\"merlin-tmf679-offerqual-.*\") metric.label.\"status_code\"=\"200\"",
+                "secondaryAggregation": {
+                  "alignmentPeriod": "60s",
+                  "crossSeriesReducer": "REDUCE_MEAN",
+                  "perSeriesAligner": "ALIGN_MEAN"
+                }
+              }
+            }
+          },
+          "title": "Merlin TMF679 - Offer Qualification - 200 Response (ms)"
+        },
+        "width": 4,
+        "xPos": 0,
+        "yPos": 9
+      },
+      {
+        "height": 2,
+        "widget": {
+          "scorecard": {
+            "gaugeView": {
+              "upperBound": 10000
+            },
+            "thresholds": [
+              {
+                "color": "RED",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 7000
+              },
+              {
+                "color": "YELLOW",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 6000
+              }
+            ],
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "3600s",
+                  "crossSeriesReducer": "REDUCE_NONE",
+                  "perSeriesAligner": "ALIGN_PERCENTILE_99"
+                },
+                "filter": "metric.type=\"logging.googleapis.com/user/ordermgmt/offer_qualification/request_latency_prod\" resource.type=\"k8s_container\" resource.label.\"container_name\"=monitoring.regex.full_match(\"merlin-tmf679-offerqual-.*\") metric.label.\"status_code\">=\"400\" metric.label.\"status_code\"<\"500\"",
+                "secondaryAggregation": {
+                  "alignmentPeriod": "60s",
+                  "crossSeriesReducer": "REDUCE_MEAN",
+                  "perSeriesAligner": "ALIGN_NONE"
+                }
+              }
+            }
+          },
+          "title": "Merlin TMF679 - Offer Qualification - 400 Series Response (ms)"
+        },
+        "width": 4,
+        "xPos": 4,
+        "yPos": 9
+      },
+      {
+        "height": 2,
+        "widget": {
+          "scorecard": {
+            "gaugeView": {
+              "upperBound": 10000
+            },
+            "thresholds": [
+              {
+                "color": "RED",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 7000
+              },
+              {
+                "color": "YELLOW",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 6000
+              }
+            ],
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "3600s",
+                  "crossSeriesReducer": "REDUCE_NONE",
+                  "perSeriesAligner": "ALIGN_PERCENTILE_99"
+                },
+                "filter": "metric.type=\"logging.googleapis.com/user/ordermgmt/offer_qualification/request_latency_prod\" resource.type=\"k8s_container\" resource.label.\"container_name\"=monitoring.regex.full_match(\"merlin-tmf679-offerqual-.*\") metric.label.\"status_code\">=\"500\"",
+                "secondaryAggregation": {
+                  "alignmentPeriod": "60s",
+                  "crossSeriesReducer": "REDUCE_MEAN",
+                  "perSeriesAligner": "ALIGN_NONE"
+                }
+              }
+            }
+          },
+          "title": "Merlin TMF679 - Offer Qualification - 500 Response (ms)"
+        },
+        "width": 4,
+        "xPos": 8,
+        "yPos": 9
+      },
+      {
+        "height": 4,
+        "widget": {
+          "title": "Netcracker Latency",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_NONE",
+                      "perSeriesAligner": "ALIGN_PERCENTILE_99"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/ordermgmt/net_cracker/request_latency_prod\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"cust-om-order-mgmt\"",
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_MEAN",
+                      "groupByFields": [
+                        "metric.label.\"request_url\""
+                      ],
+                      "perSeriesAligner": "ALIGN_SUM"
+                    }
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 12,
+        "xPos": 0,
+        "yPos": 21
+      },
+      {
+        "height": 1,
+        "widget": {
+          "text": {
+            "content": "",
+            "format": "RAW"
+          },
+          "title": "TMF648 - Quote Metrics"
+        },
+        "width": 12,
+        "xPos": 0,
+        "yPos": 11
+      },
+      {
+        "height": 4,
+        "widget": {
+          "title": "TMF679 - Offer Qualification - Qualification Status",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "86400s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "86400s",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "metric.label.\"qualification_result\""
+                      ],
+                      "perSeriesAligner": "ALIGN_SUM"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/ordermgmt/offer_qualification/qualification_status_prod\" resource.type=\"k8s_container\" resource.label.\"container_name\"=monitoring.regex.full_match(\"merlin-tmf679-offerqual-.*\")"
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "xPos": 0,
+        "yPos": 5
+      },
+      {
+        "height": 1,
+        "widget": {
+          "text": {
+            "content": "",
+            "format": "RAW"
+          },
+          "title": "Netcracker Latency"
+        },
+        "width": 12,
+        "xPos": 0,
+        "yPos": 20
+      },
+      {
+        "height": 4,
+        "widget": {
+          "title": "TMF648 - Quote - Request Status",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "3600s",
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "3600s",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "metric.label.\"status_code\""
+                      ],
+                      "perSeriesAligner": "ALIGN_SUM"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/ordermgmt/quote/status_code_count\" resource.type=\"k8s_container\" metric.label.\"service_env\"=monitoring.regex.full_match(\"merlin-tmf648-quote-api-.*\")"
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "xPos": 0,
+        "yPos": 12
+      },
+      {
+        "height": 4,
+        "widget": {
+          "title": "TMF648- Quote - Request Status Count",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "86400s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "86400s",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "metric.label.\"status_code\""
+                      ],
+                      "perSeriesAligner": "ALIGN_SUM"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/ordermgmt/quote/status_code_count\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"cust-om-order-mgmt\" metric.label.\"service_env\"=monitoring.regex.full_match(\"merlin-tmf648-quote-api-.*\")"
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "xPos": 6,
+        "yPos": 12
+      },
+      {
+        "height": 4,
+        "widget": {
+          "title": "TMF648 - Quote - Request Latency",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_NONE",
+                      "perSeriesAligner": "ALIGN_PERCENTILE_99"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/ordermgmt/quote/request_latency\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"cust-om-order-mgmt\" resource.label.\"container_name\"=monitoring.regex.full_match(\"merlin-tmf648-quote-api-.*\")",
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_MEAN",
+                      "groupByFields": [
+                        "metric.label.\"status_code\""
+                      ],
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    }
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "xPos": 0,
+        "yPos": 16
+      },
+      {
+        "height": 4,
+        "widget": {
+          "scorecard": {
+            "gaugeView": {
+              "upperBound": 10000
+            },
+            "thresholds": [
+              {
+                "color": "RED",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 7000
+              },
+              {
+                "color": "YELLOW",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 6000
+              }
+            ],
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "3600s",
+                  "crossSeriesReducer": "REDUCE_NONE",
+                  "perSeriesAligner": "ALIGN_PERCENTILE_99"
+                },
+                "filter": "metric.type=\"logging.googleapis.com/user/ordermgmt/quote/request_latency\" resource.type=\"k8s_container\" resource.label.\"container_name\"=monitoring.regex.full_match(\"merlin-tmf648-quote-api-.*\") metric.label.\"status_code\"=\"200\"",
+                "secondaryAggregation": {
+                  "alignmentPeriod": "60s",
+                  "crossSeriesReducer": "REDUCE_MEAN",
+                  "perSeriesAligner": "ALIGN_MEAN"
+                }
+              }
+            }
+          },
+          "title": "Merlin TMF648 - Quote - 200 Response (ms)"
+        },
+        "width": 2,
+        "xPos": 6,
+        "yPos": 16
+      },
+      {
+        "height": 2,
+        "widget": {
+          "scorecard": {
+            "gaugeView": {
+              "upperBound": 10000
+            },
+            "thresholds": [
+              {
+                "color": "RED",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 7000
+              },
+              {
+                "color": "YELLOW",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 6000
+              }
+            ],
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "3600s",
+                  "crossSeriesReducer": "REDUCE_NONE",
+                  "perSeriesAligner": "ALIGN_PERCENTILE_99"
+                },
+                "filter": "metric.type=\"logging.googleapis.com/user/ordermgmt/quote/request_latency\" resource.type=\"k8s_container\" resource.label.\"container_name\"=monitoring.regex.full_match(\"merlin-tmf648-quote-api-.*\") metric.label.\"status_code\">=\"400\" metric.label.\"status_code\"<\"500\"",
+                "secondaryAggregation": {
+                  "alignmentPeriod": "60s",
+                  "crossSeriesReducer": "REDUCE_MEAN",
+                  "perSeriesAligner": "ALIGN_NONE"
+                }
+              }
+            }
+          },
+          "title": "Merlin TMF648 - Quote - 400 Series Response (ms)"
+        },
+        "width": 4,
+        "xPos": 8,
+        "yPos": 16
+      },
+      {
+        "height": 2,
+        "widget": {
+          "scorecard": {
+            "gaugeView": {
+              "upperBound": 10000
+            },
+            "thresholds": [
+              {
+                "color": "RED",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 7000
+              },
+              {
+                "color": "YELLOW",
+                "direction": "ABOVE",
+                "label": "",
+                "value": 6000
+              }
+            ],
+            "timeSeriesQuery": {
+              "apiSource": "DEFAULT_CLOUD",
+              "timeSeriesFilter": {
+                "aggregation": {
+                  "alignmentPeriod": "3600s",
+                  "crossSeriesReducer": "REDUCE_NONE",
+                  "perSeriesAligner": "ALIGN_PERCENTILE_99"
+                },
+                "filter": "metric.type=\"logging.googleapis.com/user/ordermgmt/quote/request_latency\" resource.type=\"k8s_container\" resource.label.\"container_name\"=monitoring.regex.full_match(\"merlin-tmf648-quote-api-.*\") metric.label.\"status_code\">=\"500\"",
+                "secondaryAggregation": {
+                  "alignmentPeriod": "60s",
+                  "crossSeriesReducer": "REDUCE_MEAN",
+                  "perSeriesAligner": "ALIGN_NONE"
+                }
+              }
+            }
+          },
+          "title": "Merlin TMF648 - Quote - 500 Response (ms)"
+        },
+        "width": 4,
+        "xPos": 8,
+        "yPos": 18
+      }
+    ]
+  }
+}

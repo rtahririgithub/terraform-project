@@ -1,0 +1,1 @@
+customerassist_enable_notification = true

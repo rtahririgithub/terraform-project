@@ -1,0 +1,162 @@
+{
+	"displayName": "Customer Assist Dashboard",
+	"gridLayout": {
+		"columns": "2",
+		"widgets": [
+			{
+				"title": "Microservice Requests Count By Component",
+				"xyChart": {
+					"dataSets": [
+						{
+							"timeSeriesQuery": {
+								"timeSeriesFilter": {
+									"filter": "metric.type=\"logging.googleapis.com/user/wlsaccountinfo/request_count\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"webconsb2b-customer-assist\"",
+									"aggregation": {
+										"perSeriesAligner": "ALIGN_MEAN",
+										"crossSeriesReducer": "REDUCE_SUM",
+										"groupByFields": [
+											"resource.label.\"container_name\"",
+											"metric.label.\"api_method\""
+										]
+									}
+								},
+								"unitOverride": "1"
+							},
+							"plotType": "LINE",
+							"minAlignmentPeriod": "60s"
+						}
+					],
+					"timeshiftDuration": "0s",
+					"yAxis": {
+						"label": "y1Axis",
+						"scale": "LINEAR"
+					},
+					"chartOptions": {
+						"mode": "COLOR"
+					}
+				}
+			},
+			{
+				"title": "Microservice Response Time Rate By Component",
+				"xyChart": {
+					"dataSets": [
+						{
+							"timeSeriesQuery": {
+								"timeSeriesFilter": {
+									"filter": "metric.type=\"logging.googleapis.com/user/wlsaccountinfo/response_time\" resource.type=\"k8s_container\"  resource.label.\"namespace_name\"=\"webconsb2b-customer-assist\"",
+									"aggregation": {
+										"perSeriesAligner": "ALIGN_DELTA",
+										"crossSeriesReducer": "REDUCE_MEAN",
+										"groupByFields": [
+											"resource.label.\"container_name\""
+										]
+									}
+								}
+							},
+							"plotType": "LINE",
+							"minAlignmentPeriod": "60s"
+						}
+					],
+					"timeshiftDuration": "0s",
+					"yAxis": {
+						"label": "y1Axis",
+						"scale": "LINEAR"
+					},
+					"chartOptions": {
+						"mode": "COLOR"
+					}
+				}
+			},
+			{
+				"title": " API Errors By Component",
+				"xyChart": {
+					"chartOptions": {
+						"mode": "COLOR"
+					},
+					"dataSets": [
+						{
+							"minAlignmentPeriod": "60s",
+							"plotType": "LINE",
+							"timeSeriesQuery": {
+								"timeSeriesFilter": {
+									"aggregation": {
+										"perSeriesAligner": "ALIGN_MEAN",
+										"crossSeriesReducer": "REDUCE_SUM"
+									},
+									"filter": "metric.type=\"logging.googleapis.com/user/wlsaccountinfo/error_response_count\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"webconsb2b-customer-assist\""
+								},
+								"unitOverride": "1"
+							}
+						}
+					],
+					"timeshiftDuration": "0s",
+					"yAxis": {
+						"label": "y1Axis",
+						"scale": "LINEAR"
+					}
+				}
+			},
+			{
+				"title": "Pubsub - Published Messages",
+				"xyChart": {
+					"dataSets": [
+						{
+							"minAlignmentPeriod": "60s",
+							"plotType": "LINE",
+							"timeSeriesQuery": {
+								"timeSeriesFilter": {
+									"aggregation": {
+										"perSeriesAligner": "ALIGN_RATE"
+									},
+									"filter": "metric.type=\"pubsub.googleapis.com/topic/send_request_count\" resource.type=\"pubsub_topic\" resource.label.\"project_id\"=\"${customer_assist_project_id}\""
+								},
+								"unitOverride": "1"
+							}
+						}
+					],
+					"timeshiftDuration": "0s",
+					"yAxis": {
+						"label": "y1Axis",
+						"scale": "LINEAR"
+					},
+					"chartOptions": {
+						"mode": "COLOR"
+					}
+				}
+			},
+			{
+				"title": "PubSub - Unacked Message - Top 10",
+				"xyChart": {
+					"dataSets": [
+						{
+							"minAlignmentPeriod": "60s",
+							"plotType": "LINE",
+							"timeSeriesQuery": {
+								"timeSeriesFilter": {
+									"aggregation": {
+										"perSeriesAligner": "ALIGN_MEAN"
+									},
+									"filter": "metric.type=\"pubsub.googleapis.com/subscription/num_undelivered_messages\" resource.type=\"pubsub_subscription\" resource.label.\"project_id\"=\"${customer_assist_project_id}\"",
+									"pickTimeSeriesFilter": {
+										"direction": "TOP",
+										"numTimeSeries": 10,
+										"rankingMethod": "METHOD_MEAN"
+									}
+								},
+								"unitOverride": "1"
+							}
+						}
+					],
+					"timeshiftDuration": "0s",
+					"yAxis": {
+						"label": "y1Axis",
+						"scale": "LINEAR"
+					},
+					"chartOptions": {
+						"mode": "COLOR"
+					}
+				}
+			}
+		]
+	}
+}

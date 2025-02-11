@@ -1,0 +1,9 @@
+{
+  "id": "opus-gke-preprod-montreal-viewer",
+  "displayName": "Opus GKE Pre Prod Montreal Viewer",
+  "owners": [],
+  "managers": [
+    "eduard.petreanu@telus.com"
+  ],
+  "members": []
+}

@@ -1,0 +1,23 @@
+{
+  "id": "opus-gke-dev-viewer",
+  "displayName": "Opus GKE Dev Viewer",
+  "owners": [],
+  "managers": [
+    "eduard.petreanu@telus.com"
+  ],
+  "members": [
+    "anthony.lee@telus.com",
+    "ashleen.bandesha@telus.com",
+    "bhanu.poudyal@telus.com",
+    "brian.henderson@telus.com",
+    "gotham.soni@telus.com",
+    "ibrahim.hayeck@telus.com",
+    "jordan.schulz@telus.com",
+    "kirankumar.komatireddy@telus.com",
+    "long.li@telus.com",
+    "mohammad.khrayshah@telus.com",
+    "rajavenkata.maddipati@telus.com",
+    "ranjit.singh1@telus.com",
+    "shravankumar.sandanamyna@telus.com"
+  ]
+}

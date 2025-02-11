@@ -1,0 +1,17 @@
+{
+  "id": "gidc-logging-viewer",
+  "displayName": "TELUS GIDC Logging Viewers",
+  "owners": [],
+  "managers": [],
+  "members": [
+    "charles.macdonald@telus.com",
+    "corey.sprung@telus.com",
+    "dlbt-nssunixinternalmanila@telus.com",
+    "dlbt-nsswindowsinternalmanila@telus.com",
+    "dlbtocorporatesystemsunixt4@telus.com",
+    "dlbtocorporatesystemswindowst4@telus.com",
+    "dlgidcapplicationmigrationprime@telus.com",
+    "dlgidcgoogleprofessionalservices@telus.com",
+    "shaun.mcevoy@telus.com"
+  ]
+}

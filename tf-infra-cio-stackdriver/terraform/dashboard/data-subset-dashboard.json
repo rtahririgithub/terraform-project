@@ -1,0 +1,511 @@
+{
+  "category": "CUSTOM",
+  "displayName": "Data Subset - ${env}",
+  "mosaicLayout": {
+    "columns": 12,
+    "tiles": [
+      {
+        "widget": {
+          "title": "VM Instance - CPU utilization",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "plotType": "STACKED_AREA",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "timeSeriesQueryLanguage": "fetch k8s_container\n| metric 'kubernetes.io/container/cpu/core_usage_time'\n| filter (resource.container_name == '${container-name}')\n| align rate(1m)\n| every 1m\n| group_by [], [value_core_usage_time_mean: mean(value.core_usage_time)]"
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "height": 4,
+        "xPos": 0,
+        "yPos": 0
+      },
+      {
+        "widget": {
+          "title": "VM Instance - Memory utilization",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "plotType": "STACKED_AREA",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "timeSeriesQueryLanguage": "fetch k8s_container\n| metric 'kubernetes.io/container/memory/used_bytes'\n| filter (resource.container_name == '${container-name}')\n| group_by 1m, [value_used_bytes_mean: mean(value.used_bytes)]\n| every 1m\n| group_by [resource.container_name],\n    [value_used_bytes_mean_mean: mean(value_used_bytes_mean)]"
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "height": 4,
+        "xPos": 6,
+        "yPos": 0
+      },
+      {
+        "widget": {
+          "title": "Data Subset Started/Completed Job ",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_COUNT",
+                      "groupByFields": [
+                        "metric.label.\"logbackMarker\""
+                      ],
+                      "perSeriesAligner": "ALIGN_COUNT"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/data-subset-start-complete-job-${env}\" resource.type=\"k8s_container\"",
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_NONE",
+                      "perSeriesAligner": "ALIGN_NONE"
+                    }
+                  }
+                }
+              }
+            ],
+            "thresholds": [],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "height": 4,
+        "xPos": 0,
+        "yPos": 4
+      },
+      {
+        "widget": {
+          "title": "Data Subset Unhandled Errors",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_COUNT",
+                      "groupByFields": [
+                        "metric.label.\"processType\""
+                      ],
+                      "perSeriesAligner": "ALIGN_COUNT"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/data-subset-unhandled-error-${env}\" resource.type=\"k8s_container\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "height": 4,
+        "xPos": 6,
+        "yPos": 4
+      },
+      {
+        "widget": {
+          "title": "Data Subset Bad Request Errors",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_COUNT",
+                      "groupByFields": [
+                        "metric.label.\"processType\""
+                      ],
+                      "perSeriesAligner": "ALIGN_COUNT"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/data-subset-bad-request-${env}\" resource.type=\"k8s_container\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "height": 4,
+        "xPos": 0,
+        "yPos": 8
+      },
+      {
+        "widget": {
+          "title": "Data Subset Email Errors",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_COUNT",
+                      "groupByFields": [
+                        "metric.label.\"processType\""
+                      ],
+                      "perSeriesAligner": "ALIGN_COUNT"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/data-subset-email-error-${env}\" resource.type=\"k8s_container\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "height": 4,
+        "xPos": 6,
+        "yPos": 8
+      },
+      {
+        "widget": {
+          "title": "Data Subset HTTP Contract Errors",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_COUNT",
+                      "groupByFields": [
+                        "metric.label.\"processType\""
+                      ],
+                      "perSeriesAligner": "ALIGN_COUNT"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/data-subset-http-contract-error-${env}\" resource.type=\"k8s_container\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "height": 4,
+        "xPos": 0,
+        "yPos": 12
+      },
+      {
+        "widget": {
+          "title": "Data Subset HTTP Gateway Errors",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_COUNT",
+                      "groupByFields": [
+                        "metric.label.\"processType\""
+                      ],
+                      "perSeriesAligner": "ALIGN_COUNT"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/data-subset-http-gateway-error-${env}\" resource.type=\"k8s_container\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "height": 4,
+        "xPos": 6,
+        "yPos": 12
+      },
+      {
+        "widget": {
+          "title": "Data Subset Invalid State Errors",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_COUNT",
+                      "groupByFields": [
+                        "metric.label.\"processType\""
+                      ],
+                      "perSeriesAligner": "ALIGN_COUNT"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/data-subset-invalid-state-error-${env}\" resource.type=\"k8s_container\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "height": 4,
+        "xPos": 0,
+        "yPos": 16
+      },
+      {
+        "widget": {
+          "title": "Data Subset Job Errors",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_COUNT",
+                      "groupByFields": [
+                        "metric.label.\"processType\""
+                      ],
+                      "perSeriesAligner": "ALIGN_COUNT"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/data-subset-job-error-${env}\" resource.type=\"k8s_container\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "height": 4,
+        "xPos": 6,
+        "yPos": 16
+      },
+      {
+        "widget": {
+          "title": "Data Subset Job Execution Errors",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_COUNT",
+                      "groupByFields": [
+                        "metric.label.\"processType\""
+                      ],
+                      "perSeriesAligner": "ALIGN_COUNT"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/data-subset-job-execution-error-${env}\" resource.type=\"k8s_container\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "height": 4,
+        "xPos": 0,
+        "yPos": 20
+      },
+      {
+        "widget": {
+          "title": "Data Subset Job Not Found Errors",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_COUNT",
+                      "groupByFields": [
+                        "metric.label.\"processType\""
+                      ],
+                      "perSeriesAligner": "ALIGN_COUNT"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/data-subset-job-not-found-error-${env}\" resource.type=\"k8s_container\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "height": 4,
+        "xPos": 6,
+        "yPos": 20
+      },
+      {
+        "widget": {
+          "title": "Data Subset Unauthorized Errors",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_COUNT",
+                      "groupByFields": [
+                        "metric.label.\"processType\""
+                      ],
+                      "perSeriesAligner": "ALIGN_COUNT"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/data-subset-unauthorized-error-${env}\" resource.type=\"k8s_container\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "height": 4,
+        "xPos": 0,
+        "yPos": 24
+      }
+    ]
+  }
+}

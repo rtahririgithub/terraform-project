@@ -1,0 +1,11 @@
+{
+  "id": "devops-gcr-admin",
+  "displayName": "Devops GCR Bucket Admin Access",
+  "owners": [],
+  "managers": [],
+  "members": [
+    "dataflow-sa@cio-billimagestore-np-c726e0.iam.gserviceaccount.com",
+    "dataflow-sa@cio-sandbox-analysis-np-869723.iam.gserviceaccount.com",
+    "nc-cloud-core-sa@cio-nc-cloud-core-np-28a0c4.iam.gserviceaccount.com"
+  ]
+}

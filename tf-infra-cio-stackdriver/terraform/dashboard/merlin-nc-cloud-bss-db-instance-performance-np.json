@@ -1,0 +1,392 @@
+{
+  "displayName": "Merlin - NC Cloud BSS - Database Instance Performance",
+  "mosaicLayout": {
+    "columns": 12,
+    "tiles": [
+      {
+        "yPos": 1,
+        "width": 4,
+        "height": 2,
+        "widget": {
+          "title": "(NCCPSQL-DV) Instance Status",
+          "scorecard": {
+            "timeSeriesQuery": {
+              "timeSeriesFilter": {
+                "filter": "metric.type=\"cloudsql.googleapis.com/database/uptime\" resource.type=\"cloudsql_database\" resource.label.\"database_id\"=\"${merlin_project_id_vm_db}:${merlin_databases[0]}\"",
+                "aggregation": {
+                  "alignmentPeriod": "60s",
+                  "perSeriesAligner": "ALIGN_RATE"
+                },
+                "secondaryAggregation": {
+                  "alignmentPeriod": "60s",
+                  "perSeriesAligner": "ALIGN_MEAN",
+                  "crossSeriesReducer": "REDUCE_MEAN"
+                }
+              }
+            },
+            "gaugeView": {
+              "upperBound": 1
+            },
+            "thresholds": [
+              {
+                "value": 1,
+                "color": "RED",
+                "direction": "ABOVE"
+              },
+              {
+                "value": 0.9999,
+                "color": "RED",
+                "direction": "BELOW"
+              },
+              {
+                "value": 1,
+                "color": "YELLOW",
+                "direction": "ABOVE"
+              },
+              {
+                "value": 0.9999,
+                "color": "YELLOW",
+                "direction": "BELOW"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "xPos": 4,
+        "yPos": 1,
+        "width": 4,
+        "height": 2,
+        "widget": {
+          "title": "(NCCPSQL-ST) Instance Up/Down",
+          "scorecard": {
+            "timeSeriesQuery": {
+              "timeSeriesFilter": {
+                "filter": "metric.type=\"cloudsql.googleapis.com/database/up\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"${merlin_project_id_vm_db}\" resource.label.\"database_id\"=\"${merlin_project_id_vm_db}:${merlin_databases[1]}\"",
+                "aggregation": {
+                  "alignmentPeriod": "60s",
+                  "perSeriesAligner": "ALIGN_MAX",
+                  "crossSeriesReducer": "REDUCE_MAX"
+                }
+              }
+            },
+            "gaugeView": {
+              "upperBound": 1
+            },
+            "thresholds": [
+              {
+                "value": 1,
+                "color": "RED",
+                "direction": "ABOVE"
+              },
+              {
+                "value": 0.9999,
+                "color": "RED",
+                "direction": "BELOW"
+              },
+              {
+                "value": 1,
+                "color": "YELLOW",
+                "direction": "ABOVE"
+              },
+              {
+                "value": 0.9999,
+                "color": "YELLOW",
+                "direction": "BELOW"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "xPos": 8,
+        "yPos": 1,
+        "width": 4,
+        "height": 2,
+        "widget": {
+          "title": "(NCCPSQL-LAB) Instance Up/Down",
+          "scorecard": {
+            "timeSeriesQuery": {
+              "timeSeriesFilter": {
+                "filter": "metric.type=\"cloudsql.googleapis.com/database/up\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"${merlin_project_id_vm_db}\" resource.label.\"database_id\"=\"${merlin_project_id_vm_db}:${merlin_databases[2]}\"",
+                "aggregation": {
+                  "alignmentPeriod": "60s",
+                  "perSeriesAligner": "ALIGN_MAX",
+                  "crossSeriesReducer": "REDUCE_MAX"
+                }
+              }
+            },
+            "gaugeView": {
+              "upperBound": 1
+            },
+            "thresholds": [
+              {
+                "value": 1,
+                "color": "RED",
+                "direction": "ABOVE"
+              },
+              {
+                "value": 0.9999,
+                "color": "RED",
+                "direction": "BELOW"
+              },
+              {
+                "value": 1,
+                "color": "YELLOW",
+                "direction": "ABOVE"
+              },
+              {
+                "value": 0.9999,
+                "color": "YELLOW",
+                "direction": "BELOW"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "xPos": 6,
+        "yPos": 3,
+        "width": 6,
+        "height": 4,
+        "widget": {
+          "title": "Total memory usage [MEAN]",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"cloudsql.googleapis.com/database/memory/total_usage\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"${merlin_project_id_vm_db}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_MEAN",
+                      "groupByFields": [
+                        "resource.label.\"database_id\""
+                      ]
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "yPos": 3,
+        "width": 6,
+        "height": 4,
+        "widget": {
+          "title": "Cloud SQL Database - CPU utilization [MEAN]",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"cloudsql.googleapis.com/database/cpu/utilization\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"${merlin_project_id_vm_db}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_MEAN",
+                      "groupByFields": [
+                        "resource.label.\"database_id\""
+                      ]
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "xPos": 6,
+        "yPos": 7,
+        "width": 6,
+        "height": 4,
+        "widget": {
+          "title": "Cloud SQL Database - Disk utilization [MEAN]",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"cloudsql.googleapis.com/database/disk/utilization\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"${merlin_project_id_vm_db}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_MEAN",
+                      "groupByFields": [
+                        "resource.label.\"database_id\""
+                      ]
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "yPos": 7,
+        "width": 6,
+        "height": 4,
+        "widget": {
+          "title": "PostgreSQL Connections [MEAN]",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"cloudsql.googleapis.com/database/postgresql/num_backends\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"${merlin_project_id_vm_db}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_MEAN",
+                      "groupByFields": [
+                        "resource.label.\"database_id\""
+                      ]
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "width": 12,
+        "height": 1,
+        "widget": {
+          "title": "Database Instance Performance - NC Cloud BSS",
+          "text": {
+            "format": "RAW"
+          }
+        }
+      },
+      {
+        "yPos": 11,
+        "width": 6,
+        "height": 4,
+        "widget": {
+          "title": "Number of transactions by Instance [MEAN]",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"cloudsql.googleapis.com/database/postgresql/transaction_count\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"${merlin_project_id_vm_db}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_RATE"
+                    },
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_MEAN",
+                      "groupByFields": [
+                        "resource.label.\"database_id\""
+                      ]
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      },
+      {
+        "xPos": 6,
+        "yPos": 11,
+        "width": 6,
+        "height": 4,
+        "widget": {
+          "title": "Execution time [MEAN]",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"cloudsql.googleapis.com/database/postgresql/insights/aggregate/execution_time\" resource.type=\"cloudsql_instance_database\" resource.label.\"project_id\"=\"${merlin_project_id_vm_db}\"",
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_RATE"
+                    },
+                    "secondaryAggregation": {
+                      "alignmentPeriod": "60s",
+                      "perSeriesAligner": "ALIGN_MEAN",
+                      "crossSeriesReducer": "REDUCE_MEAN",
+                      "groupByFields": [
+                        "resource.label.\"database\""
+                      ]
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

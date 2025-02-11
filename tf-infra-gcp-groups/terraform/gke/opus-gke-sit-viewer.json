@@ -1,0 +1,22 @@
+{
+  "id": "opus-gke-sit-viewer",
+  "displayName": "Opus GKE SIT Viewer",
+  "owners": [],
+  "managers": [
+    "eduard.petreanu@telus.com"
+  ],
+  "members": [
+    "Janaki.Shivakaran@telus.com",
+    "abdul.aziz@telus.com",
+    "chetan.jadhav@telus.com",
+    "dhruva.vangipuram@telus.com",
+    "gurprit.singh@telus.com",
+    "kevin.tran@telus.com",
+    "niraj.deval@telus.com",
+    "rahil.ayaz@telus.com",
+    "shaik.tajuddin@telus.com",
+    "suresh.suraboyina@telus.com",
+    "vaishali.jain2@telus.com",
+    "yashwanath.thiyyari@telus.com"
+  ]
+}

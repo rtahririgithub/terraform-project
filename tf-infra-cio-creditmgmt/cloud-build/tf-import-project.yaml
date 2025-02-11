@@ -1,0 +1,99 @@
+steps:
+#retrieve key
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: retrieve-read-key
+  entrypoint: 'bash'
+  dir: ${_DIR}  
+  args:
+  - '-c'
+  - |
+    gcloud secrets versions access ${_KEY_VERSION} --secret="rpabot_read_key" --project=${_KEY_PROJECT}  > /root/.ssh/id_rsa;
+  volumes:
+  - name: 'ssh'
+    path: /root/.ssh
+  volumes:
+  - name: 'ssh'
+    path: /root/.ssh
+# Set up git with key and domain.
+- name: 'gcr.io/cloud-builders/git'
+  id: add-github-key
+  entrypoint: 'bash'
+  dir: ${_DIR}
+  args:
+  - '-c'
+  - |
+    chmod 600 /root/.ssh/id_rsa
+    cat <<EOF >/root/.ssh/config
+    Hostname github.com
+    IdentityFile /root/.ssh/id_rsa
+    EOF
+    ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
+  volumes:
+  - name: 'ssh'
+    path: /root/.ssh
+
+
+- name: 'gcr.io/${_REGISTRY_PROJECT}/${_TERRAFORM_VERSION}'
+  id: terraform-import-state
+  entrypoint: 'bash'
+  args: 
+    - '-c'
+    - |
+
+      echo "what is in the directory";
+      ls -l /workspace/; 
+
+      cd /workspace/terraform;
+
+      terraform init -input=false -backend-config="${_BACKEND_CONFIG_BUCKET}" -backend-config="${_BACKEND_CONFIG_PREFIX}"
+      
+      ###################################################################################################################
+      # Below is example terraform import script that can run on the project state
+      echo "Current State";
+      terraform state list
+      
+      # check if the  resource was already imported into state 
+      
+      # import service account:
+      #module.service-account.google_service_account.default projects/{{project}}/serviceAccounts/{{email}}
+
+      EMAIL=${_SERVICE_ACCOUNT_EMAIL};
+      terraform state list | grep "module.service-account.google_service_account.default" > /workspace/SERVICE_ACCOUNT_EXISTS;
+
+
+      if [[ $$EMAIL ]]; then
+        if [[ ! -s /workspace/SERVICE_ACCOUNT_EXISTS ]]; then 
+          terraform import module.service-account.google_service_account.default projects/${PROJECT_ID}/serviceAccounts/$$EMAIL; 
+                
+        else 
+          echo;
+          echo "The service account already exists in the state";
+          echo;
+        fi
+      else
+        echo;
+        echo "The email needs to be passed as substitution variable to the script for terraform import";
+        echo;
+      fi
+
+      # End of script
+      #############################################################################################################################
+  volumes:
+  - name: 'ssh'
+    path: /root/.ssh
+
+substitutions:
+    _KEY_PROJECT: cio-secrets-pr-cb7b98
+    _KEY_VERSION: "latest"
+    _TERRAFORM_VERSION: terraform:0.13.3
+    _REGISTRY_PROJECT: cio-gke-devops-e4993356
+    _DIR: .
+    
+    #_used for imports to projects terraform
+    _SERVICE_ACCOUNT_EMAIL: 
+
+    _BACKEND_CONFIG_BUCKET: bucket=tf-state-${PROJECT_ID} 
+    _BACKEND_CONFIG_PREFIX: prefix=terraform/np
+    _VAR_FILE: np.tfvars
+
+timeout: 1200s

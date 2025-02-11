@@ -1,0 +1,12 @@
+{
+  "id": "cloud-coe-bq-admin",
+  "displayName": "TELUS Cloud CoE BigQuery Admin",
+  "owners": [],
+  "managers": [
+    "ken.duffy@telus.com"
+  ],
+  "members": [
+    "michael.lapish@telus.com",
+    "ruxandra.cioraca@telus.com"
+  ]
+}

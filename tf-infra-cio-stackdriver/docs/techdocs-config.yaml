@@ -1,0 +1,25 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: cloud-monitoring-techdocs
+  title: Cloud Monitoring
+  namespace: default
+  description: Describes common application monitoring platform
+  snackDescription: Describes common application monitoring platform # Maximum 100 characters
+  url: https://github.com/telus/tf-infra-cio-stackdriver
+  githubBranch: master
+  directory: ''
+  homepage: README.md
+  audiences:
+    - 72LTIrW2CgEWROkjTd67F5
+    - 4PAfbcRYO4u8fstfPL0LWf
+    - 637mqXAVSQP11k21K1o1Bb
+    - 5oilEWohMtNvAFcrLftClD
+    - wewznh0V1pMTyjKMTnJ3E
+  category: uDsqHTGuG8stajtqr2twF
+  annotations:
+    backstage.io/techdocs-ref: "url:https://github.com/telus/tf-infra-cio-stackdriver"
+spec:
+  type: documentation
+  lifecycle: experimental
+  owner: 6UofiBj9Y38YjQcST60Dc

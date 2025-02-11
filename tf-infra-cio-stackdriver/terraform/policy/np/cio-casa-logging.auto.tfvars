@@ -1,0 +1,1 @@
+cio_casa_project_name = "cio-casa-logging-np-236f51"

@@ -1,0 +1,15 @@
+{
+  "id": "gke-super-admin",
+  "displayName": "GKE Super Admin",
+  "owners": [],
+  "managers": [],
+  "members": [
+    "eugene.thai@telus.com",
+    "harpreet.paul@telus.com",
+    "ken.duffy@telus.com",
+    "michael.lapish@telus.com",
+    "parin.pankajkumar_kothari@telus.com",
+    "rick.foster@telus.com",
+    "ruxandra.cioraca@telus.com"
+  ]
+}

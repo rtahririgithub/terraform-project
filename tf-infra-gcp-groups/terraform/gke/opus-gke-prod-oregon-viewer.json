@@ -1,0 +1,9 @@
+{
+  "id": "opus-gke-prod-oregon-viewer",
+  "displayName": "Opus GKE Prod Oregon Viewer",
+  "owners": [],
+  "managers": [
+    "eduard.petreanu@telus.com"
+  ],
+  "members": []
+}

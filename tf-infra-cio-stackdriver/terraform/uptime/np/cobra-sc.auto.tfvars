@@ -1,0 +1,1 @@
+cobra_sc_uptime_host = "apigw-private-nane-np-001.tsl.telus.com"

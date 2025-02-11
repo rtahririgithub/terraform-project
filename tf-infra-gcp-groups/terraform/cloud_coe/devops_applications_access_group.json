@@ -1,0 +1,10 @@
+{
+  "id": "devops-applications-access-group",
+  "displayName": "AUTOMATION ONLY GROUP: Service Accounts requiring push access to devops artifact application registry",
+  "owners": [],
+  "managers": [
+    "ken.duffy@telus.com",
+    "ruxandra.cioraca@telus.com"
+  ],
+  "members": []
+}

@@ -1,0 +1,73 @@
+steps:
+- name: 'gcr.io/cloud-builders/git'
+  id: set-edit-key
+  secretEnv: ['EDIT_KEY']
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    echo "$$EDIT_KEY" >> /root/.ssh/id_rsa
+    chmod 600 /root/.ssh/id_rsa
+    cat <<EOF >/root/.ssh/config
+    Hostname github.com
+    IdentityFile /root/.ssh/id_rsa
+    EOF
+    ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
+  volumes:
+  - name: 'ssh'
+    path: /root/.ssh
+
+#git clone tf-infra-gcp-groups
+- name: gcr.io/cloud-builders/git
+  id: get-code
+  dir: ${_DIR}
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+        git config --global user.name CIO GitOps;
+        git config --global user.email rpabot.ciogitops@telus.com;      
+        git clone ${_TF_INFRA_GCP_GROUPS_REPO}
+        git checkout ${_TF_INFRA_GCP_GROUPS_BRANCH}
+  volumes:
+    - name: 'ssh'
+      path: /root/.ssh
+
+#maintainGroup
+- name: 'northamerica-northeast1-docker.pkg.dev/${_REGISTRY_PROJECT}/builders/${_TERRAFORM_VERSION}'
+  id: maintainGroup
+  dir: ${_DIR}/${_GCP_GROUP_REPO_NAME}/${_TF_DIR}
+  entrypoint: bash
+  args: 
+  - '-c' # pass what follows as a command to bash
+  - |
+    terraform init -backend-config="${_BACKEND_CONFIG_BUCKET}" -backend-config="${_BACKEND_CONFIG_PREFIX}"
+    ../bin/maintainGroup.sh ${_VALIDATE_BRANCH_NAME}
+  env:
+    - "TF_VAR_project-name=${PROJECT_ID}"
+    - "TF_LOG=${_TF_LOG}" 
+  volumes:
+  - name: 'ssh'
+    path: /root/.ssh
+options:
+ machineType: E2_HIGHCPU_32
+substitutions:
+    _KEY_PROJECT: cio-secrets-pr-cb7b98
+    _EDIT_KEY_NAME: rpabot_edit_key
+    _KEY_VERSION: "latest"
+    _REGISTRY_PROJECT: cio-gke-devops-e4993356
+    _TERRAFORM_VERSION: terraform:1.1.7
+    _DIR: .
+    _TF_DIR: terraform
+    _BACKEND_CONFIG_BUCKET: bucket=tf-state-${PROJECT_ID} 
+    _BACKEND_CONFIG_PREFIX: prefix=terraform/pr
+    _TF_LOG: ""
+    _TF_INFRA_GCP_GROUPS_REPO: git@github.com:telus/tf-infra-gcp-groups.git
+    _GCP_GROUP_REPO_NAME: tf-infra-gcp-groups
+    _TF_INFRA_GCP_GROUPS_BRANCH: master
+    _VALIDATE_BRANCH_NAME: ""
+availableSecrets:
+  secretManager:
+  - versionName: projects/${_KEY_PROJECT}/secrets/${_EDIT_KEY_NAME}/versions/${_KEY_VERSION}
+    env: 'EDIT_KEY'
+timeout: 1200s

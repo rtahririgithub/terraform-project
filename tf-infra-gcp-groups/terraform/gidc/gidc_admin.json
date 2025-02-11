@@ -1,0 +1,11 @@
+{
+  "id": "gidc-admin",
+  "displayName": "TELUS GIDC Admin",
+  "owners": [],
+  "managers": [],
+  "members": [
+    "charles.macdonald@telus.com",
+    "corey.sprung@telus.com",
+    "shaun.mcevoy@telus.com"
+  ]
+}

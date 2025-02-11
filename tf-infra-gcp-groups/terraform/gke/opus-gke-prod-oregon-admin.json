@@ -1,0 +1,15 @@
+{
+  "id": "opus-gke-prod-oregon-admin",
+  "displayName": "Opus GKE Prod Oregon Admin",
+  "owners": [],
+  "managers": [
+    "eduard.petreanu@telus.com"
+  ],
+  "members": [
+    "foysal.iqbal@telus.com",
+    "jason.pascual@telus.com",
+    "jay.sapkota@telus.com",
+    "naresh.khatiwada@telus.com",
+    "sidharth.kolanjinathan@telus.com"
+  ]
+}

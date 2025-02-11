@@ -1,0 +1,17 @@
+resource "google_monitoring_slo" "account-exp-request-seconds" {
+  project             = var.project_id
+  service             = google_monitoring_custom_service.customer-assist-account-exp-service.service_id
+  display_name        = "Account Experience API Request Seconds: 95% under 500ms"
+  goal                = 0.95
+  rolling_period_days = 1
+
+  request_based_sli {
+    distribution_cut {
+      distribution_filter = "metric.type=\"external.googleapis.com/prometheus/http_server_requests_seconds_count\"  resource.type=\"k8s_container\" "
+      range {
+        min = 0
+        max = 0.5
+      }
+    }
+  }
+}

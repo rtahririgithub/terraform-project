@@ -1,0 +1,10 @@
+{
+  "id": "devops-builder-access-group",
+  "displayName": "AUTOMATION ONLY GROUP: Service Accounts requiring read access to devops GAR builder repo",
+  "owners": [],
+  "managers": [
+    "ken.duffy@telus.com",
+    "ruxandra.cioraca@telus.com"
+  ],
+  "members": []
+}

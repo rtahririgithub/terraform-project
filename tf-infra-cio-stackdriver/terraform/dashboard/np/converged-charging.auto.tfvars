@@ -1,0 +1,1 @@
+converged_charging_project_id = "cio-converged-charging-np-ac52"

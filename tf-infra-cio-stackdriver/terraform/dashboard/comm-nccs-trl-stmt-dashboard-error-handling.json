@@ -1,0 +1,249 @@
+{
+  "category": "CUSTOM",
+  "displayName": "NCCS - Error Handling - ${env}",
+  "mosaicLayout": {
+    "columns": 12,
+    "tiles": [
+      {
+        "widget": {
+          "title": "NCCS API Bad Request Error",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "metric.label.\"processType\""
+                      ],
+                      "perSeriesAligner": "ALIGN_COUNT"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/nccs-api-bad-request-metric-${env}\" resource.type=\"k8s_container\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "height": 4,
+        "xPos": 0,
+        "yPos": 0
+      },
+      {
+        "widget": {
+          "title": "NCCS API Not Found Warning",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_COUNT",
+                      "groupByFields": [
+                        "metric.label.\"processType\""
+                      ],
+                      "perSeriesAligner": "ALIGN_COUNT"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/nccs-api-not-found-metric-${env}\" resource.type=\"k8s_container\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "height": 4,
+        "xPos": 6,
+        "yPos": 0
+      },
+      {
+        "widget": {
+          "title": "NCCS API Unhandled Error",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_COUNT",
+                      "groupByFields": [
+                        "metric.label.\"processType\""
+                      ],
+                      "perSeriesAligner": "ALIGN_COUNT"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/nccs-api-unhandled-error-metric-${env}\" resource.type=\"k8s_container\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "height": 4,
+        "xPos": 0,
+        "yPos": 4
+      },
+      {
+        "widget": {
+          "title": "NCCS API Email Send Error",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_COUNT",
+                      "groupByFields": [
+                        "metric.label.\"processType\""
+                      ],
+                      "perSeriesAligner": "ALIGN_COUNT"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/nccs-api-email-send-error-metric-${env}\" resource.type=\"k8s_container\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "height": 4,
+        "xPos": 6,
+        "yPos": 4
+      },
+      {
+        "widget": {
+          "title": "NCCS API File Retrieve Error",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_COUNT",
+                      "groupByFields": [
+                        "metric.label.\"processType\""
+                      ],
+                      "perSeriesAligner": "ALIGN_COUNT"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/nccs-api-file-retrieve-error-metric-${env}\" resource.type=\"k8s_container\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "height": 4,
+        "xPos": 0,
+        "yPos": 8
+      },
+      {
+        "widget": {
+          "title": "NCCS API File Store Error",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "minAlignmentPeriod": "60s",
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "apiSource": "DEFAULT_CLOUD",
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_COUNT",
+                      "groupByFields": [
+                        "metric.label.\"processType\""
+                      ],
+                      "perSeriesAligner": "ALIGN_COUNT"
+                    },
+                    "filter": "metric.type=\"logging.googleapis.com/user/nccs-api-file-store-error-metric-${env}\" resource.type=\"k8s_container\""
+                  }
+                }
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6,
+        "height": 4,
+        "xPos": 6,
+        "yPos": 8
+      }
+    ]
+  }
+}

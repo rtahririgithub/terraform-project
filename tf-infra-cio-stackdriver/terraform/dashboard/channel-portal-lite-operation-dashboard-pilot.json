@@ -1,0 +1,144 @@
+{
+  "displayName": "Channel Portal Lite - Operation Dashboard - Pilot",
+  "gridLayout": {
+    "columns": "2",
+    "widgets": [
+      {
+        "title": "Hourly Count of Successful Logins and App Links Page Loaded",
+        "xyChart": {
+          "chartOptions": {
+            "mode": "COLOR"
+          },
+          "dataSets": [
+            {
+              "minAlignmentPeriod": "3600s",
+              "plotType": "STACKED_AREA",
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "aggregation": {
+                    "crossSeriesReducer": "REDUCE_SUM",
+                    "perSeriesAligner": "ALIGN_SUM"
+                  },
+                  "filter": "metric.type=\"logging.googleapis.com/user/chnlpart/cpl/user_successful_login\"",
+                  "secondaryAggregation": {}
+                }
+              }
+            },
+            {
+              "minAlignmentPeriod": "3600s",
+              "plotType": "STACKED_AREA",
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "aggregation": {
+                    "crossSeriesReducer": "REDUCE_SUM",
+                    "perSeriesAligner": "ALIGN_SUM"
+                  },
+                  "filter": "metric.type=\"logging.googleapis.com/user/chnlpart/cpl/app_link_page_loaded\"",
+                  "secondaryAggregation": {}
+                }
+              }
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          }
+        }
+      },
+      {
+        "title": "Hourly count of Application Links redirection",
+        "xyChart": {
+          "chartOptions": {
+            "mode": "COLOR"
+          },
+          "dataSets": [
+            {
+              "minAlignmentPeriod": "3600s",
+              "plotType": "STACKED_BAR",
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "aggregation": {
+                    "crossSeriesReducer": "REDUCE_SUM",
+                    "perSeriesAligner": "ALIGN_SUM",
+                    "groupByFields": [
+                      "metric.label.\"resource\""
+                    ]
+                  },
+                  "filter": "metric.type=\"logging.googleapis.com/user/chnlpart/cpl/resource_clicked\"",
+                  "secondaryAggregation": {}
+                }
+              }
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          }
+        }
+      },      
+      {
+        "title": "Channel Organisation Distribution",
+        "xyChart": {
+          "chartOptions": {
+            "mode": "COLOR"
+          },
+          "dataSets": [
+            {
+              "minAlignmentPeriod": "3600s",
+              "plotType": "LINE",
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "aggregation": {
+                    "crossSeriesReducer": "REDUCE_SUM",
+                    "perSeriesAligner": "ALIGN_SUM",
+                    "groupByFields": [
+                      "metric.label.\"channelorg\""
+                    ]
+                  },
+                  "filter": "metric.type=\"logging.googleapis.com/user/chnlpart/cpl/channelorg_distribution\"",
+                  "secondaryAggregation": {}
+                }
+              }
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          }
+        }
+      },
+      {
+        "title": "User Login Elapse Time",
+        "xyChart": {
+          "chartOptions": {
+            "mode": "COLOR"
+          },
+          "dataSets": [
+            {
+              "minAlignmentPeriod": "60s",
+              "plotType": "LINE",
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "aggregation": {
+                    "crossSeriesReducer": "REDUCE_MAX",
+                    "perSeriesAligner": "ALIGN_PERCENTILE_99"
+                  },
+                  "filter": "metric.type=\"logging.googleapis.com/user/chnlpart/cpl/user_login_elapsed_time\" resource.type=\"k8s_container\"",
+                  "secondaryAggregation": {}
+                }
+              }
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          }
+        }
+      }
+    ]
+  }
+}

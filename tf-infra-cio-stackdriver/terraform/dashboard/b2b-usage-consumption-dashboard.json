@@ -1,0 +1,45 @@
+{
+    "displayName": "b2b_usage_consumption",
+    "gridLayout": {
+      "columns": "2",
+      "widgets": [
+      {
+        "title": "API Requests count",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"logging.googleapis.com/user/usage_consumption_b2b/api_request_count\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"=\"usage-consumption-b2b\"",
+                  "aggregation": {
+                    "perSeriesAligner": "ALIGN_RATE",
+                    "crossSeriesReducer": "REDUCE_COUNT",
+                    "groupByFields": [
+                      "resource.label.\"container_name\""
+                    ]
+                  },
+                  "secondaryAggregation": {},
+                  "pickTimeSeriesFilter": {
+                    "rankingMethod": "METHOD_MEAN",
+                    "numTimeSeries": 6,
+                    "direction": "TOP"
+                  }
+                }
+              },
+              "plotType": "LINE",
+              "minAlignmentPeriod": "60s"
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          },
+          "chartOptions": {
+            "mode": "COLOR"
+          }
+        }
+      }	
+      ]
+    }
+  }

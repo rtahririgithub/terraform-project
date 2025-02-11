@@ -1,0 +1,201 @@
+{
+    "displayName": "TESS Event Stream",
+    "gridLayout": {
+      "columns": "2",
+      "widgets": [
+        {
+          "title": "Disk Throughput",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"compute.googleapis.com/instance/disk/read_bytes_count\" resource.type=\"gce_instance\" resource.label.\"zone\"=\"northamerica-northeast1-a\" resource.label.\"project_id\"=\"${tess_project_id}\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "metric.label.\"instance_name\""
+                      ]
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "legendTemplate": "Read",
+                "minAlignmentPeriod": "60s"
+              },
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" resource.type=\"gce_instance\" resource.label.\"zone\"=\"northamerica-northeast1-a\" resource.label.\"instance_id\"=\"233537934057042344\" resource.label.\"project_id\"=\"${tess_project_id}\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "metric.label.\"instance_name\""
+                      ]
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "legendTemplate": "Write",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "Network Bytes",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"compute.googleapis.com/instance/network/received_packets_count\" resource.type=\"gce_instance\" resource.label.\"zone\"=\"northamerica-northeast1-a\" resource.label.\"project_id\"=\"${tess_project_id}\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE",
+                      "crossSeriesReducer": "REDUCE_SUM"
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "legendTemplate": "Incoming",
+                "minAlignmentPeriod": "60s"
+              },
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"compute.googleapis.com/instance/network/sent_packets_count\" resource.type=\"gce_instance\" resource.label.\"zone\"=\"northamerica-northeast1-a\" resource.label.\"instance_id\"=\"7875604622860906920\" resource.label.\"project_id\"=\"${tess_project_id}\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "metric.label.\"instance_name\""
+                      ]
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "legendTemplate": "Outgoing",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "Network Packets",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"compute.googleapis.com/instance/network/received_packets_count\" resource.type=\"gce_instance\" resource.label.\"zone\"=\"northamerica-northeast1-a\" resource.label.\"project_id\"=\"${tess_project_id}\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "metric.label.\"instance_name\""
+                      ]
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "legendTemplate": "Incoming",
+                "minAlignmentPeriod": "60s"
+              },
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"compute.googleapis.com/instance/network/sent_packets_count\" resource.type=\"gce_instance\" resource.label.\"zone\"=\"northamerica-northeast1-a\" resource.label.\"instance_id\"=\"7875604622860906920\" resource.label.\"project_id\"=\"${tess_project_id}\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "metric.label.\"instance_name\""
+                      ]
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "legendTemplate": "Outgoing",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        },
+        {
+          "title": "DISK IO Per Second",
+          "xyChart": {
+            "dataSets": [
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"compute.googleapis.com/instance/disk/read_ops_count\" resource.type=\"gce_instance\" resource.label.\"zone\"=\"northamerica-northeast1-a\" resource.label.\"project_id\"=\"${tess_project_id}\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "metric.label.\"instance_name\""
+                      ]
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "legendTemplate": "Read",
+                "minAlignmentPeriod": "60s"
+              },
+              {
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "filter": "metric.type=\"compute.googleapis.com/instance/disk/write_ops_count\" resource.type=\"gce_instance\" resource.label.\"zone\"=\"northamerica-northeast1-a\" resource.label.\"instance_id\"=\"7875604622860906920\" resource.label.\"project_id\"=\"${tess_project_id}\"",
+                    "aggregation": {
+                      "perSeriesAligner": "ALIGN_RATE",
+                      "crossSeriesReducer": "REDUCE_SUM",
+                      "groupByFields": [
+                        "metric.label.\"instance_name\""
+                      ]
+                    }
+                  }
+                },
+                "plotType": "LINE",
+                "legendTemplate": "Write",
+                "minAlignmentPeriod": "60s"
+              }
+            ],
+            "timeshiftDuration": "0s",
+            "yAxis": {
+              "label": "y1Axis",
+              "scale": "LINEAR"
+            },
+            "chartOptions": {
+              "mode": "COLOR"
+            }
+          }
+        }
+      ]
+    }
+  }

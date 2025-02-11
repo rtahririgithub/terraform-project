@@ -1,0 +1,1 @@
+tpsbooking_ui_uptime_host = "tps-booking-np.cloudapps.telus.com"

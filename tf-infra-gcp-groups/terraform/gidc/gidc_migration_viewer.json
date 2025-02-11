@@ -1,0 +1,10 @@
+{
+  "id": "gidc-migration-viewer",
+  "displayName": "TELUS GIDC Migration Viewers",
+  "owners": [],
+  "managers": [],
+  "members": [
+    "dlgidcapplicationmigrationprime@telus.com",
+    "dlgidcgoogleprofessionalservices@telus.com"
+  ]
+}

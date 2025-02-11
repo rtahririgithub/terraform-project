@@ -1,0 +1,12 @@
+{
+  "id": "bi-layer-admins",
+  "displayName": "DSE BI Layer Admins",
+  "owners": [],
+  "managers": [
+    "alexander.rohvarger@telus.com"
+  ],
+  "members": [
+    "mark.gates@telus.com",
+    "valentine.nkemkan@telus.com"
+  ]
+}
