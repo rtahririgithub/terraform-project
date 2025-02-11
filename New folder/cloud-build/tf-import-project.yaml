@@ -1,0 +1,102 @@
+steps:
+- name: 'gcr.io/cloud-builders/git'
+  id: set-read-key
+  secretEnv: ['READ_KEY']
+  entrypoint: 'bash'
+  args:
+  - -c
+  - |
+    echo "$$READ_KEY" >> /root/.ssh/id_rsa
+    chmod 400 /root/.ssh/id_rsa
+    cat <<EOF >/root/.ssh/config
+    Hostname github.com
+    IdentityFile /root/.ssh/id_rsa
+    EOF
+    ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
+  volumes:
+  - name: 'ssh'
+    path: /root/.ssh
+
+- name: 'northamerica-northeast1-docker.pkg.dev/${_REGISTRY_PROJECT}/builders/${_TERRAFORM_VERSION}'
+  id: terraform-import-state
+  entrypoint: 'bash'
+  args: 
+    - '-c'
+    - |
+      echo "what is in the directory";
+      ls -l /workspace/; 
+      cd /workspace/terraform;
+      
+      
+      ###################################################################################################################
+      # Below is example terraform import script that can run on the project state
+      
+      
+      # variables
+      ######################################################################################################
+      PROJECT_ID=${PROJECT_ID};
+      ENV=${_ENV};
+      #POSTGRES_DB_SERVER="${PROJECT_ID}-db";
+      DATABASE_NAME="db-schema"
+      #####################################################################################################
+     
+      terraform init -input=false -backend-config="${_BACKEND_CONFIG_BUCKET}" -backend-config="${_BACKEND_CONFIG_PREFIX}"
+      
+      # import cloudsql database server
+      #terraform import -var-file=$$ENV.tfvars module.cloudsql.google_sql_database_instance.db projects/$$PROJECT_ID/instances/$$POSTGRES_DB_SERVER;
+      
+      # import cloudsql database
+      #terraform import -var-file=$$ENV.tfvars module.cloudsql.google_sql_database.default projects/$$PROJECT_ID/instances/$$POSTGRES_DB_SERVER/databases/$$DATABASE_NAME;
+      
+      # import cloudsql ssl cert # cannot import a new cert is created
+      #terraform impoort -var-file=$$ENV.tfvars module.cloudsql.google_sql_ssl_cert.client_cert
+      
+      # import cloudsql service account
+      #terraform import -var-file=$$ENV.tfvars module.cloudsql_service_account.google_service_account.default projects/$$PROJECT_ID/serviceAccounts/cloud-sql-proxy@$$PROJECT_ID.iam.gserviceaccount.com;
+      
+      # import firestore
+      #terraform import -var-file=$$ENV.tfvars module.firestore.google_app_engine_application.firestore $$PROJECT_ID;
+      # import firestore service account
+      
+      #terraform import -var-file=$$ENV.tfvars module.firestore_service_account.google_service_account.default projects/$$PROJECT_ID/serviceAccounts/@$$PROJECT_ID.iam.gserviceaccount.com;
+      
+      
+      gcloud config set project $$PROJECT_ID
+      # check fir workload identity service account
+      #gcloud iam service-accounts describe secret-manager-admin@$$PROJECT_ID.iam.gserviceaccount.com >> /workspace/SECRETMANAGER_SA_EXISTS;
+      
+      if [[ -s /workspace/SECRETMANAGER_SA_EXISTS ]]; then
+        echo "Secret manager service account exists";
+        echo
+        # secret manager service account
+        terraform import -var-file=$$ENV.tfvars module.secretmanager_service_account.google_service_account.default projects/$$PROJECT_ID/serviceAccounts/secret-manager-admin@$$PROJECT_ID.iam.gserviceaccount.com;
+      else echo "Secret Manager service account does not exist. Continue terraform import script";
+      fi
+      
+      # workload identity binding cloudsql
+      #terraform import -var-file=$$ENV.tfvars google_service_account_iam_binding.wfm-techhub-iam-np "projects/$$PROJECT_ID/serviceAccounts/cloud-sql-proxy@$$PROJECT_ID.iam.gserviceaccount.com roles/iam.workloadIdentityUser"
+      # workload identity binding  
+      #terraform import -var-file=$$ENV.tfvars google_service_account_iam_binding.wfm-techhub-secret-iam-np "projects/$$PROJECT_ID/serviceAccounts/secret-manager-admin@$$PROJECT_ID.iam.gserviceaccount.com roles/iam.workloadIdentityUser"
+      # End of script
+      #############################################################################################################################
+  volumes:
+  - name: 'ssh'
+    path: /root/.ssh
+
+substitutions:
+    _KEY_PROJECT: cio-secrets-pr-cb7b98
+    _READ_KEY_NAME: rpabot_read_key
+    _KEY_VERSION: "latest"
+    _TERRAFORM_VERSION: terraform:0.14.9
+    _REGISTRY_PROJECT: cio-gke-devops-e4993356
+    _DIR: .
+    _ENV: 
+    #_used for imports to projects terraform
+    _BACKEND_CONFIG_BUCKET: bucket=tf-state-${PROJECT_ID} 
+    _BACKEND_CONFIG_PREFIX: prefix=terraform/${_ENV}
+    _VAR_FILE: ${_ENV}.tfvars
+availableSecrets:
+  secretManager:
+  - versionName: projects/${_KEY_PROJECT}/secrets/${_READ_KEY_NAME}/versions/${_KEY_VERSION}
+    env: 'READ_KEY'
+timeout: 1200s

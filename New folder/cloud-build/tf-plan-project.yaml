@@ -1,0 +1,53 @@
+steps:
+- name: 'gcr.io/cloud-builders/git'
+  id: set-read-key
+  secretEnv: ['READ_KEY']
+  entrypoint: 'bash'
+  args:
+  - -c
+  - |
+    echo "$$READ_KEY" >> /root/.ssh/id_rsa
+    chmod 400 /root/.ssh/id_rsa
+    cat <<EOF >/root/.ssh/config
+    Hostname github.com
+    IdentityFile /root/.ssh/id_rsa
+    EOF
+    ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
+  volumes:
+  - name: 'ssh'
+    path: /root/.ssh
+
+#Perform the terrafrom plan 
+- name: 'northamerica-northeast1-docker.pkg.dev/${_REGISTRY_PROJECT}/builders/${_TERRAFORM_VERSION}'
+  id: terraform-plan
+  dir: ${_DIR}/${_TF_DIR}
+  entrypoint: bash
+  args: 
+  - '-c' # pass what follows as a command to bash
+  - |
+    terraform init -backend-config="${_BACKEND_CONFIG_BUCKET}" -backend-config="${_BACKEND_CONFIG_PREFIX}"
+    terraform ${_TF_COMMAND} -var-file=${_VAR_FILE}
+  env:
+    - "TF_VAR_project-name=${PROJECT_ID}"
+    - "TF_LOG=${_TF_LOG}" 
+  volumes:
+  - name: 'ssh'
+    path: /root/.ssh
+substitutions:
+  _KEY_PROJECT: cio-secrets-pr-cb7b98
+  _READ_KEY_NAME: rpabot_read_key
+  _KEY_VERSION: "latest"
+  _REGISTRY_PROJECT: cio-gke-devops-e4993356
+  _TERRAFORM_VERSION: terraform:0.14.9
+  _DIR: .
+  _TF_COMMAND: plan
+  _TF_DIR: terraform
+  _BACKEND_CONFIG_BUCKET: bucket=tf-state-${PROJECT_ID} 
+  _BACKEND_CONFIG_PREFIX: prefix=terraform/np
+  _VAR_FILE: np.tfvars
+  _TF_LOG:
+availableSecrets:
+  secretManager:
+  - versionName: projects/${_KEY_PROJECT}/secrets/${_READ_KEY_NAME}/versions/${_KEY_VERSION}
+    env: 'READ_KEY'
+timeout: 1200s
